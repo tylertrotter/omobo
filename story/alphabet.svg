@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="60">
+	<style>
+		.stroke {
+			stroke: black;
+			stroke-width: 1;
+			fill: transparent;
+		}
+		.heavy{
+			stroke-width: 6;
+		}
+		text{
+			font-size: 26px;
+		}
+	</style>
+		<rect x="0" y="0" width="180" height="60" fill="white" />
+
+		<svg>
+			<circle cx="15" cy="15" r="10" />
+		</svg>
+
+
+	<svg x="25">
+		<circle class="stroke" cx="15" cy="15" r="10" />
+	</svg>
+
+	<svg x="50">
+		<circle class="stroke" cx="15" cy="15" r="10" />
+		<circle class="stroke" cx="15" cy="15" r="5" />
+	</svg>
+
+	<svg x="75">
+		<circle class="stroke" cx="15" cy="15" r="10" />
+		<circle cx="15" cy="15" r="5" />
+	</svg>
+
+	<svg x="100">
+		<circle class="heavy stroke" cx="15" cy="15" r="7" />
+	</svg>
+
+	<svg x="125">
+		<circle cx="15" cy="15" r="5" />
+	</svg>
+
+	<svg x="150">
+		<circle class="stroke" cx="15" cy="15" r="5" />
+	</svg>
+
+	<text x="8" y="52">P</text>
+	<text x="32" y="52">B</text>
+	<text x="53" y="52">M</text>
+	<text x="82" y="52">K</text>
+	<text x="105" y="52">G</text>
+	<text x="130" y="52">O</text>
+	<text style="font-size: 18px;" x="152" y="49">OO</text>
+</svg>

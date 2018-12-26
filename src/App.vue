@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <s-board />
+		<s-controls />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import SBoard from './components/Board.vue';
+import SControls from './components/Controls.vue';
+
+
+require('@/assets/style/variables.css');
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+		SBoard,
+		SControls
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	body {
+		margin: 0;
+		overflow: hidden;
+	}
+
+	svg {
+		background: var(--void);
+	}
 </style>
