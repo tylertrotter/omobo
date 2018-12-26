@@ -1,4 +1,4 @@
-# Omogoob
+# Omobo
 
 ## Backstory
 Each player is a resident of the same planet but each is a citizen of a different and rival state. As war rages between your countries with no clear end in sight, each of player's government independently comes to the same conclusion. A rare and volotile material is needed to power a not-so-secret weapon&mdash;the shrinkorator! A shrinkorator is a widely known but as-of-yet theoretical weapon that could be used to shrink an enemy down to a harmless size. The science has all been worked out years ago, the only thing keeping the generals from employing a weapon like this is that to power a shrinkorator requires the most precious of all metals in the galaxy&mdash;tin!
