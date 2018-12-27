@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30
+" height="30
+">
+	<style>
+		.stroke {
+			stroke: black;
+			stroke-width: 1;
+			fill: transparent;
+		}
+		.heavy{
+			stroke-width: 6;
+		}
+		text{
+			font-size: 26px;
+		}
+	</style>
+
+	<circle cx="15" cy="15" r="5" />
+</svg>
