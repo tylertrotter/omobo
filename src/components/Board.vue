@@ -39,7 +39,9 @@
 			<s-planet radius="4" ring="7" speed="100" :retrograde="true" />
 		</s-solar-system>
 
-		<s-space-ship />
+		<s-space-ship :player="1" />
+		<s-space-ship :player="2" />
+		<s-space-ship :player="3" />
 
 	</svg>
 </template>
@@ -55,6 +57,12 @@
 			SSolarSystem,
 			SPlanet,
 			SSpaceShip
+		},
+		mounted(){
+			this.$store.commit('step', 9);
+			setTimeout(()=>{
+				this.$store.commit('step', 1);
+			}, 500)
 		}
 	}
 </script>

@@ -55,8 +55,7 @@
 				if(mutation.type === "step"){
 					this.$store.commit("updatePlanet", this.id)
 				}
-			})
-
+			});
 		}
 	}
 </script>

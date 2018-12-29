@@ -1,5 +1,6 @@
 <template>
 	<div class="controls">
+		<div style="color: white;">player: {{this.$store.getters.turn}}</div>
 		<button @click="step(1)">next</button>
 	</div>
 </template>
