@@ -1,6 +1,17 @@
 <template>
 	<g>
-		<circle class="space-ship" :cx="position.x + '%'" :cy="position.y + '%'" :r="burstRange + '%'" />
+		<circle class="space-ship"
+			:class="{active: active}"
+			:cx="position.x + '%'"
+			:cy="position.y + '%'"
+			:r="burstRange + '%'"
+			:stroke="color"
+			:fill="color"
+		/>
+		<svg width="4%" height="6%" :x="position.x - 2 + '%'" :y="position.y - 3 + '%'" class="ship-orbit">
+			<!-- <rect fill="green" x="0" y="0" width="100%" height="100%" fill-opacity=".3" /> -->
+			<circle class="not-burst-range" fill="white" cx="20" cy="20" r="2"  :style="'transform: rotate(' + player * 25 + 'deg)'" />
+		</svg>
 	</g>
 </template>
 
@@ -12,11 +23,12 @@
 				planet: "0",
 				burstRange: 3,
 				position: {x:30, y: 30},
-				shipRect: {}
+				active: this.$store.getters.turn === this.player
 			}
 		},
 		props: {
-			'player': Number
+			'player': Number,
+			'color': String
 		},
 		methods: {
 			getPlanetsInRange() {
@@ -82,6 +94,8 @@
 			this.$store.subscribe((mutation) => {
 				if(mutation.type === "step"){
 					this.goToPlanet(this.planet);
+
+					this.active = this.$store.getters.turn === this.player;
 				}
 			})
 		}
@@ -90,10 +104,28 @@
 
 <style>
 	.space-ship {
-		fill: rgba(255, 255, 255, 0.075);
-		stroke: rgba(255,255,255,.3);
+		opacity: .5;
+		fill-opacity: .2;
 		stroke-width: .05%;
 		transform-origin: center;
+		transition: all .7s;
+	}
+
+	.active.space-ship {
+		opacity: 1;
+		stroke-width: .2%;
+	}
+
+	@keyframes orbit {
+		0% {transform: rotate(0deg);  }
+		100% {transform: rotate(360deg); }
+	}
+
+
+	.not-burst-range {
+		fill: white;
+		transform-origin: center;
+		animation: 10s orbit linear infinite;
 		transition: all .7s;
 	}
 </style>

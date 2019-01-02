@@ -39,9 +39,9 @@
 			<s-planet radius="4" ring="7" speed="100" :retrograde="true" />
 		</s-solar-system>
 
-		<s-space-ship :player="1" />
-		<s-space-ship :player="2" />
-		<s-space-ship :player="3" />
+		<s-space-ship :player="1" color="green" />
+		<s-space-ship :player="2" color="pink" />
+		<s-space-ship :player="3" color="orange" />
 
 	</svg>
 </template>

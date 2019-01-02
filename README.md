@@ -13,30 +13,55 @@ Each player is trying to be the first to get from their home planet to the plane
 ## Mechanics
 
 ### Time
-Time is split up into epochs, turns and ticks. An epoch is the time it takes for every player to complete a turn, a turn is a turn, and each player's turn is split into 10 ticks. Planets advance one spot in their orbit at the start of each tick. Planets go around their sun at different speeds. The dots along a planet's orbit path indicate where the planet will go with each tick. Each tick, the player who's turn it is can choose to do nothing, use a resource, or move to a nearby planet in its burst range.
+Time is split up into epochs, turns and ticks. An epoch is the time it takes for every player to complete a turn, a turn is a turn, and each player's turn is split into 12 ticks. Planets advance one spot in their orbit at the start of each tick. Planets go around their sun at different speeds. The dots along a planet's orbit path indicate where the planet will go with each tick. Each tick, the player who's turn it is can choose to do nothing, use a resource, or move to a nearby planet in its burst range.
 
 ### Fuel
-Each player's space ship is powered by solar energy and so players will have to take detours to suns to recharge when they are getting too low. The bigger the sun the more energy is stored up with each tick.
+Each player's space ship is powered by solar energy and so players will have to take detours to suns to recharge when they are getting too low. One fuel unit is recharged with every 12 ticks (regardless of whose turn it is).
+
+It takes one fuel unit to jump to a nearby planet.
 
 #### Burst Range
 During a player's turn his spaceship is surrounded by a ring indicating how far his ship can travel in a tick. A planet must be at least partially within this "burst range ring" to be accessible to the ship. It is possible to increase one's burst range with the turbo boost resource.
 
-### Resources
-
-- #### Turbo Boost
-	This increases your ship's burst range.
+### Tools
 
 - #### Time Warp Bomb
-	Once this bomb is detonated it reverses every planets orbit.
+	Once this bomb is detonated it reverses every planets orbit for remainder of epoch.
+	Recipe: 3 units of radium, 3 units of copper
 
-- #### Time Elongater
-	Pull the trigger on this resource before any other in your turn and it makes other resources used later in the turn last longer (more epochs, turns or ticks).
+- #### Time Doubler
+	Pull the trigger on this tool and it makes subsequently used tools last twice as long.
+	Recipe: 2 units of tungsten, 2 units of radium, 2 units of copper
+
+- #### Turbo Booster
+	This increases your ship's burst range. Lasts for 3 epochs.
+	Recipe: 2 units of radium, 4 units of mercury
 
 - #### Fuel Pack
 	Sometimes you can get fuel this way without having to go to a sun.
+	Recipe: 6 units of radium
 
--	#### Resource Stealer
-	Use this to steal a resource form another player
+-	#### Tool Grabber
+	Use this to steal a tool form another player
+	Recipe: 3 units of tungsten, 3 unit of radium
 
-- #### Future Revealer Gadget
-	This resource lets you watch the movements of the planets at high-speed for 2 epochs
+- #### Future Revealer
+	This tool lets you watch the movements of the planets at high-speed for 2 epochs
+	Recipe: 6 units of tungsten
+
+### Materials
+Tools are built using raw materials. All available tools can be built on-board spaceships from combining 4 elemental raw materials in certain amounts. The elements from least to most rare are:
+
+- Tungsten (blue)
+- Radium (green)
+- Copper (red)
+- Mercury (orange)
+
+You acquire these elements by mining them on planets that are rich in them. E.g. If you spend 6 ticks mining on a tungsten rich (blue) planet you'll be able to mine 1 unit of tungsten. You can store 18 units of any element on your ship at one time. Once you use up elements by building tools you'll free up more space. Can you store partial units? IE, 1/6 of a unit? Yeah, I think so.
+
+Of course 6 units of Tin are required to build the shrinkerator, and scientists will need huge labs on the home planet to build it, so that is not being considered with these lesser tools. But tin is mined in the same way.
+
+- Tin (purple)
+
+### Your Turn
+On each tick while it's your tun, you can sit, mine, or jump. Sit means do nothing and let the tick pass. Mine means to collect the element of the planet your on, and jump means to go to a nearby planet.

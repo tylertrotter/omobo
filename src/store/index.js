@@ -5,7 +5,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
 		aspectRatio: {x: 3, y:2},
-		tick: 0,
+		tick: 1,
 		planets: [],
 		numPlayers: 3
 	},
@@ -15,9 +15,9 @@ export default new Vuex.Store({
 		},
 		turn: state => {
 			const ticksPerTurn = 10;
-			const startTick = 10;
+			const startTick = ticksPerTurn * 1;
 			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.numPlayers;
-			turn = state.tick-startTick !== 0 && turn === 0 ? 3 : turn;
+			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;
 		}
 	},
@@ -25,9 +25,6 @@ export default new Vuex.Store({
 		step (state, n) {
 			state.tick += n;
 		},
-		// turn (state, n) {
-		// 	state.turn += n;
-		// },
 		updatePlanet(state, id){
 			// id and array index should always be the same,
 			// otherwise this would break.
