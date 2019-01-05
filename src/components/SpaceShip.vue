@@ -1,18 +1,15 @@
 <template>
-	<g>
-		<circle class="space-ship"
+		<g class="space-ship"
+			x="0"
+			y="0"
+			width="3%"
+			height="5%"
 			:class="{active: active}"
-			:cx="position.x + '%'"
-			:cy="position.y + '%'"
-			:r="burstRange + '%'"
-			:stroke="color"
-			:fill="color"
-		/>
-		<svg width="4%" height="6%" :x="position.x - 2 + '%'" :y="position.y - 3 + '%'" class="ship-orbit">
-			<!-- <rect fill="green" x="0" y="0" width="100%" height="100%" fill-opacity=".3" /> -->
-			<circle class="not-burst-range" fill="white" cx="20" cy="20" r="2"  :style="'transform: rotate(' + player * 25 + 'deg)'" />
-		</svg>
-	</g>
+			:style="`transform: translate(${position.x}%, ${position.y}%);`"
+		>
+			<circle class="burst-range" :cx="0" :cy="0" :r="burstRange + '%'" :fill="color" :stroke="color" stroke-width="2"  />
+			<circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${90 * player}deg);`" />
+		</g>
 </template>
 
 <script>
@@ -20,7 +17,7 @@
 		name: "s-space-ship",
 		data(){
 			return {
-				planet: "0",
+				planet: this.player,
 				burstRange: 3,
 				position: {x:30, y: 30},
 				active: this.$store.getters.turn === this.player
@@ -80,7 +77,7 @@
 					setTimeout(() => {
 						let planets = this.getPlanetsInRange();
 						for( var i = 0; i < planets.length; i++){
-							document.getElementById(planets[i].id).setAttribute('stroke', 'white')
+							// document.getElementById(planets[i].id).setAttribute('stroke', 'white')
 							this.changePlanet(planets[i].id);
 						}
 					}, 600)
@@ -104,14 +101,18 @@
 
 <style>
 	.space-ship {
+		transition: all .7s;
+	}
+
+	.burst-range {
 		opacity: .5;
 		fill-opacity: .2;
 		stroke-width: .05%;
 		transform-origin: center;
-		transition: all .7s;
+
 	}
 
-	.active.space-ship {
+	.active .burst-range {
 		opacity: 1;
 		stroke-width: .2%;
 	}
@@ -127,5 +128,15 @@
 		transform-origin: center;
 		animation: 10s orbit linear infinite;
 		transition: all .7s;
+	}
+
+	.ship {
+		opacity: .5;
+		transform-origin: 0 0;
+	}
+
+	.active .ship {
+		opacity: 1;
+		animation: 5s orbit linear infinite;
 	}
 </style>

@@ -41,14 +41,13 @@ export default new Vuex.Store({
 
 			// console.log(nextRect, thisRect)
 
-			let xPercent = ((nextRect.x + thisRect.width/2) / galaxyWidth) * 100;
-			let yPercent = ((nextRect.y + thisRect.height/2) / galaxyHeight) * 100;
+			let xPercent = ((nextRect.x + nextRect.width/2) / galaxyWidth) * 100;
+			let yPercent = ((nextRect.y + nextRect.height/2) / galaxyHeight) * 100;
 
 			state.galaxy = {width: galaxyWidth, height: galaxyHeight};
 
 			state.planets[id] = {
 				id,
-				// thisTick: {width: thisRect.width, height: thisRect.height, x: thisRect.x, y: thisRect.y},
 				nextTick: {xPercent, yPercent, width: nextRect.width, height: nextRect.height, x: nextRect.x, y: nextRect.y}
 			}
 

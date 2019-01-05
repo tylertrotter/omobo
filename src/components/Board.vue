@@ -2,9 +2,9 @@
 	<svg id="galaxy" width="3" height="2">
 
 		<s-solar-system width="40" x="0" y="0" sun-size="5" :clockwise="false">
-			<s-planet radius="1" ring="1" speed="20" />
-			<s-planet radius="2" ring="2" speed="10" />
-			<s-planet radius=".75" ring="3" speed="30" />
+			<s-planet radius="2" ring="1" speed="20" />
+			<s-planet radius="1" ring="2" speed="10" />
+			<s-planet radius="2.5" ring="3" speed="30" />
 			<s-planet radius="1" ring="4" speed="25" :retrograde="true" />
 			<s-planet radius="1" ring="6" speed="25" />
 		</s-solar-system>
