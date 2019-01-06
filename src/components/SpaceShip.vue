@@ -8,24 +8,26 @@
 			:style="`transform: translate(${position.x}%, ${position.y}%);`"
 		>
 			<circle class="burst-range" :cx="0" :cy="0" :r="burstRange + '%'" :fill="color" :stroke="color" stroke-width="2"  />
-			<circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${90 * player}deg);`" />
+			<circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
 		</g>
 </template>
 
 <script>
+	import utility from "../mixins/utility";
 	export default {
 		name: "s-space-ship",
+		mixins: [utility],
 		data(){
 			return {
-				planet: this.player,
+				// planet: this.$store.getters.players[this.player].planet,
+				color: this.$store.getters.players[this.player-1].color,
 				burstRange: 3,
 				position: {x:30, y: 30},
 				active: this.$store.getters.turn === this.player
 			}
 		},
 		props: {
-			'player': Number,
-			'color': String
+			'player': Number
 		},
 		methods: {
 			getPlanetsInRange() {
@@ -35,9 +37,8 @@
 				let planetsInRange = [];
 
 				for(var i = 0; i < planets.length; i++){
-
 					if(
-							planets[i].id !== this.planet &&
+							planets[i].id !== this.$store.getters.players[this.$store.getters.turn-1].planet &&
 							planets[i].nextTick.xPercent > this.position.x - extendedBurstRange &&
 							planets[i].nextTick.xPercent < this.position.x + extendedBurstRange &&
 							planets[i].nextTick.yPercent > this.position.y - extendedBurstRange &&
@@ -60,37 +61,30 @@
 				var b = this.getCenter(this.$el.getBoundingClientRect());
 				return Math.hypot((a.x - b.x), (a.y - b.y)) - a.radius - b.radius;
 			},
-			getCenter(element) {
-				let radius = element.width / 2;
-				return {
-					x: element.x + radius,
-					y: element.y + radius,
-					radius: radius
-				};
-			},
 			goToPlanet(id){
 				let planets = this.$store.getters.planets;
 				this.position.x = (planets[id].nextTick.xPercent);
 				this.position.y = (planets[id].nextTick.yPercent);
 
-				if(this.player === this.$store.getters.turn ){
+				if(this.active){
 					setTimeout(() => {
 						let planets = this.getPlanetsInRange();
-						for( var i = 0; i < planets.length; i++){
-							// document.getElementById(planets[i].id).setAttribute('stroke', 'white')
-							this.changePlanet(planets[i].id);
-						}
+						this.$store.commit('updatePlanetsInRange', planets);
+						// for( var i = 0; i < planets.length; i++){
+						// 	// document.getElementById(planets[i].id).setAttribute('stroke', 'white')
+						// 	this.changePlanet(planets[i].id);
+						// }
 					}, 600)
 				}
 			},
-			changePlanet(id){
-				this.planet = id;
-			}
+			// changePlanet(id){
+			// 	this.planet = id;
+			// }
 		},
 		created(){
 			this.$store.subscribe((mutation) => {
 				if(mutation.type === "step"){
-					this.goToPlanet(this.planet);
+					this.goToPlanet(this.$store.getters.players[this.player-1].planet);
 
 					this.active = this.$store.getters.turn === this.player;
 				}
@@ -107,14 +101,14 @@
 	.burst-range {
 		opacity: .5;
 		fill-opacity: .2;
-		stroke-width: .05%;
+		stroke-width: .08%;
 		transform-origin: center;
 
 	}
 
 	.active .burst-range {
 		opacity: 1;
-		stroke-width: .2%;
+		stroke-width: .3%;
 	}
 
 	@keyframes orbit {
@@ -122,21 +116,23 @@
 		100% {transform: rotate(360deg); }
 	}
 
-
+/*
 	.not-burst-range {
 		fill: white;
 		transform-origin: center;
 		animation: 10s orbit linear infinite;
 		transition: all .7s;
-	}
+	} */
 
 	.ship {
-		opacity: .5;
 		transform-origin: 0 0;
 	}
 
 	.active .ship {
-		opacity: 1;
 		animation: 5s orbit linear infinite;
+	}
+
+	.zoom .burst-range{
+		display: none;
 	}
 </style>

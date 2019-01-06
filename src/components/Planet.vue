@@ -1,12 +1,13 @@
 <template>
 	<g>
 		<circle class="orbit" cx="50%" cy="50%" :r="orbitRadius" :style="`stroke-dasharray: 1px ${dasharrayCalc};`" />
-		<circle :id="this.id" class="planet" cx="50%" :cy="planetPosition" :r="radius + '%'" :style="rotate" />
+		<circle @click="jumpHere" :id="this.id" class="planet" :class="mineral" cx="50%" :cy="planetPosition" :r="radius + '%'" :style="rotate" />
 		<use :href="'#' + this.id" :data-planet-id="this.id" class="next-tick" :style="nextTick"/>
 	</g>
 </template>
 
 <script>
+	import { mapMutations } from "vuex";
 	import assignId from "../mixins/assignId";
 
 	export default {
@@ -16,12 +17,27 @@
 			'radius',
 			'ring',
 			'speed',
-			'retrograde'
+			'retrograde',
+			'mineral'
 		],
 		data(){
 			return {
 				direction: +1,
 				center: null
+			}
+		},
+		methods: {
+			...mapMutations(['changePlanet', 'step']),
+			jumpHere(){
+				let galaxy = document.getElementById('galaxy');
+				galaxy.setAttribute('style', '');
+				galaxy.classList.remove('zoom');
+				// remove in-range class
+				setTimeout(() => {
+					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.id})
+					this.step(1);
+				}, 1000)
+
 			}
 		},
 		computed: {
@@ -75,8 +91,32 @@
 	.orbit {
 		fill: none;
 		stroke-width: 1px;
-		stroke: #666;
+		stroke: #999;
 		transform-origin: center;
 		transform: rotate(-90deg);
+	}
+
+	.tungsten {
+		fill: var(--tungsten);
+	}
+
+	.radium {
+		fill: var(--radium);
+	}
+
+	.copper {
+		fill: var(--copper);
+	}
+
+	.mercury {
+		fill: var(--mercury);
+	}
+
+	.tin {
+		fill: var(--tin);
+	}
+
+	.zoom .planet:not(.in-range){
+		opacity: .3;
 	}
 </style>

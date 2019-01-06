@@ -23,6 +23,10 @@
 
 <style>
 	.sun {
-		fill: yellow;
+		fill: var(--sun);
+	}
+
+	.zoom .sun {
+		opacity: .3;
 	}
 </style>

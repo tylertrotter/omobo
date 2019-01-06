@@ -5,18 +5,41 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
 		aspectRatio: {x: 3, y:2},
-		tick: 1,
+		tick: 10,
 		planets: [],
-		numPlayers: 3
+		planetsInRange: [],
+		players: [
+			{
+				name: "pubogu",
+				color: "orange",
+				planet: "0"
+			},
+			{
+				name: "gubo",
+				color: "blue",
+				planet: "0"
+			},
+			{
+				name: "bobo",
+				color: "red",
+				planet: "0"
+			}
+		]
 	},
 	getters: {
 		planets: state => {
       return state.planets;
 		},
+		players: state => {
+      return state.players;
+		},
+		planetsInRange: state => {
+      return state.planetsInRange;
+		},
 		turn: state => {
 			const ticksPerTurn = 10;
 			const startTick = ticksPerTurn * 1;
-			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.numPlayers;
+			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
 			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;
 		}
@@ -34,10 +57,10 @@ export default new Vuex.Store({
 			let galaxyHeight = galaxy.clientHeight;
 
 			const nextTicks = document.querySelectorAll('.next-tick');
-			const thisTicks = document.querySelectorAll('.planet');
+			// const thisTicks = document.querySelectorAll('.planet');
 
 			let nextRect = nextTicks[id].getBoundingClientRect();
-			let thisRect = thisTicks[id].getBoundingClientRect();
+			// let thisRect = thisTicks[id].getBoundingClientRect();
 
 			// console.log(nextRect, thisRect)
 
@@ -51,6 +74,12 @@ export default new Vuex.Store({
 				nextTick: {xPercent, yPercent, width: nextRect.width, height: nextRect.height, x: nextRect.x, y: nextRect.y}
 			}
 
+		},
+		updatePlanetsInRange(state, planets){
+			state.planetsInRange = planets;
+		},
+		changePlanet(state, {player, planet}){
+			state.players[player].planet = planet;
 		}
   }
 });
