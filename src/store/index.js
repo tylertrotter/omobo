@@ -5,7 +5,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
 		aspectRatio: {x: 3, y:2},
-		tick: 10,
+		tick: 1,
 		planets: [],
 		planetsInRange: [],
 		players: [
@@ -27,15 +27,6 @@ export default new Vuex.Store({
 		]
 	},
 	getters: {
-		planets: state => {
-      return state.planets;
-		},
-		players: state => {
-      return state.players;
-		},
-		planetsInRange: state => {
-      return state.planetsInRange;
-		},
 		turn: state => {
 			const ticksPerTurn = 10;
 			const startTick = ticksPerTurn * 1;

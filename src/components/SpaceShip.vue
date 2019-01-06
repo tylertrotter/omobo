@@ -19,8 +19,8 @@
 		mixins: [utility],
 		data(){
 			return {
-				// planet: this.$store.getters.players[this.player].planet,
-				color: this.$store.getters.players[this.player-1].color,
+				// planet: this.$store.state.players[this.player].planet,
+				color: this.$store.state.players[this.player-1].color,
 				burstRange: 3,
 				position: {x:30, y: 30},
 				active: this.$store.getters.turn === this.player
@@ -31,14 +31,14 @@
 		},
 		methods: {
 			getPlanetsInRange() {
-				let planets = this.$store.getters.planets;
+				let planets = this.$store.state.planets;
 				let extendedBurstRange = this.burstRange*2;
 				let filteredPlanets = [];
 				let planetsInRange = [];
 
 				for(var i = 0; i < planets.length; i++){
 					if(
-							planets[i].id !== this.$store.getters.players[this.$store.getters.turn-1].planet &&
+							planets[i].id !== this.$store.state.players[this.$store.getters.turn-1].planet &&
 							planets[i].nextTick.xPercent > this.position.x - extendedBurstRange &&
 							planets[i].nextTick.xPercent < this.position.x + extendedBurstRange &&
 							planets[i].nextTick.yPercent > this.position.y - extendedBurstRange &&
@@ -62,7 +62,7 @@
 				return Math.hypot((a.x - b.x), (a.y - b.y)) - a.radius - b.radius;
 			},
 			goToPlanet(id){
-				let planets = this.$store.getters.planets;
+				let planets = this.$store.state.planets;
 				this.position.x = (planets[id].nextTick.xPercent);
 				this.position.y = (planets[id].nextTick.yPercent);
 
@@ -84,7 +84,7 @@
 		created(){
 			this.$store.subscribe((mutation) => {
 				if(mutation.type === "step"){
-					this.goToPlanet(this.$store.getters.players[this.player-1].planet);
+					this.goToPlanet(this.$store.state.players[this.player-1].planet);
 
 					this.active = this.$store.getters.turn === this.player;
 				}

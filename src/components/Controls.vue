@@ -1,8 +1,8 @@
 <template>
 	<div @click="isExpanded = !isExpanded" :class="{expanded: isExpanded}" class="control-panel">
 
-		<div class="cp-name" :style="`background-color: ${this.$store.getters.players[this.$store.getters.turn - 1].color};`">
-			<span class="mooko">{{this.$store.getters.players[this.$store.getters.turn - 1].name}}</span>
+		<div class="cp-name" :style="`background-color: ${this.$store.state.players[this.$store.getters.turn - 1].color};`">
+			<span class="mooko">{{this.$store.state.players[this.$store.getters.turn - 1].name}}</span>
 		</div>
 
 		<div class="cp-body">
@@ -24,7 +24,7 @@
 			<section class="cp-buttons">
 				<button @click.stop="step(1)">sit</button>
 				<button @click.stop="mine">mine</button>
-				<button :disabled="this.$store.getters.planetsInRange.length === 0" @click.stop="jump">jump</button>
+				<button :disabled="this.$store.state.planetsInRange.length === 0" @click.stop="jump">jump</button>
 			</section>
 
 		</div>
@@ -51,12 +51,12 @@
 				this.step(1);
 			},
 			jump(){
-				let planetsInRange = this.$store.getters.planetsInRange;
+				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
-					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.$store.getters.planetsInRange[0].id})
+					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.$store.state.planetsInRange[0].id})
 					this.step(1);
 				}else{
-					let planetId = this.$store.getters.players[this.$store.getters.turn].planet;
+					let planetId = this.$store.state.players[this.$store.getters.turn].planet;
 					let shipCoords = this.getCenter(document.getElementById(planetId).getBoundingClientRect());
 
 					const galaxy = document.getElementById('galaxy');
