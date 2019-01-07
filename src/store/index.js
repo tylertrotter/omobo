@@ -5,31 +5,37 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
 		aspectRatio: {x: 3, y:2},
-		tick: 1,
+		tick: 0,
 		planets: [],
 		planetsInRange: [],
 		players: [
 			{
 				name: "pubogu",
 				color: "orange",
-				planet: "0"
+				planet: "0",
+				burstRange: 3,
+				position: {x:0, y: 0}
 			},
 			{
 				name: "gubo",
 				color: "blue",
-				planet: "0"
+				planet: "0",
+				burstRange: 3,
+				position: {x:0, y: 0}
 			},
 			{
 				name: "bobo",
 				color: "red",
-				planet: "0"
+				planet: "0",
+				burstRange: 3,
+				position: {x:0, y: 0}
 			}
 		]
 	},
 	getters: {
 		turn: state => {
 			const ticksPerTurn = 10;
-			const startTick = ticksPerTurn * 1;
+			const startTick = 0;
 			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
 			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;

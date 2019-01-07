@@ -59,9 +59,8 @@
 			SSpaceShip
 		},
 		mounted(){
-			this.$store.commit('step', 9);
 			setTimeout(()=>{
-				this.$store.commit('step', 1);
+				this.$store.commit('step', 10);
 			}, 500)
 		}
 	}

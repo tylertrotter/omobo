@@ -19,10 +19,9 @@
 		mixins: [utility],
 		data(){
 			return {
-				// planet: this.$store.state.players[this.player].planet,
 				color: this.$store.state.players[this.player-1].color,
-				burstRange: 3,
-				position: {x:30, y: 30},
+				burstRange: this.$store.state.players[this.player-1].burstRange,
+				position: this.$store.state.players[this.player-1].position,
 				active: this.$store.getters.turn === this.player
 			}
 		},
@@ -30,56 +29,18 @@
 			'player': Number
 		},
 		methods: {
-			getPlanetsInRange() {
-				let planets = this.$store.state.planets;
-				let extendedBurstRange = this.burstRange*2;
-				let filteredPlanets = [];
-				let planetsInRange = [];
 
-				for(var i = 0; i < planets.length; i++){
-					if(
-							planets[i].id !== this.$store.state.players[this.$store.getters.turn-1].planet &&
-							planets[i].nextTick.xPercent > this.position.x - extendedBurstRange &&
-							planets[i].nextTick.xPercent < this.position.x + extendedBurstRange &&
-							planets[i].nextTick.yPercent > this.position.y - extendedBurstRange &&
-							planets[i].nextTick.yPercent < this.position.y + extendedBurstRange
-						){
-							filteredPlanets.push(planets[i]);
-					}
-				}
-
-				for(var j = 0; j < filteredPlanets.length; j++){
-					if ( this.getDistanceBetween(filteredPlanets[j]) < 0 ){
-						planetsInRange.push(filteredPlanets[j]);
-					}
-				}
-
-				return planetsInRange;
-			},
-			getDistanceBetween(planet) {
-				var a = this.getCenter(planet.nextTick);
-				var b = this.getCenter(this.$el.getBoundingClientRect());
-				return Math.hypot((a.x - b.x), (a.y - b.y)) - a.radius - b.radius;
-			},
 			goToPlanet(id){
 				let planets = this.$store.state.planets;
 				this.position.x = (planets[id].nextTick.xPercent);
 				this.position.y = (planets[id].nextTick.yPercent);
 
-				if(this.active){
+				if(this.$store.getters.turn === this.player){
 					setTimeout(() => {
-						let planets = this.getPlanetsInRange();
-						this.$store.commit('updatePlanetsInRange', planets);
-						// for( var i = 0; i < planets.length; i++){
-						// 	// document.getElementById(planets[i].id).setAttribute('stroke', 'white')
-						// 	this.changePlanet(planets[i].id);
-						// }
+						this.$store.commit('updatePlanetsInRange', this.getPlanetsInRange());
 					}, 600)
 				}
-			},
-			// changePlanet(id){
-			// 	this.planet = id;
-			// }
+			}
 		},
 		created(){
 			this.$store.subscribe((mutation) => {
