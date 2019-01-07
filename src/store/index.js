@@ -14,21 +14,21 @@ export default new Vuex.Store({
 				color: "orange",
 				planet: "0",
 				burstRange: 3,
-				position: {x:0, y: 0}
+				position: {x:-10, y: 20}
 			},
 			{
 				name: "gubo",
 				color: "blue",
 				planet: "0",
 				burstRange: 3,
-				position: {x:0, y: 0}
+				position: {x:-10, y: 40}
 			},
 			{
 				name: "bobo",
 				color: "red",
 				planet: "0",
 				burstRange: 3,
-				position: {x:0, y: 0}
+				position: {x:-10, y: 60}
 			}
 		]
 	},

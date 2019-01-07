@@ -1,7 +1,16 @@
 <template>
 	<g>
 		<circle class="orbit" cx="50%" cy="50%" :r="orbitRadius" :style="`stroke-dasharray: 1px ${dasharrayCalc};`" />
-		<circle @click="jumpHere" :id="this.id" class="planet" :class="mineral" cx="50%" :cy="planetPosition" :r="radius + '%'" :style="rotate" />
+		<circle
+			@click="jumpHere"
+			:id="this.id"
+			class="planet"
+			:class="mineral"
+			cx="50%"
+			:cy="planetPosition"
+			:r="radius + '%'"
+			:style="rotate"
+		/>
 		<use :href="'#' + this.id" :data-planet-id="this.id" class="next-tick" :style="nextTick"/>
 	</g>
 </template>
@@ -18,7 +27,8 @@
 			'ring',
 			'speed',
 			'retrograde',
-			'mineral'
+			'mineral',
+			'spot'
 		],
 		data(){
 			return {
@@ -54,7 +64,7 @@
 				return `calc(${circum}% - 1px)`;
 			},
 			rotate(){
-				let degrees = (360 / this.speed) * (this.$store.state.tick * this.direction);
+				let degrees = (360 / this.speed) * (this.$store.state.tick * this.direction) + (+this.spot * (360 / this.speed));
 				return `transform: rotate(${degrees}deg);`
 			},
 			nextTick(){

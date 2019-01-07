@@ -8,7 +8,9 @@
 			:style="`transform: translate(${position.x}%, ${position.y}%);`"
 		>
 			<circle class="burst-range" :cx="0" :cy="0" :r="burstRange + '%'" :fill="color" :stroke="color" stroke-width="2"  />
-			<circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
+			<!-- <circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" /> -->
+			<rect class="ship" x="1.2%" y="0" width=".3%" height=".4%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
+			<!-- <polygon class="ship" points="5,3 8,5 3,5" :fill="color" :style="`transform: rotate(${30 * player}deg);`" /> -->
 		</g>
 </template>
 

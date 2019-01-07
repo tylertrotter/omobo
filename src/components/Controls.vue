@@ -66,7 +66,7 @@
 					let xOffset = galaxyRect.width/2 - shipCoords.x;
 					let yOffset = galaxyRect.height/2 - shipCoords.y;
 					// percentage to center divided by scale (i think)
-					galaxy.style.transform = `scale(4) translateX(${xOffset/4}px) translateY(${yOffset/4}px)`;
+					galaxy.style.transform = `scale(3) translateX(${xOffset/3}px) translateY(${yOffset/3}px)`;
 					galaxy.classList.add('zoom');
 
 					for( let i = 0; i < planetsInRange.length; i++ ){
