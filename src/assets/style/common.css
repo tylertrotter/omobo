@@ -1,0 +1,28 @@
+@font-face {
+	font-family: 'mooko';
+	src:
+		url('../fonts/mooko.ttf?pc0pl2') format('truetype'),
+		url('../fonts/mooko.woff?pc0pl2') format('woff'),
+		url('../fonts/mooko.svg?pc0pl2#mooko') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.mooko {
+	display: block;
+	transform: scaleX(-1);
+	font-family: mooko;
+}
+
+body {
+	background-color: var(--void);
+}
+
+*{
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
+}

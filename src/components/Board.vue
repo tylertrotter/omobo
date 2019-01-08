@@ -1,11 +1,11 @@
 <template>
-	<svg id="galaxy" class="galaxy" width="3" height="2">
+	<svg id="galaxy" class="galaxy" :width="3" :height="2">
 
 		<s-solar-system width="40" x="0" y="0" sun-size="5" :clockwise="false">
 			<s-planet radius="2" ring="1" speed="10" mineral="tungsten" spot="0" />
-			<s-planet radius="1" ring="1" speed="10" mineral="copper" spot="7" />
+			<s-planet radius="1" ring="1" speed="10" mineral="copper" spot="1" />
 
-			<s-planet radius="1" ring="2" speed="22"  mineral="tungsten" :retrograde="true" spot="3" />
+			<s-planet radius="1" ring="2" speed="22"  mineral="tungsten" :retrograde="true" spot="20" />
 			<s-planet radius=".75" ring="2" speed="22"  mineral="tungsten" :retrograde="true" spot="7" />
 
 			<s-planet radius="2.25" ring="3" speed="18" mineral="radium" spot="5" />
@@ -82,6 +82,6 @@
 	.galaxy {
 		width: 100%;
 		height: 100%;
-		transition: all 1s;
+		transition: all 2s;
 	}
 </style>

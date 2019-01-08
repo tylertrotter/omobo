@@ -11,6 +11,7 @@ import SBoard from './components/Board.vue';
 import SControls from './components/Controls.vue';
 
 require('@/assets/style/variables.css');
+require('@/assets/style/common.css');
 
 export default {
   name: 'app',
@@ -20,18 +21,3 @@ export default {
   }
 }
 </script>
-
-<style>
-	*{
-		box-sizing: border-box;
-	}
-	body {
-		margin: 0;
-		overflow: hidden;
-		font-family: Arial, Helvetica, sans-serif;
-	}
-
-	svg {
-		background: var(--void);
-	}
-</style>

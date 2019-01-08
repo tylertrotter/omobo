@@ -14,11 +14,11 @@
 			<meter dir="rtl" class="cp-energy mb" min="0" max="24" value="6" />
 
 			<section class="cp-materials cp-section mb">
-				<button type="button">Materials</button>
+				<span class="cp-section--label">Materials</span>
 			</section>
 
 			<section class="cp-tools cp-section mb">
-				<button type="button">Tools</button>
+				<span class="cp-section--label">Tools</span>
 			</section>
 
 			<section class="cp-buttons">
@@ -65,8 +65,8 @@
 					let galaxyRect = galaxy.getBoundingClientRect();
 					let xOffset = galaxyRect.width/2 - shipCoords.x;
 					let yOffset = galaxyRect.height/2 - shipCoords.y;
-					// percentage to center divided by scale (i think)
-					galaxy.style.transform = `scale(3) translateX(${xOffset/3}px) translateY(${yOffset/3}px)`;
+
+					galaxy.style.transform = `scale(2.2) translateX(${xOffset/2.2}px) translateY(${yOffset/2.2}px)`;
 					galaxy.classList.add('zoom');
 
 					for( let i = 0; i < planetsInRange.length; i++ ){
@@ -103,7 +103,7 @@
 	}
 
 	.control-panel.expanded {
-		width: 300px;
+		width: 230px;
 		background: rgba(0,0,0,.7);
 	}
 
@@ -124,8 +124,19 @@
 	}
 
 	.cp-section {
+		height: 150px;
 		background: #222;
 		padding: 8px;
+	}
+
+	.cp-section--label {
+		display: block;
+		width: 134px;
+		height: 20px;
+		margin-top: 134px;
+		transform: rotate(-90deg);
+		transform-origin: 0 top;
+		text-align: center;
 	}
 
 	.cp-buttons {

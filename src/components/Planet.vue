@@ -42,11 +42,17 @@
 				let galaxy = document.getElementById('galaxy');
 				galaxy.setAttribute('style', '');
 				galaxy.classList.remove('zoom');
-				// remove in-range class
+
+				let inRangePlanets = document.querySelectorAll('.in-range');
+
+				for(let i = 0; i < inRangePlanets.length; i++){
+					inRangePlanets[i].classList.remove('in-range');
+				}
+
 				setTimeout(() => {
 					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.id})
 					this.step(1);
-				}, 1000)
+				}, 2000)
 
 			}
 		},
@@ -93,7 +99,7 @@
 		transition: all .5s;
 	}
 	.planet {
-		fill: red;
+		stroke-width: 0;
 	}
 	.next-tick {
 		opacity: 0;
@@ -108,25 +114,37 @@
 
 	.tungsten {
 		fill: var(--tungsten);
+		stroke: var(--tungsten);
 	}
 
 	.radium {
 		fill: var(--radium);
+		stroke: var(--radium);
 	}
 
 	.copper {
 		fill: var(--copper);
+		stroke: var(--copper);
 	}
 
 	.mercury {
 		fill: var(--mercury);
+		stroke: var(--mercury);
 	}
 
 	.tin {
 		fill: var(--tin);
+		stroke: var(--tungsten);
 	}
 
 	.zoom .planet:not(.in-range){
 		opacity: .3;
+		pointer-events: none;
+		fill: gray;
+	}
+
+	.in-range {
+		stroke-width: 15;
+		stroke-opacity: .2;
 	}
 </style>

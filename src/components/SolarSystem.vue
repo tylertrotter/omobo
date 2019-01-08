@@ -28,5 +28,6 @@
 
 	.zoom .sun {
 		opacity: .3;
+		fill: gray;
 	}
 </style>
