@@ -6,6 +6,7 @@ export default new Vuex.Store({
   state: {
 		aspectRatio: {x: 3, y:2},
 		tick: 0,
+		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
 		planets: [],
 		planetsInRange: [],
 		players: [
@@ -14,23 +15,268 @@ export default new Vuex.Store({
 				color: "orange",
 				planet: "0",
 				burstRange: 3,
-				position: {x:-10, y: 20}
+				position: {x:-10, y: 20},
+				materials: []
 			},
 			{
 				name: "gubo",
 				color: "blue",
 				planet: "0",
 				burstRange: 3,
-				position: {x:-10, y: 40}
+				position: {x:-10, y: 40},
+				materials: []
 			},
 			{
 				name: "bobo",
 				color: "red",
 				planet: "0",
 				burstRange: 3,
-				position: {x:-10, y: 60}
+				position: {x:-10, y: 60},
+				materials: []
 			}
-		]
+		],
+		systems: [
+			{
+				width: 40,
+				x: 0,
+				y: 0,
+				sunSize: 5,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 2,
+						spot: 1
+					},
+					{
+						radius: 1,
+						ring: 2,
+						speed: 22,
+						mineral: 0,
+						spot: 10,
+						retrograde: true
+					},
+					{
+						radius: .75,
+						ring: 2,
+						speed: 22,
+						mineral: 0,
+						spot: 20,
+						retrograde: true
+					},
+					{
+						radius: 2.25,
+						ring: 3,
+						speed: 18,
+						mineral: 1,
+						spot: 5
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 18,
+						mineral: 1,
+						spot: 12
+					},
+					{
+						radius: .75,
+						ring: 3,
+						speed: 18,
+						mineral: 2,
+						spot: 17
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 40,
+						mineral: 0,
+						spot: 2,
+						retrograde: true
+					},
+					{
+						radius: 2,
+						ring: 4,
+						speed: 40,
+						mineral: 0,
+						spot: 2,
+						retrograde: true
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 40,
+						mineral: 0,
+						spot: 2,
+						retrograde: true
+					},
+					{
+						radius: 2,
+						ring: 4,
+						speed: 40,
+						mineral: 0,
+						spot: 10,
+						retrograde: true
+					}
+				]
+			},
+			{
+				width: 32,
+				x: 26.5,
+				y: 32,
+				sunSize: 3,
+				clockwise: true,
+				planets: [
+					{
+						radius: 2.5,
+						ring: 1,
+						speed: 30,
+						mineral: 2,
+					},
+					{
+						radius: 1,
+						ring: 2,
+						speed: 10,
+						mineral: 1,
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 25,
+						mineral: 2,
+						retrograde: true
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 6,
+						mineral: 1,
+					},
+					{
+						radius: .75,
+						ring: 5,
+						speed: 30,
+						mineral: 0,
+					},
+					{
+						radius: .5,
+						ring: 6,
+						speed: 100,
+						mineral: 2,
+					},
+					{
+						radius: 2,
+						ring: 7,
+						speed: 200,
+						mineral: 3
+					}
+				]
+			},
+			{
+				width: 50,
+				x: 50,
+				y: 0,
+				sunSize: 2,
+				clockwise: true,
+				planets: [
+					{
+						radius: 2.5,
+						ring: 1,
+						speed: 30,
+						mineral: 4
+					},
+					{
+						radius: 1,
+						ring: 2,
+						speed: 10,
+						mineral: 1
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 25,
+						mineral: 2
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 24,
+						mineral: 0
+					},
+					{
+						radius: 1,
+						ring: 5,
+						speed: 30,
+						mineral: 1
+					},
+					{
+						radius: 1,
+						ring: 6,
+						speed: 100,
+						mineral: 0
+					},
+					{
+						radius: 1,
+						ring: 7,
+						speed: 20,
+						mineral: 3
+					}
+				]
+			},
+			{
+				width: 22,
+				x: 33,
+				y: 5,
+				sunSize: 5,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2.5,
+						ring: 1,
+						speed: 30,
+						mineral: 1
+					},
+					{
+						radius: 1,
+						ring: 2,
+						speed: 10,
+						mineral: 1
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 25,
+						mineral: 2,
+						retrograde: true
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 60,
+						mineral: 0
+					},
+					{
+						radius: .75,
+						ring: 5,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 4,
+						ring: 7,
+						speed: 100,
+						mineral: 2
+					}
+				]
+			}
+		],
 	},
 	getters: {
 		turn: state => {
@@ -39,6 +285,10 @@ export default new Vuex.Store({
 			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
 			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;
+		},
+		planetMinerals: state => {
+			// WIP
+			const planets = document.querySelectorAll('.planet');
 		}
 	},
   mutations: {

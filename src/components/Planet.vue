@@ -5,7 +5,7 @@
 			@click="jumpHere"
 			:id="this.id"
 			class="planet"
-			:class="mineral"
+			:class="$store.state.mineralNames[mineral]"
 			cx="50%"
 			:cy="planetPosition"
 			:r="radius + '%'"
@@ -70,7 +70,8 @@
 				return `calc(${circum}% - 1px)`;
 			},
 			rotate(){
-				let degrees = (360 / this.speed) * (this.$store.state.tick * this.direction) + (+this.spot * (360 / this.speed));
+				const spot = +this.spot || 0;
+				let degrees = (360 / this.speed) * (this.$store.state.tick * this.direction) + (spot * (360 / this.speed));
 				return `transform: rotate(${degrees}deg);`
 			},
 			nextTick(){

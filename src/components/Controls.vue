@@ -1,8 +1,8 @@
 <template>
 	<div @click="isExpanded = !isExpanded" :class="{expanded: isExpanded}" class="control-panel">
 
-		<div class="cp-name" :style="`background-color: ${this.$store.state.players[this.$store.getters.turn - 1].color};`">
-			<span class="mooko">{{this.$store.state.players[this.$store.getters.turn - 1].name}}</span>
+		<div class="cp-name" :style="`background-color: ${currentPlayer.color};`">
+			<span class="mooko">{{currentPlayer.name}}</span>
 		</div>
 
 		<div class="cp-body">
@@ -15,6 +15,11 @@
 
 			<section class="cp-materials cp-section mb">
 				<span class="cp-section--label">Materials</span>
+				<ul class="cp-materials--list" dir="rtl">
+					<li v-for="i in 20" :key="i"
+						:class="5 > 0 ? $store.state.mineralNames[currentPlayer.materials[i-1]] : ''"
+					></li>
+				</ul>
 			</section>
 
 			<section class="cp-tools cp-section mb">
@@ -44,6 +49,14 @@
 				isExpanded: false
 			}
 		},
+		computed: {
+			currentPlayerId(){
+				return this.$store.getters.turn - 1;
+			},
+			currentPlayer(){
+				return this.$store.state.players[this.currentPlayerId];
+			}
+		},
 		methods: {
 			...mapMutations(["step"]),
 			...mapMutations(["changePlanet"]),
@@ -53,10 +66,10 @@
 			jump(){
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
-					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.$store.state.planetsInRange[0].id})
+					this.changePlanet({player: this.currentPlayerId, planet: planetsInRange[0].id})
 					this.step(1);
 				}else{
-					let planetId = this.$store.state.players[this.$store.getters.turn].planet;
+					let planetId = this.currentPlayer.planet;
 					let shipCoords = this.getCenter(document.getElementById(planetId).getBoundingClientRect());
 
 					const galaxy = document.getElementById('galaxy');
@@ -74,6 +87,7 @@
 					}
 				}
 			}
+
 		}
 	}
 </script>
@@ -124,19 +138,39 @@
 	}
 
 	.cp-section {
-		height: 150px;
+		height: 20vh;
 		background: #222;
 		padding: 8px;
 	}
 
+	.cp-materials--list {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		padding: 0 0 0 20px;
+		margin: 0;
+		flex-wrap: wrap;
+		list-style: none;
+	}
+
+	.cp-materials--list li {
+		width: calc(20% - 2px);
+		height: calc(25% - 2px);
+		background: rgba(255,255,255,.1);
+		margin: 1px;
+	}
+
 	.cp-section--label {
 		display: block;
-		width: 134px;
+		position: absolute;
+		width: calc(20vh - 12px);
 		height: 20px;
-		margin-top: 134px;
+		margin-top: calc(20vh - 12px);
 		transform: rotate(-90deg);
 		transform-origin: 0 top;
 		text-align: center;
+		font-size: 12px;
+		text-transform: uppercase;
 	}
 
 	.cp-buttons {
@@ -149,5 +183,25 @@
 		width: 100%;
 		margin: 3vh 0;
 		padding: 10px;
+	}
+
+	.cp-materials--list .tungsten {
+		background: var(--tungsten);
+	}
+
+	.cp-materials--list .radium {
+		background: var(--radium);
+	}
+
+	.cp-materials--list .copper {
+		background: var(--copper);
+	}
+
+	.cp-materials--list .mercury {
+		background: var(--mercury);
+	}
+
+	.cp-materials--list .tin {
+		background: var(--tin);
 	}
 </style>
