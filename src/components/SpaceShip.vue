@@ -81,14 +81,6 @@
 		100% {transform: rotate(360deg); }
 	}
 
-/*
-	.not-burst-range {
-		fill: white;
-		transform-origin: center;
-		animation: 10s orbit linear infinite;
-		transition: all .7s;
-	} */
-
 	.ship {
 		transform-origin: 0 0;
 	}

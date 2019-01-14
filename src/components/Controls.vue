@@ -7,16 +7,14 @@
 
 		<div class="cp-body">
 
-			<svg class="cp-avatar mb">
-				<rect x=0 y=0 width=100% height=100% fill="gray" />
-			</svg>
+			<avatar :flesh="currentPlayer.color" iris="#bada55" class="cp-avatar mb" />
 
-			<meter dir="rtl" class="cp-energy mb" min="0" max="24" value="6" />
+			<energy-meter :value="currentPlayer.energy" />
 
 			<section class="cp-materials cp-section mb">
 				<span class="cp-section--label">Materials</span>
 				<ul class="cp-materials--list" dir="rtl">
-					<li v-for="i in 20" :key="i"
+					<li v-for="i in 60" :key="i"
 						:class="5 > 0 ? $store.state.mineralNames[currentPlayer.materials[i-1]] : ''"
 					></li>
 				</ul>
@@ -27,7 +25,7 @@
 			</section>
 
 			<section class="cp-buttons">
-				<button @click.stop="step(1)">sit</button>
+				<button @click.stop="sit">sit</button>
 				<button @click.stop="mine">mine</button>
 				<button :disabled="this.$store.state.planetsInRange.length === 0" @click.stop="jump">jump</button>
 			</section>
@@ -40,10 +38,13 @@
 <script>
 	import { mapMutations } from "vuex";
 	import utility from "../mixins/utility";
+	import energyMeter from "./EnergyMeter.vue"
+	import avatar from "./Avatar.vue"
 
 	export default {
 		name: "s-controls",
 		mixins: [utility],
+		components: { avatar, energyMeter },
 		data(){
 			return{
 				isExpanded: false
@@ -55,15 +56,36 @@
 			},
 			currentPlayer(){
 				return this.$store.state.players[this.currentPlayerId];
+			},
+			currentPlanet(){
+				return this.$store.state.planets[+this.currentPlayer.planet];
 			}
 		},
 		methods: {
-			...mapMutations(["step"]),
-			...mapMutations(["changePlanet"]),
+			...mapMutations(["step", "changePlanet", "addMineral", "changeEnergy"]),
+			getEnergy(){
+				if(this.currentPlanet.bySun)
+					this.changeEnergy({player: this.currentPlayerId, amount: 1});
+			},
+			sit(){
+				this.step(1);
+				this.getEnergy();
+			},
 			mine(){
 				this.step(1);
+				this.addMineral({player: this.currentPlayerId, mineral: this.currentPlanet.mineral});
+				this.getEnergy();
 			},
 			jump(){
+
+				if(!this.currentPlayer.energy)
+					return;
+
+				this.getEnergy();
+
+				// use energy
+				this.changeEnergy({player: this.currentPlayerId, amount: -1});
+
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
 					this.changePlanet({player: this.currentPlayerId, planet: planetsInRange[0].id})
@@ -118,7 +140,6 @@
 
 	.control-panel.expanded {
 		width: 230px;
-		background: rgba(0,0,0,.7);
 	}
 
 	.cp-name {
@@ -126,20 +147,9 @@
 		font-size: 9px;
 	}
 
-	.cp-avatar {
-		display: block;
-		width: 54px;
-		height: 54px;
-	}
-
-	.cp-energy {
-		width: 100%;
-		height: 8px;
-	}
-
 	.cp-section {
 		height: 20vh;
-		background: #222;
+		background: var(--gray);
 		padding: 8px;
 	}
 
@@ -155,7 +165,7 @@
 
 	.cp-materials--list li {
 		width: calc(20% - 2px);
-		height: calc(25% - 2px);
+		height: calc(8% - 2px);
 		background: rgba(255,255,255,.1);
 		margin: 1px;
 	}

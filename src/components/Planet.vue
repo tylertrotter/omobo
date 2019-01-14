@@ -11,7 +11,14 @@
 			:r="radius + '%'"
 			:style="rotate"
 		/>
-		<use :href="'#' + this.id" :data-planet-id="this.id" class="next-tick" :style="nextTick"/>
+		<use
+			class="next-tick"
+			:href="'#' + this.id"
+			:data-planet-id="this.id"
+			:data-ring="ring"
+			:data-mineral="mineral"
+			:style="nextTick"
+		/>
 	</g>
 </template>
 
@@ -38,7 +45,10 @@
 		},
 		methods: {
 			...mapMutations(['changePlanet', 'step']),
-			jumpHere(){
+			jumpHere(e){
+				if(!e.srcElement.classList.contains('in-range'))
+					return
+
 				let galaxy = document.getElementById('galaxy');
 				galaxy.setAttribute('style', '');
 				galaxy.classList.remove('zoom');
@@ -102,6 +112,12 @@
 	.planet {
 		stroke-width: 0;
 	}
+
+	[id="0"].planet {
+		stroke: white;
+		stroke-width: 2;
+	}
+
 	.next-tick {
 		opacity: 0;
 	}

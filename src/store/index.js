@@ -16,14 +16,16 @@ export default new Vuex.Store({
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 20},
+				energy: 12,
 				materials: []
 			},
 			{
 				name: "gubo",
-				color: "blue",
+				color: "purple",
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 40},
+				energy: 12,
 				materials: []
 			},
 			{
@@ -32,6 +34,7 @@ export default new Vuex.Store({
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 60},
+				energy: 12,
 				materials: []
 			}
 		],
@@ -280,15 +283,11 @@ export default new Vuex.Store({
 	},
 	getters: {
 		turn: state => {
-			const ticksPerTurn = 10;
+			const ticksPerTurn = 6;
 			const startTick = 0;
 			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
 			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;
-		},
-		planetMinerals: state => {
-			// WIP
-			const planets = document.querySelectorAll('.planet');
 		}
 	},
   mutations: {
@@ -313,12 +312,20 @@ export default new Vuex.Store({
 
 			let xPercent = ((nextRect.x + nextRect.width/2) / galaxyWidth) * 100;
 			let yPercent = ((nextRect.y + nextRect.height/2) / galaxyHeight) * 100;
+			let mineral;
+			let bySun;
 
 			state.galaxy = {width: galaxyWidth, height: galaxyHeight};
 
+			mineral = +nextTicks[id].getAttribute('data-mineral');
+
+			bySun = nextTicks[id].getAttribute('data-ring') === '1';
+
 			state.planets[id] = {
 				id,
-				nextTick: {xPercent, yPercent, width: nextRect.width, height: nextRect.height, x: nextRect.x, y: nextRect.y}
+				nextTick: {xPercent, yPercent, width: nextRect.width, height: nextRect.height, x: nextRect.x, y: nextRect.y},
+				mineral,
+				bySun
 			}
 
 		},
@@ -327,6 +334,13 @@ export default new Vuex.Store({
 		},
 		changePlanet(state, {player, planet}){
 			state.players[player].planet = planet;
-		}
+		},
+		addMineral(state, {player, mineral}){
+			state.players[player].materials.push(mineral);
+		},
+		changeEnergy(state, {player, amount}){
+			state.players[player].energy = state.players[player].energy + amount;
+		},
+
   }
 });
