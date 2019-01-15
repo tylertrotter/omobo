@@ -1,5 +1,5 @@
 <template>
-	<svg viewBox="15 5 70 90">
+	<svg viewBox="0 0 100 100">
 		<defs>
 			<clipPath id="eye-lids">
 				<rect x="38" y="35" width="25" height="24" class="eye-lid-mask" />
@@ -13,13 +13,13 @@
 			<ellipse cx="50" cy="16" rx="14" ry="2.75" style="fill:black; fill-opacity: .5; stroke: white; stroke-opacity: .1;"  />
 		</g>
 
-		<g class="head" :fill="flesh">
+		<g class="head" :fill="flesh" :style="`transform: scale(${headWidth}, ${headHeight});`">
 			<circle cx=50 cy=60 r=30 class="head-proper" :stroke="flesh" />
-			<circle cx=53 cy=57 r=25 style="fill: white; opacity: .1" />
+			<circle cx=53 cy=57 r=25 style="fill: white; opacity: .15" />
 		</g>
 
 		<circle cx=50 cy=47 r=11 :fill="flesh" />
-		<g class="eye" clip-path="url(#eye-lids)" >
+		<g class="eye" clip-path="url(#eye-lids)" :style="`transform: scale(${eyeSize});`" >
 			<circle cx=50 cy=47 r=12 class="eye-white" />
 			<g class="inner-eye">
 				<circle cx=50 cy=47 r=6 :fill="iris" />
@@ -36,7 +36,11 @@
 		name: "avatar",
 		props: {
 			flesh: String,
-			iris: String
+			iris: String,
+			eyeSize: Number,
+			kooboSize: Number,
+			headWidth: Number,
+			headHeight: Number
 		}
 	}
 </script>
@@ -44,14 +48,13 @@
 <style scoped>
 
 	@keyframes koobo {
-		0%{ transform: scaleX(var(--koobo-size)) rotate(0); }
-		20%{ transform: scaleX(var(--koobo-size)) scaleY(1.15)  rotate(10deg); }
-		80%{ transform: scaleX(var(--koobo-size)) rotate(-20deg); }
-		100%{ transform: scaleX(var(--koobo-size)) rotate(0); }
+		0%{ transform: rotate(0); }
+		20%{ transform: scaleY(1.15)  rotate(10deg); }
+		80%{ transform: rotate(-20deg); }
+		100%{ transform: rotate(0); }
 	}
 
 	.koobo {
-		transform: scaleX(var(--koobo-size)) rotate(var(--koobo-angle));
 		transform-origin: center;
 		animation: koobo 30s infinite;
 	}
@@ -61,7 +64,6 @@
 	}
 
 	.head {
-		transform: scale(var(--head-x), var(--head-y));
 		transform-origin: center;
 	}
 
@@ -78,7 +80,6 @@
 	}
 
 	.eye {
-		transform: scale(var(--eye-size));
 		transform-origin: center;
 	}
 

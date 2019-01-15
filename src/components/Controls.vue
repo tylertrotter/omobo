@@ -1,13 +1,21 @@
 <template>
 	<div @click="isExpanded = !isExpanded" :class="{expanded: isExpanded}" class="control-panel">
 
-		<div class="cp-name" :style="`background-color: ${currentPlayer.color};`">
+		<div class="cp-name" :style="`background-color: ${currentPlayer.color}; border-color: ${currentPlayer.color};`">
 			<span class="mooko">{{currentPlayer.name}}</span>
+			<div class="english">{{currentPlayer.name}}</div>
 		</div>
 
 		<div class="cp-body">
 
-			<avatar :flesh="currentPlayer.color" iris="#bada55" class="cp-avatar mb" />
+			<avatar
+				:flesh="currentPlayer.color"
+				:iris="currentPlayer.avatar.iris"
+				:headHeight="currentPlayer.avatar.headHeight"
+				:headWidth="currentPlayer.avatar.headWidth"
+				:eyeSize="currentPlayer.avatar.eyeSize"
+				class="cp-avatar"
+			/>
 
 			<energy-meter :value="currentPlayer.energy" />
 
@@ -145,6 +153,42 @@
 	.cp-name {
 		padding: 3px 8px;
 		font-size: 9px;
+		margin-bottom: 0;
+		transition: all .6s;
+	}
+
+	.cp-name .english {
+		position: absolute;
+		right: 10px;
+		margin-top: 1em;
+		opacity: 0;
+		font-size: 11px;
+		color: #888;
+	}
+
+	.cp-avatar {
+		margin-bottom: .5em;
+
+	}
+
+	.expanded .cp-name {
+		font-size: 20px;
+		margin-bottom: 85px;
+		padding-top: 30px;
+		background-color: transparent !important;
+		border-top: 5px solid;
+	}
+
+	.expanded .cp-name .english {
+		opacity: 1;
+		transition: all .6s .6s;
+	}
+
+	.expanded .cp-avatar {
+		position: absolute;
+		width: 60%;
+		top: 5px;
+		left: -5px;
 	}
 
 	.cp-section {

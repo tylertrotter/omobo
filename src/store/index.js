@@ -13,6 +13,12 @@ export default new Vuex.Store({
 			{
 				name: "pubogu",
 				color: "orange",
+				avatar: {
+					iris: "purple",
+					eyeSize: .8,
+					headHeight: 1.1,
+					headWidth: .8
+				},
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 20},
@@ -22,6 +28,12 @@ export default new Vuex.Store({
 			{
 				name: "gubo",
 				color: "purple",
+				avatar: {
+					iris: "#bada55",
+					eyeSize: .8,
+					headHeight: .8,
+					headWidth: 1.1
+				},
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 40},
@@ -31,6 +43,12 @@ export default new Vuex.Store({
 			{
 				name: "bobo",
 				color: "red",
+				avatar: {
+					iris: "green",
+					eyeSize: 1.2,
+					headHeight: 1,
+					headWidth: 1
+				},
 				planet: "0",
 				burstRange: 3,
 				position: {x:-10, y: 60},

@@ -9,7 +9,6 @@
 
 import SBoard from './components/Board.vue';
 import SControls from './components/Controls.vue';
-import Avatar from './components/Avatar.vue';
 
 require('@/assets/style/variables.css');
 require('@/assets/style/common.css');
