@@ -15,6 +15,7 @@
 				:headWidth="currentPlayer.avatar.headWidth"
 				:eyeSize="currentPlayer.avatar.eyeSize"
 				class="cp-avatar"
+				:class="'emotion--' + this.currentPlayer.avatar.emotion"
 			/>
 
 			<energy-meter :value="currentPlayer.energy" />
@@ -99,6 +100,9 @@
 					this.changePlanet({player: this.currentPlayerId, planet: planetsInRange[0].id})
 					this.step(1);
 				}else{
+
+					this.currentPlayer.avatar.emotion = 'thinking';
+
 					let planetId = this.currentPlayer.planet;
 					let shipCoords = this.getCenter(document.getElementById(planetId).getBoundingClientRect());
 
@@ -151,6 +155,8 @@
 	}
 
 	.cp-name {
+		position: absolute;
+		width: 100%;
 		padding: 3px 8px;
 		font-size: 9px;
 		margin-bottom: 0;
@@ -160,21 +166,23 @@
 	.cp-name .english {
 		position: absolute;
 		right: 10px;
-		margin-top: 1em;
+		margin-top: .5em;
 		opacity: 0;
 		font-size: 11px;
 		color: #888;
 	}
 
 	.cp-avatar {
-		margin-bottom: .5em;
-
+		margin-bottom: .25em;
+		margin-top: .75em;
+		height: 6vh;
+		max-width: 100%;
+		transition: all .6s;
 	}
 
 	.expanded .cp-name {
 		font-size: 20px;
-		margin-bottom: 85px;
-		padding-top: 30px;
+		padding-top: 27px;
 		background-color: transparent !important;
 		border-top: 5px solid;
 	}
@@ -185,10 +193,9 @@
 	}
 
 	.expanded .cp-avatar {
-		position: absolute;
-		width: 60%;
-		top: 5px;
-		left: -5px;
+		height: 13vh;
+		margin-top: -.5em;
+		margin-bottom: 0;
 	}
 
 	.cp-section {

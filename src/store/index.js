@@ -17,7 +17,8 @@ export default new Vuex.Store({
 					iris: "purple",
 					eyeSize: .8,
 					headHeight: 1.1,
-					headWidth: .8
+					headWidth: .8,
+					emotion: null
 				},
 				planet: "0",
 				burstRange: 3,
@@ -32,7 +33,8 @@ export default new Vuex.Store({
 					iris: "#bada55",
 					eyeSize: .8,
 					headHeight: .8,
-					headWidth: 1.1
+					headWidth: 1.1,
+					emotion: null
 				},
 				planet: "0",
 				burstRange: 3,
@@ -47,7 +49,8 @@ export default new Vuex.Store({
 					iris: "green",
 					eyeSize: 1.2,
 					headHeight: 1,
-					headWidth: 1
+					headWidth: 1,
+					emotion: null
 				},
 				planet: "0",
 				burstRange: 3,
@@ -352,6 +355,11 @@ export default new Vuex.Store({
 		},
 		changePlanet(state, {player, planet}){
 			state.players[player].planet = planet;
+
+			state.players[player].avatar.emotion = 'excited';
+			setTimeout(() => {
+				state.players[player].avatar.emotion = null;
+			}, 1000);
 		},
 		addMineral(state, {player, mineral}){
 			state.players[player].materials.push(mineral);

@@ -2,7 +2,7 @@
 	<svg viewBox="0 0 100 100">
 		<defs>
 			<clipPath id="eye-lids">
-				<rect x="38" y="35" width="25" height="24" class="eye-lid-mask" />
+				<rect x="30" y="35" width="35" height="24" class="eye-lid-mask" />
 			</clipPath>
 		</defs>
 
@@ -27,7 +27,10 @@
 			</g>
 		</g>
 
-		<path d="M40 73, Q 50 85 60 73" stroke="black" stroke-linecap="round" stroke-width="2" fill="transparent"/>
+		<path class="mouth mouth--null" d="M40 73, Q 50 85 60 73" stroke="black" stroke-linecap="round" stroke-width="2" fill="transparent"/>
+		<ellipse class="mouth mouth--excited" cx="50" cy="75" rx="11" ry="5" />
+		<path class="mouth mouth--thinking" d="M40 73, Q 50 68 60 73" stroke="black" stroke-linecap="round" stroke-width="2" fill="transparent"/>
+
 	</svg>
 </template>
 
@@ -54,13 +57,18 @@
 		100%{ transform: rotate(0); }
 	}
 
+	@keyframes koobo--excited {
+		0%{ transform: scaleY(1.15) rotate(-10deg); }
+		100%{ transform: scaleY(1.5) rotate(-20deg); }
+	}
+
 	.koobo {
 		transform-origin: center;
 		animation: koobo 30s infinite;
 	}
 
-	.koobo-funnel {
-		fill: var(--flesh);
+	.emotion--excited .koobo {
+			animation: koobo--excited 1s infinite;
 	}
 
 	.head {
@@ -101,6 +109,11 @@
 		animation: eye 10s infinite;
 	}
 
+	.emotion--thinking .inner-eye {
+		animation: none;
+		transform: translate(-3%, -3%);
+	}
+
 	@keyframes blink {
 		50% { transform: scaleY(1); }
 		51% { transform: scaleY(0); }
@@ -110,5 +123,22 @@
 	.eye-lid-mask {
 		transform-origin: center;
 		animation: blink 10s infinite;
+	}
+
+	.emotion--thinking .eye-lid-mask {
+		transform-origin: center;
+		transform: scaleY(.6) rotate(30deg);
+
+		animation: none;
+	}
+
+	.mouth {
+		opacity: 0;
+	}
+
+	.emotion--null .mouth--null,
+	.emotion--excited .mouth--excited,
+	.emotion--thinking .mouth--thinking {
+		opacity: 1;
 	}
 </style>
