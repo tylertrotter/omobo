@@ -12,7 +12,7 @@ Omobo means clockwork in the Mookogoo language. It literally translates to "toil
 - A Mookogoo who violoates any of these rules will be executed. Foreign, non-native, speakers will be jailed for 2 months. (17 Earth years)
 
 ## Mookogoo Physiognomy
-Most of the body mass of a Mookogoo is contained in its head, which has one large eye, an emotion-indicator<sup>1</sup> or koobo, and is topped by a flexible funnel-shapped extension (called a koobo) for intaking food, sound, and emmitting speech. Encircling this head, are hundreds<sup>2</sup> of cillia like hair-thin legs. When Mookogoos want to move about they extend these cillia and roll a to the desired location. The cillia provide a surprising amount of directional control, but for sharp turns and even jumps the Mookogoo will employee its strong koobo to propel it.
+Most of the body mass of a Mookogoo is contained in its head, which has one large eye, an emotion-indicator<sup>1</sup> or obo, and is topped by a flexible funnel-shapped extension (called a koobo) for intaking food, sound, and emmitting speech. Encircling this head, are hundreds<sup>2</sup> of cillia like hair-thin legs. When Mookogoos want to move about they extend these cillia and roll a to the desired location. The cillia provide a surprising amount of directional control, but for sharp turns and even jumps the Mookogoo will employ its strong koobo to propel it.
 
 Mookogoos are diveded into two sexes. The flesh color of males is much brighter than that of their female counterparts. Females tend to have a wider koobo<sup>3</sup>, resulting in a deeper voice.
 
