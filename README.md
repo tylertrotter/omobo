@@ -25,43 +25,51 @@ During a player's turn his spaceship is surrounded by a ring indicating how far 
 
 ### Tools
 
-- #### Time Warp Bomb
+- #### Time Bomb
 	Once this bomb is detonated it reverses every planets orbit for remainder of epoch.
-	Recipe: 3 units of radium, 3 units of copper
+	Recipe: 6 units of radium, 6 units of copper
 
 - #### Time Doubler
 	Pull the trigger on this tool and it makes subsequently used tools last twice as long.
-	Recipe: 2 units of tungsten, 2 units of radium, 2 units of copper
+	Recipe: 4 units of tungsten, 4 units of radium, 4 units of copper
 
 - #### Turbo Booster
-	This increases your ship's burst range. Lasts for 3 epochs.
-	Recipe: 2 units of radium, 4 units of mercury
+	This increases your ship's burst range. Lasts for 1 epoch.
+	Recipe: 4 units of radium, 8 units of mercury
+
+- #### Extreme turbo booster
+
+- #### Time Freezer
+	Freeze planets
+
+- #### Warp Speed
+	Go double time
 
 - #### Fuel Pack
 	Sometimes you can get fuel this way without having to go to a sun.
-	Recipe: 6 units of radium
+	Recipe: 12 units of radium
 
 -	#### Tool Grabber
 	Use this to steal a tool form another player
-	Recipe: 3 units of tungsten, 3 unit of radium
+	Recipe: 6 units of tungsten, 6 unit of radium
 
 - #### Future Revealer
 	This tool lets you watch the movements of the planets at high-speed for 2 epochs
-	Recipe: 6 units of tungsten
+	Recipe: 12 units of tungsten
 
 ### Materials
 Tools are built using raw materials. All available tools can be built on-board spaceships from combining 4 elemental raw materials in certain amounts. The elements from least to most rare are:
 
 - Tungsten (blue)
-- Radium (green)
+- Radium (purple)
 - Copper (red)
 - Mercury (orange)
 
-You acquire these elements by mining them on planets that are rich in them. E.g. If you spend 6 ticks mining on a tungsten rich (blue) planet you'll be able to mine 1 unit of tungsten. You can store 18 units of any element on your ship at one time. Once you use up elements by building tools you'll free up more space. Can you store partial units? IE, 1/6 of a unit? Yeah, I think so.
+You acquire these elements by mining t	hem on planets that are rich in them. E.g. If you spend 6 ticks mining on a tungsten rich (blue) planet you'll be able to mine 1 unit of tungsten. You can store 60 units of any element on your ship at one time. Once you use up elements by building tools you'll free up more space.
 
-Of course 6 units of Tin are required to build the shrinkerator, and scientists will need huge labs on the home planet to build it, so that is not being considered with these lesser tools. But tin is mined in the same way.
+Of course 24 units of Tin are required to build the shrinkerator, and scientists will need huge labs on the home planet to build it, so that is not being considered with these lesser tools. But tin is mined in the same way.
 
-- Tin (purple)
+- Tin (green)
 
 ### Your Turn
 On each tick while it's your tun, you can sit, mine, or jump. Sit means do nothing and let the tick pass. Mine means to collect the element of the planet your on, and jump means to go to a nearby planet.

@@ -8,11 +8,7 @@
 			:style="`transform: translate(${position.x}%, ${position.y}%);`"
 		>
 			<circle class="burst-range" :cx="0" :cy="0" :r="burstRange + '%'" :fill="color" :stroke="color" stroke-width="2"  />
-			<!-- <circle class="ship" cx="1.2%" cy="0" r=".2%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" /> -->
 			<rect class="ship" x="1.2%" y="0" width=".3%" height=".4%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
-			<!-- <svg x="1.2%" y="0" width=".5%" height=".6%">
-				<polygon class="ship" points="15,0 22,5.5 14,7" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
-			</svg> -->
 		</g>
 </template>
 
@@ -24,7 +20,7 @@
 		data(){
 			return {
 				color: this.$store.state.players[this.player-1].color,
-				burstRange: this.$store.state.players[this.player-1].burstRange,
+				burstRange: this.$store.state.players[this.player-1].burstRange * 2.5,
 				position: this.$store.state.players[this.player-1].position,
 				active: this.$store.getters.turn === this.player
 			}

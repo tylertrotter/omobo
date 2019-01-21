@@ -7,6 +7,24 @@ export default new Vuex.Store({
 		aspectRatio: {x: 3, y:2},
 		tick: 0,
 		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
+		tools: [
+			{
+				name: "Turbo Booster",
+				description: "This increases your ship's burst range. Lasts for 1 epoch.",
+				recipe: [
+					{mineral: 0, amount: 2},
+					{mineral: 1, amount: 2}
+				]
+			},
+			{
+				name: "Time Bomb",
+				description: "Once this bomb is detonated it reverses every planets orbit for remainder of epoch.",
+				recipe: [
+					{mineral: 2, amount: 2},
+					{mineral: 3, amount: 2}
+				]
+			}
+		],
 		planets: [],
 		planetsInRange: [],
 		players: [
@@ -21,10 +39,11 @@ export default new Vuex.Store({
 					emotion: null
 				},
 				planet: "0",
-				burstRange: 3,
+				burstRange: 1,
 				position: {x:-10, y: 20},
 				energy: 12,
-				materials: []
+				materials: [],
+				tools: [0]
 			},
 			{
 				name: "gubo",
@@ -37,10 +56,11 @@ export default new Vuex.Store({
 					emotion: null
 				},
 				planet: "0",
-				burstRange: 3,
+				burstRange: 1,
 				position: {x:-10, y: 40},
 				energy: 12,
-				materials: []
+				materials: [],
+				tools: [0]
 			},
 			{
 				name: "bobo",
@@ -53,10 +73,11 @@ export default new Vuex.Store({
 					emotion: null
 				},
 				planet: "0",
-				burstRange: 3,
+				burstRange: 1,
 				position: {x:-10, y: 60},
 				energy: 12,
-				materials: []
+				materials: [],
+				tools: []
 			}
 		],
 		systems: [

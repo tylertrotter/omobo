@@ -24,13 +24,24 @@
 				<span class="cp-section--label">Materials</span>
 				<ul class="cp-materials--list" dir="rtl">
 					<li v-for="i in 60" :key="i"
-						:class="5 > 0 ? $store.state.mineralNames[currentPlayer.materials[i-1]] : ''"
+						:class="$store.state.mineralNames[currentPlayer.materials[i-1]]"
 					></li>
 				</ul>
 			</section>
 
 			<section class="cp-tools cp-section mb">
 				<span class="cp-section--label">Tools</span>
+				<ul class="cp-tools--list">
+					<li v-for="i in 4" :key="i"
+						:class="currentPlayer.tools.length > i-1 ? $store.state.tools[currentPlayer.tools[i-1]].name : 'no-tool'">
+						<i class="tool-icon"></i>
+						<span class="tool-name">{{ currentPlayer.tools.length > i-1 ? $store.state.tools[currentPlayer.tools[i-1]].name : '' }}</span>
+					</li>
+				</ul>
+				<div class="tool-buttons">
+					<button>buy</button>
+					<button disabled>use</button>
+				</div>
 			</section>
 
 			<section class="cp-buttons">
@@ -204,14 +215,18 @@
 		padding: 8px;
 	}
 
-	.cp-materials--list {
-		display: flex;
+	.cp-materials--list,
+	.cp-tools--list {
 		width: 100%;
 		height: 100%;
 		padding: 0 0 0 20px;
 		margin: 0;
-		flex-wrap: wrap;
 		list-style: none;
+	}
+
+	.cp-materials--list {
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.cp-materials--list li {
@@ -237,6 +252,7 @@
 	.cp-buttons {
 		position: absolute;
 		bottom: 0;
+		width: calc(100% - 16px);
 	}
 
 	.cp-buttons button {
@@ -264,5 +280,69 @@
 
 	.cp-materials--list .tin {
 		background: var(--tin);
+	}
+
+
+	/* Tools */
+	.cp-tools {
+		position: relative;
+	}
+
+	.cp-tools--list {
+		overflow: hidden;
+	}
+
+	.cp-tools--list li {
+		display: flex;
+		align-items: center;
+		height: 25%;
+		margin-bottom: 0;
+		white-space: nowrap;
+		transition: all .6s;
+	}
+
+	.tool-icon {
+		display: inline-block;
+		flex-shrink: 0;
+		width: 1em;
+		height: 1em;
+		text-align: center;
+	}
+
+	.no-tool .tool-icon {
+		background: rgba(255,255,255,.075);
+		border-radius: 50%;
+	}
+
+	.tool-name {
+		display: inline-block;
+		opacity: 0;
+		transition: .6s all;
+		margin-left: .4em;
+	}
+
+	.expanded .tool-name {
+		opacity: 1;
+	}
+
+	.expanded .cp-tools--list li {
+		height: 20%;
+	}
+
+	.tool-buttons {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		opacity: 0;
+		transition: opacity .2s;
+	}
+
+	.tool-buttons button {
+		margin: 1vh;
+	}
+
+	.expanded .tool-buttons {
+		opacity: 1;
+		transition: opacity .6s .6s;
 	}
 </style>
