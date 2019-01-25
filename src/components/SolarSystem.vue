@@ -15,7 +15,7 @@
 		],
 		computed: {
 			height(){
-				return this.width * (this.$store.state.aspectRatio.x / this.$store.state.aspectRatio.y);
+				return this.width * (this.$store.state.ui.aspectRatio.x / this.$store.state.ui.aspectRatio.y);
 			}
 		}
 	}

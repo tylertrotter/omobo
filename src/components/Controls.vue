@@ -1,5 +1,5 @@
 <template>
-	<div @click="isExpanded = !isExpanded" :class="{expanded: isExpanded}" class="control-panel">
+	<div @click="$store.commit('expandControls', !$store.state.ui.controlsExpanded)" :class="{expanded: $store.state.ui.controlsExpanded}" class="control-panel">
 
 		<div class="cp-name" :style="`background-color: ${currentPlayer.color}; border-color: ${currentPlayer.color};`">
 			<span class="mooko">{{currentPlayer.name}}</span>
@@ -24,7 +24,10 @@
 				<span class="cp-section--label">Materials</span>
 				<ul class="cp-materials--list" dir="rtl">
 					<li v-for="i in 60" :key="i"
-						:class="$store.state.mineralNames[currentPlayer.materials[i-1]]"
+						:class="[
+							$store.state.mineralNames[currentPlayer.materials[i-1]],
+							currentPlayer.materials[i-1] > -1 ? 'owned' : 'unowned'
+						]"
 					></li>
 				</ul>
 			</section>
@@ -39,8 +42,7 @@
 					</li>
 				</ul>
 				<div class="tool-buttons">
-					<button>buy</button>
-					<button disabled>use</button>
+					<button @click.stop="$store.commit('expandTools', !$store.state.ui.toolsExpanded)">build or use</button>
 				</div>
 			</section>
 
@@ -65,11 +67,6 @@
 		name: "s-controls",
 		mixins: [utility],
 		components: { avatar, energyMeter },
-		data(){
-			return{
-				isExpanded: false
-			}
-		},
 		computed: {
 			currentPlayerId(){
 				return this.$store.getters.turn - 1;
@@ -82,7 +79,7 @@
 			}
 		},
 		methods: {
-			...mapMutations(["step", "changePlanet", "addMineral", "changeEnergy"]),
+			...mapMutations(["step", "changePlanet", "addMineral", "changeEnergy", "expandControls"]),
 			getEnergy(){
 				if(this.currentPlanet.bySun)
 					this.changeEnergy({player: this.currentPlayerId, amount: 1});
@@ -262,7 +259,7 @@
 		padding: 10px;
 	}
 
-	.cp-materials--list .tungsten {
+	/* .cp-materials--list .tungsten {
 		background: var(--tungsten);
 	}
 
@@ -280,7 +277,7 @@
 
 	.cp-materials--list .tin {
 		background: var(--tin);
-	}
+	} */
 
 
 	/* Tools */

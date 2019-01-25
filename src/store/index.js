@@ -4,7 +4,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-		aspectRatio: {x: 3, y:2},
+		ui: {
+			toolsExpanded: true,
+			controlsExpanded: true,
+			aspectRatio: {x: 3, y:2}
+		},
 		tick: 0,
 		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
 		tools: [
@@ -12,16 +16,16 @@ export default new Vuex.Store({
 				name: "Turbo Booster",
 				description: "This increases your ship's burst range. Lasts for 1 epoch.",
 				recipe: [
-					{mineral: 0, amount: 2},
-					{mineral: 1, amount: 2}
+					{mineral: 0, amount: 4},
+					{mineral: 1, amount: 8}
 				]
 			},
 			{
 				name: "Time Bomb",
 				description: "Once this bomb is detonated it reverses every planets orbit for remainder of epoch.",
 				recipe: [
-					{mineral: 2, amount: 2},
-					{mineral: 3, amount: 2}
+					{mineral: 2, amount: 6},
+					{mineral: 3, amount: 6}
 				]
 			}
 		],
@@ -42,8 +46,8 @@ export default new Vuex.Store({
 				burstRange: 1,
 				position: {x:-10, y: 20},
 				energy: 12,
-				materials: [],
-				tools: [0]
+				materials: [0,0,0,1,1],
+				tools: [1]
 			},
 			{
 				name: "gubo",
@@ -388,6 +392,13 @@ export default new Vuex.Store({
 		changeEnergy(state, {player, amount}){
 			state.players[player].energy = state.players[player].energy + amount;
 		},
-
+		expandControls(state, setting){
+			state.ui.controlsExpanded = setting;
+			if(!setting)
+				state.ui.toolsExpanded = false;
+		},
+		expandTools(state, setting){
+			state.ui.toolsExpanded = setting;
+		}
   }
 });

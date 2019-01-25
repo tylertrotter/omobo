@@ -40,3 +40,43 @@ button[disabled]{
 	opacity: .5;
 	cursor: not-allowed;
 }
+
+.tungsten.owned {
+	background: var(--tungsten);
+}
+
+.radium.owned {
+	background: var(--radium);
+}
+
+.copper.owned {
+	background: var(--copper);
+}
+
+.mercury.owned {
+	background: var(--mercury);
+}
+
+.tin.owned {
+	background: var(--tin);
+}
+
+.tungsten {
+	box-shadow: inset 0 0 0 1px var(--tungsten);
+}
+
+.radium {
+	box-shadow: inset  0 0 0 1px var(--radium);
+}
+
+.copper {
+	box-shadow: inset  0 0 0 1px var(--copper);
+}
+
+.mercury {
+	box-shadow: inset  0 0 0 1px var(--mercury);
+}
+
+.tin {
+	box-shadow: inset  0 0 0 1px var(--tin);
+}

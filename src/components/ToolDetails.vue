@@ -1,5 +1,5 @@
 <template>
-	<section class="tool-details">
+	<section v-show="$store.state.ui.toolsExpanded" class="tool-details">
 		<ul class="td-list">
 			<li v-for="(tool, i) in $store.state.tools" :key="i">
 				<h2>{{tool.name}}</h2>
@@ -7,15 +7,14 @@
 				<div class="td-details">
 					<div class="td-materials-icon">
 						<ul class="td-materials-required">
-							<!--
-								For each material display it, if player has it, show it full, otherwise show it outlined
-								- convert { mineral: 0, amount: 6}, { mineral: 1, amount: 6} to [0,0,0,0,0,0,1,1,1,1,1,1]
-								- Then loop through array
-								- Need a function materialAmount(player, material){ return n }
-								- :class="( i >= materialAmount(1,2) ) ? 'unowned' : 'owned'"
-							 -->
-							<li v-for="(ingredient, i) in tool.recipe" :key="i" :class="$store.state.mineralNames[ingredient.mineral]">
-								{{ingredient.mineral}}
+							<li
+								v-for="(material, i) in materialsForTool(i)"
+								:key="i"
+								:class="[
+									$store.state.mineralNames[material.id],
+									material.owned ? 'owned' : 'unowned'
+								]"
+								>
 							</li>
 
 						</ul>
@@ -27,8 +26,8 @@
 					</div>
 
 					<div class="td-buttons">
-						<button>build</button>
-						<button>use</button>
+						<button :class="canBuildTool(i) ? 'can-build' : 'cannot-build'" :disabled="!canBuildTool(i)">build</button>
+						<button :class="hasTool(i) ? 'owned-tool' : 'unowned-tool'" :disabled="!hasTool(i)">use</button>
 					</div>
 				</div>
 
@@ -39,7 +38,33 @@
 
 <script>
 	export default {
-		name: 'tool-details'
+		name: 'tool-details',
+		methods: {
+				materialsForTool(tool){
+				let recipe = this.$store.state.tools[tool].recipe;
+				let playerCustomizedMaterials = [];
+				for(var i = 0; i < recipe.length; i++){
+					for(var j = 0; j < recipe[i].amount; j++){
+						let playerMaterialAmount = this.playerMaterialAmount(this.$store.state.players[this.$store.getters.turn-1], recipe[i].mineral);
+						playerCustomizedMaterials.push({id: recipe[i].mineral, owned: playerMaterialAmount > j})
+					}
+				}
+				return playerCustomizedMaterials;
+			},
+			canBuildTool(tool){
+				let materials = this.materialsForTool(tool)
+				return materials.some(material => material.owned);
+			},
+			hasTool(tool){
+				return this.$store.state.players[this.$store.getters.turn-1].tools.includes(tool);
+			},
+			playerMaterialAmount(player, material){
+				return this.countInArray(player.materials, material);
+			},
+			countInArray(array, value) {
+				return array.reduce((n, x) => n + (x === value), 0);
+			}
+		}
 	}
 </script>
 
@@ -51,6 +76,7 @@
 		right: 230px;
 		bottom: 0;
 		background: rgba(0,0,0,.8);
+		overflow: auto;
 		padding: 20px;
 		color: white;
 	}
