@@ -14,18 +14,44 @@ export default new Vuex.Store({
 		tools: [
 			{
 				name: "Turbo Booster",
-				description: "This increases your ship's burst range. Lasts for 1 epoch.",
+				description: "This increases your ship's burst range 1 level. Burst ranges start at level 1 and max out at 3. Lasts for remainder of your turn.",
 				recipe: [
 					{mineral: 0, amount: 4},
-					{mineral: 1, amount: 8}
+					{mineral: 1, amount: 4},
+					{mineral: 2, amount: 4}
 				]
 			},
 			{
-				name: "Time Bomb",
-				description: "Once this bomb is detonated it reverses every planets orbit for remainder of epoch.",
+				name: "Super Booster",
+				description: "This increases your ship's burst range. Lasts for 2 turns.",
 				recipe: [
 					{mineral: 2, amount: 6},
 					{mineral: 3, amount: 6}
+				]
+			},
+			{
+				name: "Freeze Bomb",
+				description: "Freezes all planets. Spaceships can function, miners can mine, but planet's don't move. Lasts for the epoch.",
+				recipe: [
+					{mineral: 0, amount: 6},
+					{mineral: 1, amount: 6}
+				]
+			},
+			{
+				name: "Retrograde Bomb",
+				description: "Reverses every orbit in the galaxy. Lasts for the epoch.",
+				recipe: [
+					{mineral: 1, amount: 6},
+					{mineral: 4, amount: 6}
+				]
+			},
+			{
+				name: "Warp Speed Bomb",
+				description: "Speeds up time to be twice as fast. Planets move around their orbits double the amount they would normally. Lasts for the epoch.",
+				recipe: [
+					{mineral: 0, amount: 8},
+					{mineral: 2, amount: 2},
+					{mineral: 3, amount: 2}
 				]
 			}
 		],
@@ -43,11 +69,11 @@ export default new Vuex.Store({
 					emotion: null
 				},
 				planet: "0",
-				burstRange: 1,
+				burstRange: 3,
 				position: {x:-10, y: 20},
 				energy: 12,
 				materials: [0,0,0,1,1],
-				tools: [1]
+				tools: []
 			},
 			{
 				name: "gubo",

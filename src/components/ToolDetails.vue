@@ -18,7 +18,7 @@
 							</li>
 
 						</ul>
-						<svg  class="td-icon" viewBox="0 0 50 50 "><circle cx=25 cy=25 r=25 fill="white" /></svg>
+						<component :is="tool-name | kebab" />
 					</div>
 
 					<div class="td-description">
@@ -37,8 +37,21 @@
 </template>
 
 <script>
+	import booster from './../assets/svgs/booster.svg';
+	import superBooster from './../assets/svgs/super-booster.svg';
+	import freezeBomb from './../assets/svgs/freeze-bomb.svg';
+	import retrogradeBomb from './../assets/svgs/retrograde-bomb.svg';
+	import warpSpeedBomb from './../assets/svgs/warp-speed-bomb.svg';
+
 	export default {
 		name: 'tool-details',
+		components: {
+			booster,
+			superBooster,
+			freezeBomb,
+			retrogradeBomb,
+			warpSpeedBomb
+		},
 		methods: {
 				materialsForTool(tool){
 				let recipe = this.$store.state.tools[tool].recipe;
@@ -53,7 +66,7 @@
 			},
 			canBuildTool(tool){
 				let materials = this.materialsForTool(tool)
-				return materials.some(material => material.owned);
+				return materials.every(material => material.owned);
 			},
 			hasTool(tool){
 				return this.$store.state.players[this.$store.getters.turn-1].tools.includes(tool);
@@ -63,6 +76,12 @@
 			},
 			countInArray(array, value) {
 				return array.reduce((n, x) => n + (x === value), 0);
+			}
+		},
+		filters: {
+			kebab: function (value) {
+				if (!value) return ''
+				return value.toLowerCase().replace(/ /g, '-');
 			}
 		}
 	}
@@ -75,7 +94,7 @@
 		left: 0;
 		right: 230px;
 		bottom: 0;
-		background: rgba(0,0,0,.8);
+		background: rgba(0,0,0,1);
 		overflow: auto;
 		padding: 20px;
 		color: white;
@@ -88,23 +107,57 @@
 		list-style: none;
 	}
 
+	.td-list li {
+		margin-bottom: 4em;
+	}
+
 	.td-details {
 		display: flex;
 	}
 
 	.td-materials-icon {
-		width: 15%;
+		display: flex;
+		width: 12%;
+		background: var(--gray);
+		padding: 5px;
 	}
 
 	.td-icon {
-		max-width: 60%;
+    display: block;
+		width: 47px;
+    height: 47px;
+    margin-left: 8px;
 	}
 
 	.td-description {
 		width: 70%;
 	}
 
+	.td-description p{
+		margin: 0 1em;
+	}
+
+	.td-description p:last-child{
+		margin-bottom: 0;
+	}
+
 	.td-buttons {
 		width: 15%;
+	}
+
+	.td-materials-required {
+		display: flex;
+		align-content: center;
+		flex-wrap: wrap;
+		width: 35%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.td-materials-required li {
+		width: 44%;
+		margin: 3%;
+		height: 6px;
 	}
 </style>

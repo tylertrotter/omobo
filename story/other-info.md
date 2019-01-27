@@ -31,6 +31,8 @@ Boogokoo - An alliance of Mookogoos that is in opposition to the Oopo
 
 Goboom - Theoretical device that can shrink its target.
 
+Gobopo - A bug, similar to a grasshopper
+
 Gogoo - Spaceship
 
 Goo - Sun
@@ -51,7 +53,7 @@ Obo - Mouthlike emotion indicator of Mookogoos.
 
 Oog - Planet
 
-Oogbobo - Semi-mythical planet which is composed almost entirely of tin.
+Oogobobo - Semi-mythical planet which is composed almost entirely of tin.
 
 Oogogoo - The home planet of the Mookogoo.
 
