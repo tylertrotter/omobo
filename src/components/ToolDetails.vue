@@ -30,7 +30,7 @@
 					</div>
 
 					<div class="td-buttons">
-						<button :class="canBuildTool(i) ? 'can-build' : 'cannot-build'" :disabled="!canBuildTool(i)">build</button>
+						<button @click="build(i)" :class="canBuildTool(i) ? 'can-build' : 'cannot-build'" :disabled="!canBuildTool(i)">build</button>
 						<button :class="hasTool(i) ? 'owned-tool' : 'unowned-tool'" :disabled="!hasTool(i)">use</button>
 					</div>
 				</div>
@@ -41,11 +41,13 @@
 </template>
 
 <script>
+	import { mapMutations } from "vuex";
 
 	export default {
 		name: 'tool-details',
 		methods: {
-				materialsForTool(tool){
+			...mapMutations(["addTool"]),
+			materialsForTool(tool){
 				let recipe = this.$store.state.tools[tool].recipe;
 				let playerCustomizedMaterials = [];
 				for(var i = 0; i < recipe.length; i++){
@@ -61,19 +63,16 @@
 				return materials.every(material => material.owned);
 			},
 			hasTool(tool){
-				return this.$store.state.players[this.$store.getters.turn-1].tools.includes(tool);
+				return this.$store.getters.currentPlayer.tools.includes(tool);
 			},
 			playerMaterialAmount(player, material){
 				return this.countInArray(player.materials, material);
 			},
 			countInArray(array, value) {
 				return array.reduce((n, x) => n + (x === value), 0);
-			}
-		},
-		filters: {
-			kebab: function (value) {
-				if (!value) return ''
-				return value.toLowerCase().replace(/ /g, '-');
+			},
+			build(tool){
+				this.addTool({player: this.$store.getters.currentPlayerId, tool: tool})
 			}
 		}
 	}

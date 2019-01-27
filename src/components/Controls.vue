@@ -1,32 +1,32 @@
 <template>
 	<div @click="$store.commit('expandControls', !$store.state.ui.controlsExpanded)" :class="{expanded: $store.state.ui.controlsExpanded}" class="control-panel">
 
-		<div class="cp-name" :style="`background-color: ${currentPlayer.color}; border-color: ${currentPlayer.color};`">
-			<span class="mooko">{{currentPlayer.name}}</span>
-			<div class="english">{{currentPlayer.name}}</div>
+		<div class="cp-name" :style="`background-color: ${$store.getters.currentPlayer.color}; border-color: ${$store.getters.currentPlayer.color};`">
+			<span class="mooko">{{$store.getters.currentPlayer.name}}</span>
+			<div class="english">{{$store.getters.currentPlayer.name}}</div>
 		</div>
 
 		<div class="cp-body">
 
 			<avatar
-				:flesh="currentPlayer.color"
-				:iris="currentPlayer.avatar.iris"
-				:headHeight="currentPlayer.avatar.headHeight"
-				:headWidth="currentPlayer.avatar.headWidth"
-				:eyeSize="currentPlayer.avatar.eyeSize"
+				:flesh="this.$store.getters.currentPlayer.color"
+				:iris="this.$store.getters.currentPlayer.avatar.iris"
+				:headHeight="this.$store.getters.currentPlayer.avatar.headHeight"
+				:headWidth="this.$store.getters.currentPlayer.avatar.headWidth"
+				:eyeSize="this.$store.getters.currentPlayer.avatar.eyeSize"
 				class="cp-avatar"
-				:class="'emotion--' + this.currentPlayer.avatar.emotion"
+				:class="'emotion--' + $store.getters.currentPlayer.avatar.emotion"
 			/>
 
-			<energy-meter :value="currentPlayer.energy" />
+			<energy-meter :value="$store.getters.currentPlayer.energy" />
 
 			<section class="cp-materials cp-section mb">
 				<span class="cp-section--label">Materials</span>
 				<ul class="cp-materials--list" dir="rtl">
 					<li v-for="i in 60" :key="i"
 						:class="[
-							$store.state.mineralNames[currentPlayer.materials[i-1]],
-							currentPlayer.materials[i-1] > -1 ? 'owned' : 'unowned'
+							$store.state.mineralNames[$store.getters.currentPlayer.materials[i-1]],
+							$store.getters.currentPlayer.materials[i-1] > -1 ? 'owned' : 'unowned'
 						]"
 					></li>
 				</ul>
@@ -36,9 +36,13 @@
 				<span class="cp-section--label">Tools</span>
 				<ul class="cp-tools--list">
 					<li v-for="i in 4" :key="i"
-						:class="currentPlayer.tools.length > i-1 ? $store.state.tools[currentPlayer.tools[i-1]].name : 'no-tool'">
-						<i class="tool-icon"></i>
-						<span class="tool-name">{{ currentPlayer.tools.length > i-1 ? $store.state.tools[currentPlayer.tools[i-1]].name : '' }}</span>
+						:class="$store.getters.currentPlayer.tools.length > i-1 ? $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name : 'no-tool'">
+						<img v-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Turbo Booster'" src="@/assets/svgs/turbo-booster.svg" />
+						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Freeze Bomb'" src="@/assets/svgs/freeze-bomb.svg" />
+						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Retrograde Bomb'" src="@/assets/svgs/retrograde-bomb.svg" />
+						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Super Booster'" src="@/assets/svgs/super-booster.svg" />
+						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Warp Speed Bomb'" src="@/assets/svgs/warp-speed-bomb.svg" />
+						<span class="tool-name">{{$store.getters.currentPlayer.tools.length > i-1 ? $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name : '' }}</span>
 					</li>
 				</ul>
 				<div class="tool-buttons">
@@ -49,7 +53,7 @@
 			<section class="cp-buttons">
 				<button @click.stop="sit">sit</button>
 				<button @click.stop="mine">mine</button>
-				<button :disabled="this.$store.state.planetsInRange.length === 0" @click.stop="jump">jump</button>
+				<button :disabled="$store.state.planetsInRange.length === 0" @click.stop="jump">jump</button>
 			</section>
 
 		</div>
@@ -67,22 +71,11 @@
 		name: "s-controls",
 		mixins: [utility],
 		components: { avatar, energyMeter },
-		computed: {
-			currentPlayerId(){
-				return this.$store.getters.turn - 1;
-			},
-			currentPlayer(){
-				return this.$store.state.players[this.currentPlayerId];
-			},
-			currentPlanet(){
-				return this.$store.state.planets[+this.currentPlayer.planet];
-			}
-		},
 		methods: {
 			...mapMutations(["step", "changePlanet", "addMineral", "changeEnergy", "expandControls"]),
 			getEnergy(){
-				if(this.currentPlanet.bySun)
-					this.changeEnergy({player: this.currentPlayerId, amount: 1});
+				if(this.$store.getters.currentPlanet.bySun)
+					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
 			},
 			sit(){
 				this.step(1);
@@ -90,28 +83,28 @@
 			},
 			mine(){
 				this.step(1);
-				this.addMineral({player: this.currentPlayerId, mineral: this.currentPlanet.mineral});
+				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
 			},
 			jump(){
 
-				if(!this.currentPlayer.energy)
+				if(!this.$store.getters.currentPlayer.energy)
 					return;
 
 				this.getEnergy();
 
 				// use energy
-				this.changeEnergy({player: this.currentPlayerId, amount: -1});
+				this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: -1});
 
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
-					this.changePlanet({player: this.currentPlayerId, planet: planetsInRange[0].id})
+					this.changePlanet({player: this.$store.getters.currentPlayerId, planet: planetsInRange[0].id})
 					this.step(1);
 				}else{
 
-					this.currentPlayer.avatar.emotion = 'thinking';
+					this.$store.getters.currentPlayer.avatar.emotion = 'thinking';
 
-					let planetId = this.currentPlayer.planet;
+					let planetId = this.$store.getters.currentPlayer.planet;
 					let shipCoords = this.getCenter(document.getElementById(planetId).getBoundingClientRect());
 
 					const galaxy = document.getElementById('galaxy');
@@ -219,6 +212,11 @@
 		padding: 0 0 0 20px;
 		margin: 0;
 		list-style: none;
+	}
+
+	.cp-tools--list img {
+		width: 16px;
+		height: 16px;
 	}
 
 	.cp-materials--list {

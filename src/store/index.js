@@ -72,7 +72,7 @@ export default new Vuex.Store({
 				burstRange: 3,
 				position: {x:-10, y: 20},
 				energy: 12,
-				materials: [0,0,0,1,1],
+				materials: [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
 				tools: []
 			},
 			{
@@ -90,7 +90,7 @@ export default new Vuex.Store({
 				position: {x:-10, y: 40},
 				energy: 12,
 				materials: [],
-				tools: [0]
+				tools: []
 			},
 			{
 				name: "bobo",
@@ -360,6 +360,15 @@ export default new Vuex.Store({
 			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
 			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
       return turn;
+		},
+		currentPlayerId: (state, getters) => {
+			return getters.turn - 1;
+		},
+		currentPlayer: (state, getters) => {
+			return state.players[getters.currentPlayerId];
+		},
+		currentPlanet: (state, getters) => {
+			return state.planets[+getters.currentPlayer.planet];
 		}
 	},
   mutations: {
@@ -414,6 +423,9 @@ export default new Vuex.Store({
 		},
 		addMineral(state, {player, mineral}){
 			state.players[player].materials.push(mineral);
+		},
+		addTool(state, {player, tool}){
+			state.players[player].tools.push(tool);
 		},
 		changeEnergy(state, {player, amount}){
 			state.players[player].energy = state.players[player].energy + amount;
