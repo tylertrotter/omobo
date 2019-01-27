@@ -18,7 +18,11 @@
 							</li>
 
 						</ul>
-						<component :is="tool-name | kebab" />
+						<img v-if="tool.name === 'Turbo Booster'" src="@/assets/svgs/turbo-booster.svg" />
+						<img v-else-if="tool.name === 'Freeze Bomb'" src="@/assets/svgs/freeze-bomb.svg" />
+						<img v-else-if="tool.name === 'Retrograde Bomb'" src="@/assets/svgs/retrograde-bomb.svg" />
+						<img v-else-if="tool.name === 'Super Booster'" src="@/assets/svgs/super-booster.svg" />
+						<img v-else-if="tool.name === 'Warp Speed Bomb'" src="@/assets/svgs/warp-speed-bomb.svg" />
 					</div>
 
 					<div class="td-description">
@@ -37,21 +41,9 @@
 </template>
 
 <script>
-	import booster from './../assets/svgs/booster.svg';
-	import superBooster from './../assets/svgs/super-booster.svg';
-	import freezeBomb from './../assets/svgs/freeze-bomb.svg';
-	import retrogradeBomb from './../assets/svgs/retrograde-bomb.svg';
-	import warpSpeedBomb from './../assets/svgs/warp-speed-bomb.svg';
 
 	export default {
 		name: 'tool-details',
-		components: {
-			booster,
-			superBooster,
-			freezeBomb,
-			retrogradeBomb,
-			warpSpeedBomb
-		},
 		methods: {
 				materialsForTool(tool){
 				let recipe = this.$store.state.tools[tool].recipe;
@@ -122,11 +114,12 @@
 		padding: 5px;
 	}
 
-	.td-icon {
+	.td-materials-icon img {
     display: block;
-		width: 47px;
-    height: 47px;
-    margin-left: 8px;
+		width: 35px;
+    height: 35px;
+		margin: 8px 0 8px 16px;
+		color: white;
 	}
 
 	.td-description {
