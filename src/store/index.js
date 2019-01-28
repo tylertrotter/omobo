@@ -426,6 +426,18 @@ export default new Vuex.Store({
 		},
 		addTool(state, {player, tool}){
 			state.players[player].tools.push(tool);
+
+			// remove materials used for the tool
+			let recipe = state.tools[tool].recipe;
+			let filteredMaterials =	state.players[player].materials;
+
+			for(let i = 0; i < recipe.length; i++){
+				for(let j = 0; j < recipe[i].amount; j++){
+					let removeIndex = filteredMaterials.indexOf(recipe[i].mineral);
+					filteredMaterials.splice(removeIndex, 1);
+				}
+			}
+
 		},
 		changeEnergy(state, {player, amount}){
 			state.players[player].energy = state.players[player].energy + amount;
