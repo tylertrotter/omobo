@@ -72,17 +72,17 @@
 		mixins: [utility],
 		components: { avatar, energyMeter },
 		methods: {
-			...mapMutations(["step", "changePlanet", "addMineral", "changeEnergy", "expandControls"]),
+			...mapMutations(["tick", "changePlanet", "addMineral", "changeEnergy", "expandControls"]),
 			getEnergy(){
 				if(this.$store.getters.currentPlanet.bySun)
 					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
 			},
 			sit(){
-				this.step(1);
+				this.tick(1);
 				this.getEnergy();
 			},
 			mine(){
-				this.step(1);
+				this.tick(1);
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
 			},
@@ -99,7 +99,7 @@
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
 					this.changePlanet({player: this.$store.getters.currentPlayerId, planet: planetsInRange[0].id})
-					this.step(1);
+					this.tick(1);
 				}else{
 
 					this.$store.getters.currentPlayer.avatar.emotion = 'thinking';
@@ -227,7 +227,7 @@
 	.cp-materials--list li {
 		width: calc(20% - 2px);
 		height: calc(8% - 2px);
-		background: rgba(255,255,255,.1);
+		background: rgba(255,255,255,.05);
 		margin: 1px;
 	}
 

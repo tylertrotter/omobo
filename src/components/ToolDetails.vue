@@ -1,5 +1,5 @@
 <template>
-	<section v-show="$store.state.ui.toolsExpanded" class="tool-details">
+	<section class="tool-details" :class="{'tools-expanded': $store.state.ui.toolsExpanded}">
 		<ul class="td-list">
 			<li v-for="(tool, i) in $store.state.tools" :key="i">
 				<h2>{{tool.name}}</h2>
@@ -82,13 +82,19 @@
 	.tool-details {
 		position: absolute;
 		top: 0;
-		left: 0;
-		right: 230px;
+		left: 100%;
+		right: -100%;
 		bottom: 0;
-		background: rgba(0,0,0,1);
+		background: var(--gray);
 		overflow: auto;
 		padding: 20px;
 		color: white;
+		transition: all .8s;
+	}
+
+	.tools-expanded.tool-details {
+		right: 230px;
+		left: 0;
 	}
 
 	.td-list {
@@ -109,7 +115,7 @@
 	.td-materials-icon {
 		display: flex;
 		width: 12%;
-		background: var(--gray);
+		background: var(--control-panel);
 		padding: 5px;
 	}
 

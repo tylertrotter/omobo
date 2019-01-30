@@ -36,7 +36,7 @@
 		},
 		mounted(){
 			setTimeout(()=>{
-				this.$store.commit('step', 1);
+				this.$store.commit('tick', 1);
 			}, 500)
 		}
 	}

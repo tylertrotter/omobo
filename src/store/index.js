@@ -5,11 +5,26 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
 		ui: {
-			toolsExpanded: true,
-			controlsExpanded: true,
+			toolsExpanded: false,
+			controlsExpanded: false,
 			aspectRatio: {x: 3, y:2}
 		},
 		tick: 0,
+		step: 0,
+		deferredMods: [
+			{
+				player: 0,
+				step: 4,
+				mutation:  "changeBurstRange",
+				amount: 1
+			},
+			{
+				player: -1,
+				step: 58,
+				change:  "retrograde",
+				// amount: !currentDirection
+			}
+		],
 		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
 		tools: [
 			{
@@ -69,7 +84,7 @@ export default new Vuex.Store({
 					emotion: null
 				},
 				planet: "0",
-				burstRange: 3,
+				burstRange: 1,
 				position: {x:-10, y: 20},
 				energy: 12,
 				materials: [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
@@ -372,8 +387,14 @@ export default new Vuex.Store({
 		}
 	},
   mutations: {
-		step (state, n) {
+		tick (state, n) {
 			state.tick += n;
+			state.step = state.step + 1;
+
+			this.dispatch('checkMods');
+		},
+		changeBurstRange(state, {playerId, amount}){
+			state.players[playerId].burstRange = state.players[playerId].burstRange + amount;
 		},
 		updatePlanet(state, id){
 			// id and array index should always be the same,
@@ -437,7 +458,6 @@ export default new Vuex.Store({
 					filteredMaterials.splice(removeIndex, 1);
 				}
 			}
-
 		},
 		changeEnergy(state, {player, amount}){
 			state.players[player].energy = state.players[player].energy + amount;
@@ -450,5 +470,17 @@ export default new Vuex.Store({
 		expandTools(state, setting){
 			state.ui.toolsExpanded = setting;
 		}
-  }
+	},
+	actions: {
+		checkMods({commit, state}) {
+			let playerId = this.getters.currentPlayerId;
+			let step = state.step;
+
+			state.deferredMods.forEach(mod => {
+				if( step === mod.step && (mod.player === playerId || mod.player === -1) ){
+					commit(mod.mutation, {'playerId': mod.player, 'amount': mod.amount});
+				}
+			});
+		}
+	}
 });

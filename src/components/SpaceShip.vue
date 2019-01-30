@@ -5,10 +5,26 @@
 			width="3%"
 			height="5%"
 			:class="{active: active}"
-			:style="`transform: translate(${position.x}%, ${position.y}%);`"
+			:style="`transform: translate(${$store.state.players[player-1].position.x}%, ${$store.state.players[player-1].position.y}%);`"
 		>
-			<circle class="burst-range" :cx="0" :cy="0" :r="burstRange + '%'" :fill="color" :stroke="color" stroke-width="2"  />
-			<rect class="ship" x="1.2%" y="0" width=".3%" height=".4%" :fill="color" :style="`transform: rotate(${30 * player}deg);`" />
+			<circle
+				class="burst-range"
+				:cx="0"
+				:cy="0"
+				:r="($store.state.players[player-1].burstRange * 2.5) + '%'"
+				:fill="$store.state.players[player-1].color"
+				:stroke="$store.state.players[player-1].color"
+				stroke-width="2"
+			/>
+			<rect
+				class="ship"
+				x="1.2%"
+				y="0"
+				width=".3%"
+				height=".4%"
+				:fill="$store.state.players[player-1].color"
+				:style="`transform: rotate(${30 * player}deg);`"
+			/>
 		</g>
 </template>
 
@@ -19,9 +35,6 @@
 		mixins: [utility],
 		data(){
 			return {
-				color: this.$store.state.players[this.player-1].color,
-				burstRange: this.$store.state.players[this.player-1].burstRange * 2.5,
-				position: this.$store.state.players[this.player-1].position,
 				active: this.$store.getters.turn === this.player
 			}
 		},
@@ -32,8 +45,10 @@
 
 			goToPlanet(id){
 				let planets = this.$store.state.planets;
-				this.position.x = (planets[id].nextTick.xPercent);
-				this.position.y = (planets[id].nextTick.yPercent);
+				let position = this.$store.state.players[this.player-1].position;
+
+				position.x = (planets[id].nextTick.xPercent);
+				position.y = (planets[id].nextTick.yPercent);
 
 				if(this.$store.getters.turn === this.player){
 					setTimeout(() => {
@@ -44,8 +59,8 @@
 		},
 		created(){
 			this.$store.subscribe((mutation) => {
-				if(mutation.type === "step"){
-					this.goToPlanet(this.$store.state.players[this.player-1].planet);
+				if(mutation.type === "tick"){
+					this.goToPlanet(this.$store.getters.currentPlayer.planet);
 
 					this.active = this.$store.getters.turn === this.player;
 				}

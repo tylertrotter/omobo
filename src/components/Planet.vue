@@ -44,7 +44,7 @@
 			}
 		},
 		methods: {
-			...mapMutations(['changePlanet', 'step']),
+			...mapMutations(['changePlanet', 'tick']),
 			jumpHere(e){
 				if(!e.srcElement.classList.contains('in-range'))
 					return
@@ -61,7 +61,7 @@
 
 				setTimeout(() => {
 					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.id})
-					this.step(1);
+					this.tick(1);
 				}, 2000)
 
 			}
@@ -95,7 +95,7 @@
 			this.direction = this.retrograde ? primaryDirection * -1 : primaryDirection;
 
 			this.$store.subscribe((mutation) => {
-				if(mutation.type === "step"){
+				if(mutation.type === "tick"){
 					this.$store.commit("updatePlanet", this.id);
 				}
 			});
