@@ -44,9 +44,10 @@
 		methods: {
 
 			goToPlanet(id){
+
 				let planets = this.$store.state.planets;
 				let position = this.$store.state.players[this.player-1].position;
-
+				// console.log(planets)
 				position.x = (planets[id].nextTick.xPercent);
 				position.y = (planets[id].nextTick.yPercent);
 
@@ -60,7 +61,7 @@
 		created(){
 			this.$store.subscribe((mutation) => {
 				if(mutation.type === "tick"){
-					this.goToPlanet(this.$store.getters.currentPlayer.planet);
+					this.goToPlanet(this.$store.state.players[this.player-1].planet);
 
 					this.active = this.$store.getters.turn === this.player;
 				}

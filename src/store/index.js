@@ -11,18 +11,17 @@ export default new Vuex.Store({
 		},
 		tick: 0,
 		step: 0,
+		orbitSpeed: 1,
 		deferredMods: [
 			{
 				player: 0,
 				step: 4,
 				mutation:  "changeBurstRange",
-				amount: 1
+				payload: 1
 			},
 			{
-				player: -1,
-				step: 58,
-				change:  "retrograde",
-				// amount: !currentDirection
+				step: 4,
+				mutation:  "retrograde"
 			}
 		],
 		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
@@ -388,13 +387,16 @@ export default new Vuex.Store({
 	},
   mutations: {
 		tick (state, n) {
-			state.tick += n;
+			state.tick += n * state.orbitSpeed;
 			state.step = state.step + 1;
 
 			this.dispatch('checkMods');
 		},
-		changeBurstRange(state, {playerId, amount}){
-			state.players[playerId].burstRange = state.players[playerId].burstRange + amount;
+		changeBurstRange(state, {playerId, payload}){
+			state.players[playerId].burstRange = state.players[playerId].burstRange + payload;
+		},
+		retrograde(state){
+			state.orbitSpeed = state.orbitSpeed * -1;
 		},
 		updatePlanet(state, id){
 			// id and array index should always be the same,
@@ -429,7 +431,6 @@ export default new Vuex.Store({
 				mineral,
 				bySun
 			}
-
 		},
 		updatePlanetsInRange(state, planets){
 			state.planetsInRange = planets;
@@ -475,12 +476,25 @@ export default new Vuex.Store({
 		checkMods({commit, state}) {
 			let playerId = this.getters.currentPlayerId;
 			let step = state.step;
+			let isActivePlayer;
+			let modsToDelete = [];
 
-			state.deferredMods.forEach(mod => {
-				if( step === mod.step && (mod.player === playerId || mod.player === -1) ){
-					commit(mod.mutation, {'playerId': mod.player, 'amount': mod.amount});
+			state.deferredMods.forEach((mod, i) => {
+				isActivePlayer = playerId === mod.player;
+
+				if( step === mod.step ){
+					if( isActivePlayer && typeof(mod.payload) !== 'undefined' )
+						commit(mod.mutation, {'playerId': mod.player, 'payload': mod.payload});
+					else if( isActivePlayer )
+						commit(mod.mutation, {'playerId': mod.player});
+					else
+						commit(mod.mutation);
+
+					modsToDelete.push(i);
 				}
 			});
+
+			modsToDelete.forEach(i => state.deferredMods.splice(i, 1));
 		}
 	}
 });

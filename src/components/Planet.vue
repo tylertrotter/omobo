@@ -85,7 +85,7 @@
 				return `transform: rotate(${degrees}deg);`
 			},
 			nextTick(){
-				let degrees = (360 / this.speed) * this.direction;
+				let degrees = (360 / this.speed) * (this.$store.state.orbitSpeed * this.direction);
 				return `transform: rotate(${degrees}deg);`
 			}
 
