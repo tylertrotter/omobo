@@ -3,7 +3,7 @@ export default{
 		getPlanetsInRange() {
 			let activeShip = this.$store.state.players[this.player-1];
 			let planets = this.$store.state.planets;
-			let extendedBurstRange = this.burstRange*2;
+			let extendedBurstRange = activeShip.burstRange*4;
 			let filteredPlanets = [];
 			let planetsInRange = [];
 
