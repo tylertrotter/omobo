@@ -84,26 +84,9 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:-10, y: 20},
+				position: {x:20, y: 24},
 				energy: 12,
 				materials: [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
-				tools: []
-			},
-			{
-				name: "gubo",
-				color: "purple",
-				avatar: {
-					iris: "#bada55",
-					eyeSize: .8,
-					headHeight: .8,
-					headWidth: 1.1,
-					emotion: null
-				},
-				planet: "0",
-				burstRange: 1,
-				position: {x:-10, y: 40},
-				energy: 12,
-				materials: [],
 				tools: []
 			},
 			{
@@ -119,6 +102,23 @@ export default new Vuex.Store({
 				planet: "0",
 				burstRange: 1,
 				position: {x:-10, y: 60},
+				energy: 12,
+				materials: [],
+				tools: []
+			},
+			{
+				name: "gubo",
+				color: "purple",
+				avatar: {
+					iris: "#bada55",
+					eyeSize: .8,
+					headHeight: .8,
+					headWidth: 1.1,
+					emotion: null
+				},
+				planet: "0",
+				burstRange: 1,
+				position: {x:-10, y: 40},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -370,13 +370,13 @@ export default new Vuex.Store({
 	getters: {
 		turn: state => {
 			const ticksPerTurn = 6;
-			const startTick = 0;
-			let turn = Math.ceil((state.tick-startTick) / ticksPerTurn) % state.players.length;
-			turn = state.tick === startTick ? 1 : turn === 0 ? 3 : turn;
+			let turn = Math.ceil((state.step+1) / (ticksPerTurn)) % state.players.length;
+			turn = state.step === 0 ? 1 : turn === 0 ? 3 : turn;
       return turn;
 		},
 		currentPlayerId: (state, getters) => {
 			return getters.turn - 1;
+
 		},
 		currentPlayer: (state, getters) => {
 			return state.players[getters.currentPlayerId];
