@@ -11,15 +11,11 @@ export default new Vuex.Store({
 		},
 		tick: 0,
 		step: 0,
+		ticksPerTurn: 6,
 		orbitSpeed: 1,
 		deferredMods: [
 			{
-				player: 0,
-				step: 4,
-				mutation:  "changeBurstRange",
-				payload: 1
-			},
-			{
+				player: -1,
 				step: 4,
 				mutation:  "retrograde"
 			}
@@ -28,12 +24,18 @@ export default new Vuex.Store({
 		tools: [
 			{
 				name: "Turbo Booster",
-				description: "This increases your ship's burst range 1 level. Burst ranges start at level 1 and max out at 3. Lasts for remainder of your turn.",
+				description: `This increases your ship's burst range 1 level. Burst ranges start at level 1 and max out at 3. Lasts for 6 ticks.`,
 				recipe: [
 					{mineral: 0, amount: 4},
 					{mineral: 1, amount: 4},
 					{mineral: 2, amount: 4}
-				]
+				],
+				modification: {
+					mutation: "changeBurstRange",
+					payload: 1,
+					turns: 1
+				}
+
 			},
 			{
 				name: "Super Booster",
@@ -369,8 +371,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 		turn: state => {
-			const ticksPerTurn = 6;
-			let turn = Math.ceil((state.step+1) / (ticksPerTurn)) % state.players.length;
+			let turn = Math.ceil((state.step+1) / (state.ticksPerTurn)) % state.players.length;
 			turn = state.step === 0 ? 1 : turn === 0 ? 3 : turn;
       return turn;
 		},
@@ -411,8 +412,6 @@ export default new Vuex.Store({
 
 			let nextRect = nextTicks[id].getBoundingClientRect();
 			// let thisRect = thisTicks[id].getBoundingClientRect();
-
-			// console.log(nextRect, thisRect)
 
 			let xPercent = ((nextRect.x + nextRect.width/2) / galaxyWidth) * 100;
 			let yPercent = ((nextRect.y + nextRect.height/2) / galaxyHeight) * 100;
@@ -459,6 +458,24 @@ export default new Vuex.Store({
 					filteredMaterials.splice(removeIndex, 1);
 				}
 			}
+
+			// Make modification
+			state.deferredMods.push({
+				player: player,
+				step: state.step,
+				mutation: state.tools[tool].modification.mutation,
+				payload: state.tools[tool].modification.payload
+			});
+
+			this.dispatch('checkMods');
+
+			// Add deferred Mod if necessary
+			state.deferredMods.push({
+				player: player,
+				step: state.step + (state.ticksPerTurn * state.tools[tool].modification.turns),
+				mutation: state.tools[tool].modification.mutation,
+				payload: state.tools[tool].modification.payload * -1
+			});
 		},
 		changeEnergy(state, {player, amount}){
 			state.players[player].energy = state.players[player].energy + amount;
@@ -476,16 +493,13 @@ export default new Vuex.Store({
 		checkMods({commit, state}) {
 			let playerId = this.getters.currentPlayerId;
 			let step = state.step;
-			let isActivePlayer;
 			let modsToDelete = [];
 
 			state.deferredMods.forEach((mod, i) => {
-				isActivePlayer = playerId === mod.player;
-
 				if( step === mod.step ){
-					if( isActivePlayer && typeof(mod.payload) !== 'undefined' )
+					if( mod.player > -1 && typeof(mod.payload) !== 'undefined' )
 						commit(mod.mutation, {'playerId': mod.player, 'payload': mod.payload});
-					else if( isActivePlayer )
+					else if( mod.player > -1 )
 						commit(mod.mutation, {'playerId': mod.player});
 					else
 						commit(mod.mutation);
