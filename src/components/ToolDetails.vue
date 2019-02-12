@@ -31,7 +31,7 @@
 
 					<div class="td-buttons">
 						<button @click="build(i)" :class="canBuildTool(i) ? 'can-build' : 'cannot-build'" :disabled="!canBuildTool(i)">build</button>
-						<button :class="hasTool(i) ? 'owned-tool' : 'unowned-tool'" :disabled="!hasTool(i)">use</button>
+						<button @click="use(i)" :class="hasTool(i) ? 'owned-tool' : 'unowned-tool'" :disabled="!hasTool(i)">use</button>
 					</div>
 				</div>
 
@@ -46,7 +46,7 @@
 	export default {
 		name: 'tool-details',
 		methods: {
-			...mapMutations(["addTool"]),
+			...mapMutations(["buildTool", "useTool"]),
 			materialsForTool(tool){
 				let recipe = this.$store.state.tools[tool].recipe;
 				let playerCustomizedMaterials = [];
@@ -72,7 +72,10 @@
 				return array.reduce((n, x) => n + (x === value), 0);
 			},
 			build(tool){
-				this.addTool({player: this.$store.getters.currentPlayerId, tool: tool})
+				this.buildTool({tool})
+			},
+			use(tool){
+				this.useTool({tool})
 			}
 		}
 	}

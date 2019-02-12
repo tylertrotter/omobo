@@ -13,13 +13,7 @@ export default new Vuex.Store({
 		step: 0,
 		ticksPerTurn: 6,
 		orbitSpeed: 1,
-		deferredMods: [
-			{
-				player: -1,
-				step: 4,
-				mutation:  "retrograde"
-			}
-		],
+		deferredMods: [],
 		mineralNames: ['tungsten', 'radium', 'copper', 'mercury', 'tin'],
 		tools: [
 			{
@@ -33,9 +27,9 @@ export default new Vuex.Store({
 				modification: {
 					mutation: "changeBurstRange",
 					payload: 1,
-					turns: 1
+					undoPayload: -1,
+					epochs: 1
 				}
-
 			},
 			{
 				name: "Super Booster",
@@ -43,7 +37,13 @@ export default new Vuex.Store({
 				recipe: [
 					{mineral: 2, amount: 6},
 					{mineral: 3, amount: 6}
-				]
+				],
+				modification: {
+					mutation: "changeBurstRange",
+					payload: 1,
+					undoPayload: -1,
+					epochs: 2
+				}
 			},
 			{
 				name: "Freeze Bomb",
@@ -51,7 +51,13 @@ export default new Vuex.Store({
 				recipe: [
 					{mineral: 0, amount: 6},
 					{mineral: 1, amount: 6}
-				]
+				],
+				modification: {
+					mutation: "changeOrbits",
+					payload: 0,
+					undoPayload: 1,
+					epochs: 1
+				}
 			},
 			{
 				name: "Retrograde Bomb",
@@ -59,7 +65,13 @@ export default new Vuex.Store({
 				recipe: [
 					{mineral: 1, amount: 6},
 					{mineral: 4, amount: 6}
-				]
+				],
+				modification: {
+					mutation: "changeOrbits",
+					payload: -1,
+					undoPayload: -1,
+					epochs: 1
+				}
 			},
 			{
 				name: "Warp Speed Bomb",
@@ -68,7 +80,13 @@ export default new Vuex.Store({
 					{mineral: 0, amount: 8},
 					{mineral: 2, amount: 2},
 					{mineral: 3, amount: 2}
-				]
+				],
+				modification: {
+					mutation: "changeOrbits",
+					payload: 2,
+					undoPayload: .5,
+					epochs: 1
+				}
 			}
 		],
 		planets: [],
@@ -88,7 +106,7 @@ export default new Vuex.Store({
 				burstRange: 1,
 				position: {x:20, y: 24},
 				energy: 12,
-				materials: [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
+				materials: [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4],
 				tools: []
 			},
 			{
@@ -393,11 +411,12 @@ export default new Vuex.Store({
 
 			this.dispatch('checkMods');
 		},
-		changeBurstRange(state, {playerId, payload}){
+		changeBurstRange(state, {payload}){
+			const playerId = this.getters.currentPlayerId;
 			state.players[playerId].burstRange = state.players[playerId].burstRange + payload;
 		},
-		retrograde(state){
-			state.orbitSpeed = state.orbitSpeed * -1;
+		changeOrbits(state, {payload}){
+			state.orbitSpeed = state.orbitSpeed ? state.orbitSpeed * payload : payload;
 		},
 		updatePlanet(state, id){
 			// id and array index should always be the same,
@@ -445,7 +464,8 @@ export default new Vuex.Store({
 		addMineral(state, {player, mineral}){
 			state.players[player].materials.push(mineral);
 		},
-		addTool(state, {player, tool}){
+		buildTool(state, {tool}){
+			const player = this.getters.currentPlayerId;
 			state.players[player].tools.push(tool);
 
 			// remove materials used for the tool
@@ -458,10 +478,16 @@ export default new Vuex.Store({
 					filteredMaterials.splice(removeIndex, 1);
 				}
 			}
+		},
+		useTool(state, {tool}){
 
-			// Make modification
+			// remove tool
+			const toolList = this.getters.currentPlayer.tools;
+			const toolIndex = toolList.indexOf(tool);
+			toolList.splice(toolIndex, 1);
+
+			// Make modification immediately
 			state.deferredMods.push({
-				player: player,
 				step: state.step,
 				mutation: state.tools[tool].modification.mutation,
 				payload: state.tools[tool].modification.payload
@@ -471,10 +497,9 @@ export default new Vuex.Store({
 
 			// Add deferred Mod if necessary
 			state.deferredMods.push({
-				player: player,
-				step: state.step + (state.ticksPerTurn * state.tools[tool].modification.turns),
+				step: state.step + (state.ticksPerTurn * state.players.length * state.tools[tool].modification.epochs),
 				mutation: state.tools[tool].modification.mutation,
-				payload: state.tools[tool].modification.payload * -1
+				payload: state.tools[tool].modification.undoPayload
 			});
 		},
 		changeEnergy(state, {player, amount}){
@@ -491,16 +516,13 @@ export default new Vuex.Store({
 	},
 	actions: {
 		checkMods({commit, state}) {
-			let playerId = this.getters.currentPlayerId;
 			let step = state.step;
 			let modsToDelete = [];
 
 			state.deferredMods.forEach((mod, i) => {
 				if( step === mod.step ){
-					if( mod.player > -1 && typeof(mod.payload) !== 'undefined' )
-						commit(mod.mutation, {'playerId': mod.player, 'payload': mod.payload});
-					else if( mod.player > -1 )
-						commit(mod.mutation, {'playerId': mod.player});
+					if( typeof(mod.payload) !== 'undefined' )
+						commit(mod.mutation, {'payload': mod.payload});
 					else
 						commit(mod.mutation);
 
