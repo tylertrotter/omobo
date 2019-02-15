@@ -1,6 +1,5 @@
 <template>
 	<div @click="$store.commit('expandControls', !$store.state.ui.controlsExpanded)" :class="{expanded: $store.state.ui.controlsExpanded}" class="control-panel">
-
 		<div class="cp-name" :style="`background-color: ${$store.getters.currentPlayer.color}; border-color: ${$store.getters.currentPlayer.color};`">
 			<span class="mooko">{{$store.getters.currentPlayer.name}}</span>
 			<div class="english">{{$store.getters.currentPlayer.name}}</div>
@@ -77,11 +76,22 @@
 				if(this.$store.getters.currentPlanet.bySun)
 					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
 			},
+			disableInteraction(time){
+				document.querySelector("body").classList.add("disable-interaction");
+
+				if(time){
+					setTimeout(function(){
+						document.querySelector("body").classList.remove("disable-interaction");
+					}, time);
+				}
+			},
 			sit(){
+				this.disableInteraction(600);
 				this.tick(1);
 				this.getEnergy();
 			},
 			mine(){
+				this.disableInteraction(600);
 				this.tick(1);
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
@@ -98,10 +108,10 @@
 
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){
+					this.disableInteraction(600);
 					this.changePlanet({player: this.$store.getters.currentPlayerId, planet: planetsInRange[0].id})
 					this.tick(1);
 				}else{
-
 					this.$store.getters.currentPlayer.avatar.emotion = 'thinking';
 
 					let planetId = this.$store.getters.currentPlayer.planet;
@@ -339,5 +349,19 @@
 	.expanded .tool-buttons {
 		opacity: 1;
 		transition: opacity .6s .6s;
+	}
+
+	.interaction-disabler {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+	}
+
+	.disable-interaction .interaction-disabler {
+		display: block;
 	}
 </style>

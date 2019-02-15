@@ -121,7 +121,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:-10, y: 60},
+				position: {x:20, y: 24},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -138,7 +138,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:-10, y: 40},
+				position: {x:20, y: 24},
 				energy: 12,
 				materials: [],
 				tools: []

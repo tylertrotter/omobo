@@ -3,6 +3,7 @@
     <s-board />
 		<s-tool-details />
 		<s-controls />
+		<div class="interaction-disabler"></div>
   </div>
 </template>
 
