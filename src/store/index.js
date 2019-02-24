@@ -394,6 +394,9 @@ export default new Vuex.Store({
 			turn = state.step === 0 ? 1 : turn === 0 ? 3 : turn;
       return turn;
 		},
+		turnTick: state => {
+			return state.tick % state.ticksPerTurn;
+		},
 		currentPlayerId: (state, getters) => {
 			return getters.turn - 1;
 

@@ -87,14 +87,14 @@
 			},
 			sit(){
 				this.disableInteraction(600);
-				this.tick(1);
 				this.getEnergy();
+				this.tick(1);
 			},
 			mine(){
 				this.disableInteraction(600);
-				this.tick(1);
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
+				this.tick(1);
 			},
 			jump(){
 
