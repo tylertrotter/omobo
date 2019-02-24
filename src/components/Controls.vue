@@ -1,5 +1,5 @@
 <template>
-	<div @click="$store.commit('expandControls', !$store.state.ui.controlsExpanded)" :class="{expanded: $store.state.ui.controlsExpanded}" class="control-panel">
+	<div @click="$store.commit('expandControls', !$store.state.ui.controlsExpanded)" :class="[{expanded: $store.state.ui.controlsExpanded}, {disabled: $store.state.ui.controlsDisabled}]" class="control-panel">
 		<div class="cp-name" :style="`background-color: ${$store.getters.currentPlayer.color}; border-color: ${$store.getters.currentPlayer.color};`">
 			<span class="mooko">{{$store.getters.currentPlayer.name}}</span>
 			<div class="english">{{$store.getters.currentPlayer.name}}</div>
@@ -71,7 +71,7 @@
 		mixins: [utility],
 		components: { avatar, energyMeter },
 		methods: {
-			...mapMutations(["tick", "changePlanet", "addMineral", "changeEnergy", "expandControls"]),
+			...mapMutations(["tick", "changePlanet", "addMineral", "changeEnergy", "expandControls", "disableControls"]),
 			getEnergy(){
 				if(this.$store.getters.currentPlanet.bySun)
 					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
@@ -113,6 +113,8 @@
 					this.tick(1);
 				}else{
 					this.$store.getters.currentPlayer.avatar.emotion = 'thinking';
+
+					this.$store.commit('disableControls', true);
 
 					let planetId = this.$store.getters.currentPlayer.planet;
 					let shipCoords = this.getCenter(document.getElementById(planetId).getBoundingClientRect());
@@ -163,6 +165,10 @@
 
 	.control-panel.expanded {
 		width: 230px;
+	}
+
+	.control-panel.disabled {
+		right: -70px;
 	}
 
 	.cp-name {

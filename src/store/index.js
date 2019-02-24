@@ -7,6 +7,7 @@ export default new Vuex.Store({
 		ui: {
 			toolsExpanded: false,
 			controlsExpanded: false,
+			controlsDisabled: false,
 			aspectRatio: {x: 3, y:2}
 		},
 		tick: 0,
@@ -106,7 +107,7 @@ export default new Vuex.Store({
 				burstRange: 1,
 				position: {x:20, y: 24},
 				energy: 12,
-				materials: [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4],
+				materials: [],
 				tools: []
 			},
 			{
@@ -509,6 +510,12 @@ export default new Vuex.Store({
 			state.ui.controlsExpanded = setting;
 			if(!setting)
 				state.ui.toolsExpanded = false;
+		},
+		disableControls(state, setting){
+			state.ui.controlsExpanded = false;
+			state.ui.controlsDisabled = setting;
+			if(!setting)
+				state.ui.toolsDisabled = false;
 		},
 		expandTools(state, setting){
 			state.ui.toolsExpanded = setting;

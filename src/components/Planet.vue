@@ -62,6 +62,7 @@
 				setTimeout(() => {
 					this.changePlanet({player: this.$store.getters.turn - 1, planet: this.id})
 					this.tick(1);
+					this.$store.commit('disableControls', false);
 				}, 2000)
 
 			}
@@ -99,6 +100,9 @@
 					this.$store.commit("updatePlanet", this.id);
 				}
 			});
+		},
+		mounted(){
+			this.$store.commit("updatePlanet", this.id);
 		}
 	}
 </script>

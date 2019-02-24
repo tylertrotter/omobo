@@ -47,7 +47,7 @@
 
 				let planets = this.$store.state.planets;
 				let position = this.$store.state.players[this.player-1].position;
-				// console.log(planets)
+
 				position.x = (planets[id].nextTick.xPercent);
 				position.y = (planets[id].nextTick.yPercent);
 
@@ -66,6 +66,9 @@
 					this.active = this.$store.getters.turn === this.player;
 				}
 			})
+		},
+		mounted(){
+			this.$store.commit('updatePlanetsInRange', this.getPlanetsInRange());
 		}
 	}
 </script>
