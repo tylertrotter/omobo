@@ -14,23 +14,27 @@
 	font-family: mooko;
 }
 
-body {
-	background-color: var(--void);
-}
-
 *{
 	box-sizing: border-box;
 }
 body {
+	background-color: var(--void);
 	margin: 0;
 	overflow: hidden;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: grueber, Arial, Helvetica, sans-serif;
 }
 
 button {
 	background: transparent;
-	border: 1px solid white;
+	border: 1px solid hsla(0,0%,100%,.1);
 	color: white;
+	font-family: grueber, Arial, Helvetica, sans-serif;
+	border-radius: 5px;
+}
+
+button:focus {
+	outline: none;
+	box-shadow: 0 0 2px 2px rgba(255,255,255,.2);
 }
 
 button[disabled]{

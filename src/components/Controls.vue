@@ -50,9 +50,9 @@
 			</section>
 
 			<section class="cp-buttons">
-				<button @click.stop="sit">sit</button>
-				<button @click.stop="mine">mine</button>
-				<button :disabled="$store.state.planetsInRange.length === 0" @click.stop="jump">jump</button>
+				<button @click.stop="sit" :style="`border-color: ${$store.getters.currentPlayer.color};`">sit</button>
+				<button @click.stop="mine" :style="`border-color: ${$store.getters.currentPlayer.color};`">mine</button>
+				<button :disabled="$store.state.planetsInRange.length === 0" @click.stop="jump" :style="`border-color: ${$store.getters.currentPlayer.color};`">jump</button>
 			</section>
 
 		</div>

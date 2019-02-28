@@ -112,7 +112,7 @@ export default new Vuex.Store({
 			},
 			{
 				name: "bobo",
-				color: "red",
+				color: "#222",
 				avatar: {
 					iris: "green",
 					eyeSize: 1.2,
