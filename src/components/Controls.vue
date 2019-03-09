@@ -73,7 +73,7 @@
 		methods: {
 			...mapMutations(["tick", "changePlanet", "addMineral", "changeEnergy", "expandControls", "disableControls"]),
 			getEnergy(){
-				if(this.$store.getters.currentPlanet.bySun)
+				if(typeof(this.$store.getters.currentPlanet) === 'undefined' || this.$store.getters.currentPlanet.bySun)
 					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
 			},
 			disableInteraction(time){

@@ -103,12 +103,12 @@ export default new Vuex.Store({
 					headWidth: .8,
 					emotion: null
 				},
-				planet: "0",
+				planet: "15",
 				burstRange: 1,
-				position: {x:20, y: 24},
+				position: {x:11, y: 10.5},
 				energy: 12,
 				materials: [],
-				tools: []
+				tools: [1,1]
 			},
 			{
 				name: "bobo",
@@ -122,7 +122,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:20, y: 24},
+				position: {x:11, y: 10.5},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -139,7 +139,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:20, y: 24},
+				position: {x:11, y: 10.5},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -148,8 +148,8 @@ export default new Vuex.Store({
 		systems: [
 			{
 				width: 40,
-				x: 0,
-				y: 0,
+				x: -9,
+				y: -13,
 				sunSize: 5,
 				clockwise: false,
 				planets: [
@@ -238,10 +238,58 @@ export default new Vuex.Store({
 				]
 			},
 			{
+				width: 40,
+				x: 8.8,
+				y: -18,
+				sunSize: 2,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 2,
+						speed: 30,
+						mineral: 0
+					}
+				]
+			},
+			{
+				width: 40,
+				x: -11,
+				y: 18,
+				sunSize: .5,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 2,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 3,
+						speed: 30,
+						mineral: 0
+					}
+				]
+			},
+			{
 				width: 32,
-				x: 26.5,
-				y: 32,
-				sunSize: 3,
+				x: 16,
+				y: 27.5,
+				sunSize: 3.5,
 				clockwise: true,
 				planets: [
 					{
@@ -284,23 +332,57 @@ export default new Vuex.Store({
 					{
 						radius: 2,
 						ring: 7,
-						speed: 200,
+						speed: 70,
 						mineral: 3
 					}
 				]
 			},
 			{
-				width: 50,
-				x: 50,
-				y: 0,
-				sunSize: 2,
+				width: 40,
+				x: -3,
+				y: 52.5,
+				sunSize: 1.5,
 				clockwise: true,
 				planets: [
 					{
 						radius: 2.5,
 						ring: 1,
 						speed: 30,
-						mineral: 4
+						mineral: 2,
+					},
+					{
+						radius: 1,
+						ring: 2,
+						speed: 10,
+						mineral: 1,
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 25,
+						mineral: 2,
+						retrograde: true
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 40,
+						mineral: 1,
+					}
+				]
+			},
+			{
+				width: 50,
+				x: 42,
+				y: 21,
+				sunSize: 5.5,
+				clockwise: true,
+				planets: [
+					{
+						radius: 2.5,
+						ring: 1,
+						speed: 30,
+						mineral: 3
 					},
 					{
 						radius: 1,
@@ -342,8 +424,8 @@ export default new Vuex.Store({
 			},
 			{
 				width: 22,
-				x: 33,
-				y: 5,
+				x: 35,
+				y: 6,
 				sunSize: 5,
 				clockwise: false,
 				planets: [
@@ -385,7 +467,79 @@ export default new Vuex.Store({
 						mineral: 2
 					}
 				]
-			}
+			},
+			{
+				width: 38,
+				x: 21,
+				y: 61,
+				sunSize: 2,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 2,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 3,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 4,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 5,
+						speed: 30,
+						mineral: 0
+					}
+				]
+			},
+			{
+				width: 40,
+				x: 64,
+				y: -13,
+				sunSize: 2,
+				clockwise: false,
+				planets: [
+					{
+						radius: 2,
+						ring: 1,
+						speed: 10,
+						mineral: 4
+					},
+					{
+						radius: .8,
+						ring: 2,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 3,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 2,
+						ring: 4,
+						speed: 30,
+						mineral: 0
+					}
+				]
+			},
 		],
 	},
 	getters: {
