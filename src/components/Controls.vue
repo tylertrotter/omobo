@@ -94,6 +94,10 @@
 				this.disableInteraction(600);
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
+
+				// use energy
+				this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: -1});
+				
 				this.tick(1);
 			},
 			jump(){
@@ -104,7 +108,7 @@
 				this.getEnergy();
 
 				// use energy
-				this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: -1});
+				this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: -2});
 
 				let planetsInRange = this.$store.state.planetsInRange;
 				if( planetsInRange.length === 1){

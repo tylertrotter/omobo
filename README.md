@@ -20,7 +20,7 @@ Time is split up into epochs, turns and ticks. An epoch is the time it takes for
 ### Fuel
 Each player's space ship is powered by solar energy and so players will have to take detours to suns to recharge when they are getting too low. One fuel unit is recharged with every 12 ticks (regardless of whose turn it is).
 
-It takes one fuel unit to jump to a nearby planet.
+It takes two fuel units to jump to a nearby planet and one fuel unit to mine.
 
 #### Burst Range
 During a player's turn his spaceship is surrounded by a ring indicating how far his ship can travel in a tick. A planet must be at least partially within this "burst range ring" to be accessible to the ship. It is possible to increase one's burst range with the turbo boost resource.

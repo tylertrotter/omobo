@@ -103,12 +103,12 @@ export default new Vuex.Store({
 					headWidth: .8,
 					emotion: null
 				},
-				planet: "15",
+				planet: "0",
 				burstRange: 1,
-				position: {x:11, y: 10.5},
+				position: {x:11, y: 11},
 				energy: 12,
 				materials: [],
-				tools: [1,1]
+				tools: []
 			},
 			{
 				name: "bobo",
@@ -122,7 +122,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:11, y: 10.5},
+				position: {x:11, y: 11},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -139,7 +139,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
-				position: {x:11, y: 10.5},
+				position: {x:11, y: 11},
 				energy: 12,
 				materials: [],
 				tools: []
@@ -150,21 +150,21 @@ export default new Vuex.Store({
 				width: 40,
 				x: -9,
 				y: -13,
-				sunSize: 5,
+				sunSize: 3,
 				clockwise: false,
 				planets: [
 					{
-						radius: 2,
+						radius: 1.5,
 						ring: 1,
-						speed: 10,
+						speed: 20,
 						mineral: 0
 					},
 					{
-						radius: 2,
+						radius: .8,
 						ring: 1,
-						speed: 10,
+						speed: 20,
 						mineral: 2,
-						spot: 1
+						spot: 12
 					},
 					{
 						radius: 1,
@@ -239,49 +239,94 @@ export default new Vuex.Store({
 			},
 			{
 				width: 40,
-				x: 8.8,
+				x: 8.6,
 				y: -18,
 				sunSize: 2,
 				clockwise: false,
 				planets: [
 					{
-						radius: 2,
+						radius: 1.2,
 						ring: 1,
-						speed: 10,
+						speed: 30,
 						mineral: 0
 					},
 					{
-						radius: 2,
-						ring: 2,
+						radius: 1.2,
+						ring: 1,
 						speed: 30,
-						mineral: 0
+						mineral: 0,
+						spot: 18
+					},
+					{
+						radius: .8,
+						ring: 2,
+						speed: 13,
+						mineral: 0,
+						spot: 6
+					},
+					{
+						radius: 1.2,
+						ring: 2,
+						speed: 13,
+						mineral: 0,
+						spot: 10
 					}
 				]
 			},
 			{
 				width: 40,
-				x: -11,
-				y: 18,
-				sunSize: .5,
+				x: -10,
+				y: 16.5,
+				sunSize: .8,
 				clockwise: false,
 				planets: [
 					{
-						radius: 2,
+						radius: 1,
 						ring: 1,
-						speed: 10,
-						mineral: 0
+						speed: 30,
+						mineral: 1
+					},
+					{
+						radius: 1.7,
+						ring: 1,
+						speed: 30,
+						mineral: 3,
+						spot: 5
 					},
 					{
 						radius: 2,
 						ring: 2,
+						speed: 10,
+						mineral: 0,
+						spot: 3,
+						retrograde: true
+					},
+					{
+						radius: 1,
+						ring: 3,
 						speed: 30,
 						mineral: 0
 					},
 					{
-						radius: 2,
+						radius: 1.5,
 						ring: 3,
 						speed: 30,
-						mineral: 0
+						mineral: 2,
+						spot: 7
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 30,
+						mineral: 1,
+						spot: 14
+					},
+					{
+						radius: .7,
+						ring: 3,
+						speed: 30,
+						mineral: 0,
+						spot: 18
 					}
 				]
 			},
@@ -296,25 +341,35 @@ export default new Vuex.Store({
 						radius: 2.5,
 						ring: 1,
 						speed: 30,
-						mineral: 2,
+						mineral: 1,
+						spot: 4
 					},
 					{
 						radius: 1,
 						ring: 2,
 						speed: 10,
-						mineral: 1,
+						mineral: 1
 					},
 					{
-						radius: 1,
+						radius: .8,
+						ring: 3,
+						speed: 25,
+						mineral: 0,
+						retrograde: true,
+						spot: 2
+					},
+					{
+						radius: 1.2,
 						ring: 3,
 						speed: 25,
 						mineral: 2,
-						retrograde: true
+						retrograde: true,
+						spot: 12
 					},
 					{
 						radius: 1,
 						ring: 4,
-						speed: 6,
+						speed: 8,
 						mineral: 1,
 					},
 					{
@@ -322,25 +377,48 @@ export default new Vuex.Store({
 						ring: 5,
 						speed: 30,
 						mineral: 0,
+						spot: 7
+					},
+					{
+						radius: 1.75,
+						ring: 5,
+						speed: 30,
+						mineral: 0,
+						spot: 22
 					},
 					{
 						radius: .5,
 						ring: 6,
 						speed: 100,
 						mineral: 2,
+						spot: 11
+					},
+					{
+						radius: .5,
+						ring: 6,
+						speed: 100,
+						mineral: 2,
+						spot: 36
 					},
 					{
 						radius: 2,
 						ring: 7,
 						speed: 70,
 						mineral: 3
+					},
+					{
+						radius: 1.2,
+						ring: 7,
+						speed: 70,
+						mineral: 1,
+						spot: 56
 					}
 				]
 			},
 			{
 				width: 40,
-				x: -3,
-				y: 52.5,
+				x: -2.5,
+				y: 50,
 				sunSize: 1.5,
 				clockwise: true,
 				planets: [
@@ -348,26 +426,53 @@ export default new Vuex.Store({
 						radius: 2.5,
 						ring: 1,
 						speed: 30,
-						mineral: 2,
+						mineral: 3,
+						spot: 4
 					},
 					{
 						radius: 1,
 						ring: 2,
 						speed: 10,
-						mineral: 1,
+						mineral: 2,
+						spot: 8
 					},
 					{
 						radius: 1,
 						ring: 3,
-						speed: 25,
+						speed: 80,
 						mineral: 2,
 						retrograde: true
 					},
 					{
+						radius: 1.4,
+						ring: 3,
+						speed: 80,
+						mineral: 3,
+						retrograde: true,
+						spot: 22
+					},
+					{
+						radius: 1.6,
+						ring: 3,
+						speed: 80,
+						mineral: 2,
+						retrograde: true,
+						spot: 47
+					},
+					{
+						radius: 2,
+						ring: 3,
+						speed: 80,
+						mineral: 3,
+						retrograde: true,
+						spot: 60
+					},
+					{
 						radius: 1,
 						ring: 4,
-						speed: 40,
-						mineral: 1,
+						speed: 13,
+						mineral: 3,
+						spot: 5
 					}
 				]
 			},
@@ -382,19 +487,28 @@ export default new Vuex.Store({
 						radius: 2.5,
 						ring: 1,
 						speed: 30,
-						mineral: 3
+						mineral: 3,
+						spot: 12
 					},
 					{
 						radius: 1,
 						ring: 2,
 						speed: 10,
-						mineral: 1
+						mineral: 1,
+						spot: 8
 					},
 					{
 						radius: 1,
 						ring: 3,
-						speed: 25,
+						speed: 150,
 						mineral: 2
+					},
+					{
+						radius: 1,
+						ring: 3,
+						speed: 150,
+						mineral: 0,
+						spot: 75
 					},
 					{
 						radius: 1,
@@ -403,29 +517,59 @@ export default new Vuex.Store({
 						mineral: 0
 					},
 					{
+						radius: 3,
+						ring: 4,
+						speed: 24,
+						mineral: 0,
+						spot: 18
+					},
+					{
 						radius: 1,
 						ring: 5,
 						speed: 30,
-						mineral: 1
+						mineral: 1,
+						spot: 18
+					},
+					{
+						radius: .8,
+						ring: 5,
+						speed: 30,
+						mineral: 1,
+						spot: 12
 					},
 					{
 						radius: 1,
 						ring: 6,
 						speed: 100,
-						mineral: 0
+						mineral: 0,
+						spot: 33
 					},
 					{
-						radius: 1,
+					radius: 1.9,
+					ring: 6,
+					speed: 100,
+					mineral: 0,
+					spot: 78
+					},
+					{
+						radius: 1.6,
 						ring: 7,
-						speed: 20,
-						mineral: 3
+						speed: 22,
+						mineral: 2
+					},
+					{
+						radius: .7,
+						ring: 7,
+						speed: 22,
+						mineral: 3,
+						spot: 12
 					}
 				]
 			},
 			{
-				width: 22,
-				x: 35,
-				y: 6,
+				width: 25,
+				x: 34,
+				y: 1,
 				sunSize: 5,
 				clockwise: false,
 				planets: [
@@ -433,26 +577,43 @@ export default new Vuex.Store({
 						radius: 2.5,
 						ring: 1,
 						speed: 30,
-						mineral: 1
+						mineral: 1,
+						spot: 5
 					},
 					{
 						radius: 1,
 						ring: 2,
 						speed: 10,
-						mineral: 1
+						mineral: 3
 					},
 					{
 						radius: 1,
 						ring: 3,
 						speed: 25,
 						mineral: 2,
-						retrograde: true
+						retrograde: true,
+						spot: 2
 					},
 					{
 						radius: 1,
 						ring: 4,
 						speed: 60,
-						mineral: 0
+						mineral: 0,
+						spot: 12
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 60,
+						mineral: 1,
+						spot: 25
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 60,
+						mineral: 0,
+						spot: 50
 					},
 					{
 						radius: .75,
@@ -461,10 +622,59 @@ export default new Vuex.Store({
 						mineral: 0
 					},
 					{
-						radius: 4,
+						radius: 1,
 						ring: 7,
-						speed: 100,
+						speed: 80,
+						mineral: 2,
+						spot: 20
+					},
+					{
+						radius: 2,
+						ring: 7,
+						speed: 80,
+						mineral: 0,
+						spot: 43
+					},
+					{
+						radius: 1,
+						ring: 7,
+						speed: 80,
+						mineral: 0,
+						spot: 70
+					},
+					{
+						radius: 2.6,
+						ring: 8,
+						speed: 160,
 						mineral: 2
+					},
+					{
+						radius: 2,
+						ring: 8,
+						speed: 160,
+						mineral: 0,
+						spot: 33
+					},
+					{
+						radius: 1.5,
+						ring: 8,
+						speed: 160,
+						mineral: 1,
+						spot: 66
+					},
+					{
+						radius: 1,
+						ring: 8,
+						speed: 160,
+						mineral: 0,
+						spot: 90
+					},
+					{
+						radius: 1.7,
+						ring: 8,
+						speed: 160,
+						mineral: 0,
+						spot: 143
 					}
 				]
 			},
@@ -476,34 +686,86 @@ export default new Vuex.Store({
 				clockwise: false,
 				planets: [
 					{
-						radius: 2,
+						radius: .6,
 						ring: 1,
-						speed: 10,
-						mineral: 0
+						speed: 33,
+						mineral: 1,
+						spot: 3
 					},
 					{
 						radius: 2,
 						ring: 2,
 						speed: 30,
+						mineral: 0,
+						spot: 26
+					},
+					{
+						radius: 1.5,
+						ring: 3,
+						speed: 26,
 						mineral: 0
 					},
 					{
-						radius: 2,
-						ring: 3,
-						speed: 30,
-						mineral: 0
+						radius: 1.2,
+						ring: 4,
+						speed: 22,
+						mineral: 1
 					},
 					{
 						radius: 2,
 						ring: 4,
-						speed: 30,
-						mineral: 0
+						speed: 22,
+						mineral: 1
 					},
 					{
-						radius: 2,
+						radius: .7,
 						ring: 5,
+						speed: 20,
+						mineral: 0,
+						spot: 2
+					},
+					{
+						radius: 1,
+						ring: 5,
+						speed: 20,
+						mineral: 3,
+						spot: 15
+					}
+				]
+			},
+			{
+				width: 40,
+				x: 67,
+				y: 58,
+				sunSize: 2,
+				clockwise: false,
+				planets: [
+					{
+						radius: 1.2,
+						ring: 1,
 						speed: 30,
-						mineral: 0
+						mineral: 1
+					},
+					{
+						radius: 1.2,
+						ring: 1,
+						speed: 30,
+						mineral: 1,
+						spot: 18
+					},
+					{
+						radius: .8,
+						ring: 2,
+						speed: 13,
+						mineral: 1,
+						spot: 6
+					},
+					{
+						radius: 1.2,
+						ring: 2,
+						speed: 13,
+						mineral: 1,
+						spot: 10
 					}
 				]
 			},
@@ -518,25 +780,42 @@ export default new Vuex.Store({
 						radius: 2,
 						ring: 1,
 						speed: 10,
-						mineral: 4
+						mineral: 4,
+						spot: 1
 					},
 					{
 						radius: .8,
 						ring: 2,
 						speed: 30,
-						mineral: 0
+						mineral: 0,
+						spot: 12
 					},
 					{
-						radius: 2,
+						radius: 1,
 						ring: 3,
-						speed: 30,
+						speed: 70,
+						mineral: 1,
+						spot: 3
+					},
+					{
+						radius: 1.2,
+						ring: 4,
+						speed: 20,
 						mineral: 0
 					},
 					{
-						radius: 2,
+						radius: 1.2,
 						ring: 4,
-						speed: 30,
-						mineral: 0
+						speed: 20,
+						mineral: 0,
+						spot: 12
+					},
+					{
+						radius: 1,
+						ring: 4,
+						speed: 20,
+						mineral: 0,
+						spot: 8
 					}
 				]
 			},
