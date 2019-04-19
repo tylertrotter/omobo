@@ -91,6 +91,9 @@
 				this.tick(1);
 			},
 			mine(){
+				if(this.$store.getters.currentPlayer.energy <= 0)
+					return;
+					
 				this.disableInteraction(600);
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				this.getEnergy();
@@ -102,7 +105,7 @@
 			},
 			jump(){
 
-				if(!this.$store.getters.currentPlayer.energy)
+				if(this.$store.getters.currentPlayer.energy <= 0)
 					return;
 
 				this.getEnergy();
