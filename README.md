@@ -18,7 +18,7 @@ Each player is trying to be the first to get from their home planet to the tin-r
 Time is split up into epochs, turns and ticks. An epoch is the time it takes for every player to complete a turn, a turn is a turn, and each player's turn is split into 6 ticks. Planets advance one spot in their orbit at the start of each tick. Planets go around their sun at different speeds. The dots along a planet's orbit path indicate where the planet will go with each tick. Each tick, the player who's turn it is can choose to do nothing, use a resource, or move to a nearby planet in its burst range.
 
 ### Fuel
-Each player's space ship is powered by solar energy and so players will have to take detours to suns to recharge when they are getting too low. One fuel unit is recharged with every 12 ticks (regardless of whose turn it is).
+Each player's space ship is powered by solar energy. The closer a ship is to the sun, the more energy is absorbed with each tick of the player's turn. On the ring closest to the sun a full fuel unit is charged, a diminishing fraction of a fuel unit is charged with each ring going out.
 
 It takes two fuel units to jump to a nearby planet and one fuel unit to mine.
 
@@ -35,7 +35,10 @@ During a player's turn his spaceship is surrounded by a ring indicating how far 
 	This increases your ship's burst range. Lasts for 2 turns.
 	Recipe: 6 units of copper, 6 units of mercury
 
-- #### Freeze Bomb
+- #### Diamond Bit
+	Mine minerals at double the normal rate. Lasts for 20 turns.
+
+- #### Freeze Bomb (obsolete)
 	Freezes all planets. Spaceships can function, miners can mine, but planet's don't move. Lasts for the epoch.
 	Recipe: 6 units of tungsten, 6 units of radium
 
@@ -61,6 +64,9 @@ During a player's turn his spaceship is surrounded by a ring indicating how far 
 - #### Future Revealer
 	This tool lets you watch the movements of the planets at high-speed for 2 epochs
 	Recipe: 12 units of tungsten
+
+- #### Worm Hole
+	Go to a random planet in the galaxy.
 
 ### Materials
 Tools are built using raw materials. All available tools can be built on-board spaceships from combining up to 4 elemental raw materials in certain amounts. The elements from least to most rare are:

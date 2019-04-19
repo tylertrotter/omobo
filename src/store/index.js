@@ -108,7 +108,7 @@ export default new Vuex.Store({
 				burstRange: 1,
 				miningStrength: 1,
 				position: {x:11, y: 11},
-				energy: 24,
+				energy: 12,
 				materials: [0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3],
 				tools: []
 			},
@@ -126,7 +126,7 @@ export default new Vuex.Store({
 				burstRange: 1,
 				miningStrength: 1,
 				position: {x:11, y: 11},
-				energy: 24,
+				energy: 12,
 				materials: [],
 				tools: []
 			},
@@ -144,7 +144,7 @@ export default new Vuex.Store({
 				burstRange: 1,
 				miningStrength: 1,
 				position: {x:11, y: 11},
-				energy: 24,
+				energy: 12,
 				materials: [],
 				tools: []
 			}
@@ -924,19 +924,19 @@ export default new Vuex.Store({
 			let xPercent = ((nextRect.x + nextRect.width/2) / galaxyWidth) * 100;
 			let yPercent = ((nextRect.y + nextRect.height/2) / galaxyHeight) * 100;
 			let mineral;
-			let bySun;
+			let ring;
 
 			state.galaxy = {width: galaxyWidth, height: galaxyHeight};
 
 			mineral = +nextTicks[id].getAttribute('data-mineral');
 
-			bySun = nextTicks[id].getAttribute('data-ring') === '1';
+			ring = +nextTicks[id].getAttribute('data-ring');
 
 			state.planets[id] = {
 				id,
 				nextTick: {xPercent, yPercent, width: nextRect.width, height: nextRect.height, x: nextRect.x, y: nextRect.y},
 				mineral,
-				bySun
+				ring
 			}
 		},
 		updatePlanetsInRange(state, planets){

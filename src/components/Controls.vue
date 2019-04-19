@@ -51,8 +51,8 @@
 
 			<section class="cp-buttons">
 				<button @click.stop="sit" :style="`border-color: ${$store.getters.currentPlayer.color};`">sit</button>
-				<button @click.stop="mine" :style="`border-color: ${$store.getters.currentPlayer.color};`">mine</button>
-				<button :disabled="$store.state.planetsInRange.length === 0" @click.stop="jump" :style="`border-color: ${$store.getters.currentPlayer.color};`">jump</button>
+				<button :disabled="$store.getters.currentPlayer.energy < 1" @click.stop="mine" :style="`border-color: ${$store.getters.currentPlayer.color};`">mine</button>
+				<button :disabled="$store.state.planetsInRange.length === 0 || $store.getters.currentPlayer.energy < 2" @click.stop="jump" :style="`border-color: ${$store.getters.currentPlayer.color};`">jump</button>
 			</section>
 
 		</div>
@@ -73,8 +73,7 @@
 		methods: {
 			...mapMutations(["tick", "changePlanet", "addMineral", "changeEnergy", "expandControls", "disableControls"]),
 			getEnergy(){
-				if(typeof(this.$store.getters.currentPlanet) === 'undefined' || this.$store.getters.currentPlanet.bySun)
-					this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1});
+				this.changeEnergy({player: this.$store.getters.currentPlayerId, amount: 1 / this.$store.getters.currentPlanet.ring});
 			},
 			disableInteraction(time){
 				document.querySelector("body").classList.add("disable-interaction");
@@ -97,7 +96,7 @@
 				this.disableInteraction(600);
 
 				for(let i = 0; i < this.$store.getters.currentPlayer.miningStrength; i++) {
-				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
+					this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
 				}
 				
 				this.getEnergy();
