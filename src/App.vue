@@ -9,7 +9,7 @@
 </template>
 
 <script>
-
+import { mapMutations } from "vuex";
 import SBoard from './components/Board.vue';
 import SToolDetails from './components/ToolDetails.vue';
 import SControls from './components/Controls.vue';
@@ -25,6 +25,12 @@ export default {
 		SToolDetails,
 		SControls,
 		SPlayerTransition
-  }
+	},
+	methods: {
+		...mapMutations(["randomizeBoard"]),
+	},
+	beforeCreate() {
+			// this.$store.commit('randomizeBoard');
+	}
 }
 </script>

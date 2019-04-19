@@ -955,6 +955,25 @@ export default new Vuex.Store({
 		},
 		expandTools(state, setting){
 			state.ui.toolsExpanded = setting;
+		},
+		randomizeBoard(state){
+			let planets;
+			for(var i = 0; i < state.systems.length; i++){
+				planets = state.systems[i].planets;
+				for(var j = 0; j < planets.length; j++){
+					planets[j].radius = randomNumber(.5, 2.5);
+					planets[j].mineral = randomNumber(0, 3);
+					
+					if( j > 0 && planets[j-1].ring === planets[j].ring )
+						planets[j].speed = planets[j-1].speed;
+					else
+						planets[j].speed = randomNumber(8, 100);
+				}
+			}
+
+			function randomNumber(min, max){
+				return Math.floor(Math.random() * (max - min + 1) + min);
+			}
 		}
 	},
 	actions: {
