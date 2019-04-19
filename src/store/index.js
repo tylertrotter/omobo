@@ -19,7 +19,7 @@ export default new Vuex.Store({
 		tools: [
 			{
 				name: "Turbo Booster",
-				description: `This increases your ship's burst range 1 level. Burst ranges start at level 1 and max out at 3. Lasts for 6 ticks.`,
+				description: `This increases your ship's burst range 1 level. Burst ranges start at level 1 and max out at 3. Lasts for 1 turn.`,
 				recipe: [
 					{mineral: 0, amount: 4},
 					{mineral: 1, amount: 4},
@@ -94,19 +94,19 @@ export default new Vuex.Store({
 		planetsInRange: [],
 		players: [
 			{
-				name: "pubogu",
-				color: "orange",
+				name: "gubo",
+				color: "#42f48c",
 				avatar: {
-					iris: "purple",
-					eyeSize: .8,
-					headHeight: 1.1,
-					headWidth: .8,
+					iris: "#f441bb",
+					eyeSize: 1.5,
+					headHeight: 1,
+					headWidth: 1,
 					emotion: null
 				},
 				planet: "0",
 				burstRange: 1,
 				position: {x:11, y: 11},
-				energy: 12,
+				energy: 24,
 				materials: [],
 				tools: []
 			},
@@ -123,7 +123,7 @@ export default new Vuex.Store({
 				planet: "0",
 				burstRange: 1,
 				position: {x:11, y: 11},
-				energy: 12,
+				energy: 24,
 				materials: [],
 				tools: []
 			},
@@ -140,7 +140,7 @@ export default new Vuex.Store({
 				planet: "0",
 				burstRange: 1,
 				position: {x:11, y: 11},
-				energy: 12,
+				energy: 24,
 				materials: [],
 				tools: []
 			}
@@ -679,6 +679,49 @@ export default new Vuex.Store({
 				]
 			},
 			{
+				width: 39,
+				x: 46.3,
+				y: -18.5,
+				sunSize: 2,
+				clockwise: false,
+				planets: [
+					{
+						radius: 1.2,
+						ring: 1,
+						speed: 30,
+						mineral: 0
+					},
+					{
+						radius: 1.2,
+						ring: 1,
+						speed: 30,
+						mineral: 0,
+						spot: 18
+					},
+					{
+						radius: .8,
+						ring: 2,
+						speed: 13,
+						mineral: 0,
+						spot: 6
+					},
+					{
+						radius: 1.2,
+						ring: 2,
+						speed: 13,
+						mineral: 0,
+						spot: 10
+					},
+					{
+						radius: .8,
+						ring: 3,
+						speed: 100,
+						mineral: 0,
+						spot: 10
+					}
+				]
+			},
+			{
 				width: 38,
 				x: 21,
 				y: 61,
@@ -772,7 +815,7 @@ export default new Vuex.Store({
 			{
 				width: 40,
 				x: 64,
-				y: -13,
+				y: -12,
 				sunSize: 2,
 				clockwise: false,
 				planets: [
