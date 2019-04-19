@@ -95,7 +95,11 @@
 					return;
 					
 				this.disableInteraction(600);
+
+				for(let i = 0; i < this.$store.getters.currentPlayer.miningStrength; i++) {
 				this.addMineral({player: this.$store.getters.currentPlayerId, mineral: this.$store.getters.currentPlanet.mineral});
+				}
+				
 				this.getEnergy();
 
 				// use energy

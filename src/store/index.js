@@ -47,25 +47,26 @@ export default new Vuex.Store({
 				}
 			},
 			{
-				name: "Freeze Bomb",
-				description: "Freezes all planets. Spaceships can function, miners can mine, but planet's don't move. Lasts for the epoch.",
+				name: "Diamond Bit",
+				description: "Mine minerals at double the normal rate. Lasts for 20 turns.",
 				recipe: [
-					{mineral: 0, amount: 6},
-					{mineral: 1, amount: 6}
+					{mineral: 1, amount: 4},
+					{mineral: 2, amount: 4},
+					{mineral: 3, amount: 4},
 				],
 				modification: {
-					mutation: "changeOrbits",
-					payload: 0,
-					undoPayload: 1,
-					epochs: 1
+					mutation: "changeMiningStrength",
+					payload: 1,
+					undoPayload: -1,
+					epochs: 20
 				}
 			},
 			{
 				name: "Retrograde Bomb",
 				description: "Reverses every orbit in the galaxy. Lasts for the epoch.",
 				recipe: [
-					{mineral: 1, amount: 6},
-					{mineral: 4, amount: 6}
+					{mineral: 0, amount: 6},
+					{mineral: 1, amount: 6}
 				],
 				modification: {
 					mutation: "changeOrbits",
@@ -105,9 +106,10 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
+				miningStrength: 1,
 				position: {x:11, y: 11},
 				energy: 24,
-				materials: [],
+				materials: [0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3],
 				tools: []
 			},
 			{
@@ -122,6 +124,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
+				miningStrength: 1,
 				position: {x:11, y: 11},
 				energy: 24,
 				materials: [],
@@ -139,6 +142,7 @@ export default new Vuex.Store({
 				},
 				planet: "0",
 				burstRange: 1,
+				miningStrength: 1,
 				position: {x:11, y: 11},
 				energy: 24,
 				materials: [],
@@ -894,6 +898,11 @@ export default new Vuex.Store({
 		changeBurstRange(state, {payload}){
 			const playerId = this.getters.currentPlayerId;
 			state.players[playerId].burstRange = state.players[playerId].burstRange + payload;
+		},
+		changeMiningStrength(state, {payload}){
+			console.log('asdf');
+			const playerId = this.getters.currentPlayerId;
+			state.players[playerId].miningStrength = state.players[playerId].miningStrength + payload;
 		},
 		changeOrbits(state, {payload}){
 			state.orbitSpeed = state.orbitSpeed ? state.orbitSpeed * payload : payload;

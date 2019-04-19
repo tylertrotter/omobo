@@ -20,8 +20,8 @@
 				class="ship"
 				x="1.2%"
 				y="0"
-				width=".3%"
-				height=".4%"
+				:width="($store.state.players[player-1].miningStrength * .3) + '%'"
+				:height="($store.state.players[player-1].miningStrength * .4) + '%'"
 				:fill="$store.state.players[player-1].color"
 				:style="`transform: rotate(${30 * player}deg);`"
 			/>
