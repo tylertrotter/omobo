@@ -279,8 +279,8 @@
 	.cp-buttons button {
 		display: block;
 		width: 100%;
-		margin: 3vh 0;
-		padding: 10px;
+		margin: 2.5vh 0;
+		padding: 1.8vh 8px;
 	}
 
 	/* .cp-materials--list .tungsten {

@@ -19,6 +19,7 @@
 }
 body {
 	background-color: var(--void);
+	color: white;
 	margin: 0;
 	overflow: hidden;
 	font-family: grueber, Arial, Helvetica, sans-serif;

@@ -1,0 +1,51 @@
+<template>
+	<svg id="galaxy" class="galaxy" :width="3" :height="2">
+		<s-solar-system v-for="(system, i) in $store.state.systems" :key="i"
+			:width="system.width"
+			:x="system.x+'%'"
+			:y="system.y+'%'"
+			:sun-size="system.sunSize"
+			:clockwise="system.clockwise"
+		>
+			<s-planet v-for="(planet, j) in system.planets" :key="j"
+				:radius="planet.radius"
+				:ring="planet.ring"
+				:speed="planet.speed"
+				:mineral="planet.mineral"
+				:spot="planet.spot"
+				:retrograde="planet.retrograde"
+			/>
+		</s-solar-system>
+
+		<s-space-ship v-for="(player, i) in $store.state.players" :key="`${player.name}-${i}`" :player="i + 1" />
+
+	</svg>
+</template>
+
+<script>
+	import SSolarSystem from './SolarSystem.vue';
+	import SPlanet from './Planet.vue';
+	import SSpaceShip from './SpaceShip.vue';
+
+	export default {
+		name: 's-board',
+		components: {
+			SSolarSystem,
+			SPlanet,
+			SSpaceShip
+		},
+		mounted(){
+			// setTimeout(()=>{
+			// 	this.$store.commit('tick', 1);
+			// }, 500)
+		}
+	}
+</script>
+
+<style scoped>
+	.galaxy {
+		width: 100%;
+		height: 100%;
+		transition: all 2s;
+	}
+</style>

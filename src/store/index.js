@@ -1,5 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -93,62 +94,7 @@ export default new Vuex.Store({
 		],
 		planets: [],
 		planetsInRange: [],
-		players: [
-			{
-				name: "gubo",
-				color: "#42f48c",
-				avatar: {
-					iris: "#f441bb",
-					eyeSize: 1.5,
-					headHeight: 1,
-					headWidth: 1,
-					emotion: null
-				},
-				planet: "0",
-				burstRange: 1,
-				miningStrength: 1,
-				position: {x:11, y: 11},
-				energy: 12,
-				materials: [0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3],
-				tools: []
-			},
-			{
-				name: "bobo",
-				color: "#222",
-				avatar: {
-					iris: "green",
-					eyeSize: 1.2,
-					headHeight: 1,
-					headWidth: 1,
-					emotion: null
-				},
-				planet: "0",
-				burstRange: 1,
-				miningStrength: 1,
-				position: {x:11, y: 11},
-				energy: 12,
-				materials: [],
-				tools: []
-			},
-			{
-				name: "gubo",
-				color: "purple",
-				avatar: {
-					iris: "#bada55",
-					eyeSize: .8,
-					headHeight: .8,
-					headWidth: 1.1,
-					emotion: null
-				},
-				planet: "0",
-				burstRange: 1,
-				miningStrength: 1,
-				position: {x:11, y: 11},
-				energy: 12,
-				materials: [],
-				tools: []
-			}
-		],
+		players: [],
 		systems: [
 			{
 				width: 40,
@@ -889,6 +835,27 @@ export default new Vuex.Store({
 		}
 	},
   mutations: {
+		createPlayer(state) {
+			const emptyPlayerObj = {
+				name: null,
+				color: "red",
+				avatar: {
+					iris: "red",
+					eyeSize: 1.5,
+					headHeight: 1,
+					headWidth: 1,
+					emotion: null
+				},
+				planet: "0",
+				burstRange: 1,
+				miningStrength: 1,
+				position: {x:11, y: 11},
+				energy: 12,
+				materials: [],
+				tools: []
+			}
+			state.players.push(emptyPlayerObj);
+		},
 		tick (state, n) {
 			state.tick += n * state.orbitSpeed;
 			state.step = state.step + 1;
@@ -900,7 +867,6 @@ export default new Vuex.Store({
 			state.players[playerId].burstRange = state.players[playerId].burstRange + payload;
 		},
 		changeMiningStrength(state, {payload}){
-			console.log('asdf');
 			const playerId = this.getters.currentPlayerId;
 			state.players[playerId].miningStrength = state.players[playerId].miningStrength + payload;
 		},
