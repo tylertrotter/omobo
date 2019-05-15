@@ -825,24 +825,26 @@ export default new Vuex.Store({
 		},
 		currentPlayerId: (state, getters) => {
 			return getters.turn - 1;
-
 		},
 		currentPlayer: (state, getters) => {
 			return state.players[getters.currentPlayerId];
 		},
 		currentPlanet: (state, getters) => {
 			return state.planets[+getters.currentPlayer.planet];
+		},
+		numberOfPlayers: (state) => {
+			return state.players.length;
 		}
 	},
   mutations: {
 		createPlayer(state) {
 			const emptyPlayerObj = {
 				name: null,
-				color: "red",
+				color: "#ccc",
 				avatar: {
-					iris: "red",
-					eyeSize: 1.5,
-					headHeight: 1,
+					iris: "#ccc",
+					eyeSize: 1,
+					headHeight: .975,
 					headWidth: 1,
 					emotion: null
 				},
@@ -992,6 +994,21 @@ export default new Vuex.Store({
 			function randomNumber(min, max){
 				return Math.floor(Math.random() * (max - min + 1) + min);
 			}
+		},
+		customizeFlesh(state, {player, color}) {
+			state.players[player - 1].color = color;
+		},
+		customizeIris(state, {player, color}) {
+			state.players[player - 1].avatar.iris = color;
+		},
+		customizeWidth(state, {player, headWidth}) {
+			state.players[player - 1].avatar.headWidth = headWidth;
+		},
+		customizeHeight(state, {player, headHeight}) {
+			state.players[player - 1].avatar.headHeight = headHeight;
+		},
+		customizeEyeSize(state, {player, eyeSize}) {
+			state.players[player - 1].avatar.eyeSize = eyeSize;
 		}
 	},
 	actions: {

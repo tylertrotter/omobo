@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="board">
 		<s-galaxy />
 		<s-tool-details />
 		<s-controls />
@@ -31,3 +31,11 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.board {
+		position: relative;
+		overflow: hidden;
+		height: 100vh;
+	}
+</style>

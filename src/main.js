@@ -16,7 +16,7 @@ import board from '@/components/Board';
 const routes = [
   { path: '/', component: start },
 	{ path: '/setup/players', component: numberOfPlayers },
-	{ path: '/setup/:player/customize', component: playerCustomizer },
+	{ path: '/setup/:player/customize', component: playerCustomizer, props: (route) => ({player: +route.params.player}) },
 	// { path: '/setup/:player/name', component: playerName },
 	{ path: '/rules', component: rules },
 	{ path: '/game', component: board }

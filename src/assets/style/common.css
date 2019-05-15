@@ -21,16 +21,43 @@ body {
 	background-color: var(--void);
 	color: white;
 	margin: 0;
-	overflow: hidden;
 	font-family: grueber, Arial, Helvetica, sans-serif;
 }
 
-button {
+a {
+	color: var(--color-1);
+}
+
+.wrapper {
+	max-width: 900px;
+	margin: 0 auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-align: center;
+}
+
+.left-aligned {
+	text-align: left;
+}
+
+main {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+button,
+.button {
 	background: transparent;
-	border: 1px solid hsla(0,0%,100%,.1);
+	border: 1px solid hsla(0,0%,100%,.2);
 	color: white;
 	font-family: grueber, Arial, Helvetica, sans-serif;
 	border-radius: 5px;
+}
+
+a.button {
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
 }
 
 button:focus {
@@ -45,6 +72,15 @@ button[disabled]{
 	opacity: .5;
 	cursor: not-allowed;
 }
+
+.rules-link {
+	position: fixed;
+	left: 1rem;
+	bottom: 1rem;
+}
+
+
+/* Board */
 
 .tungsten.owned {
 	background: var(--tungsten);

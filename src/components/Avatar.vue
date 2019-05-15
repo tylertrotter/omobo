@@ -18,12 +18,14 @@
 			<circle cx=53 cy=57 r=25 style="fill: white; opacity: .15" />
 		</g>
 
-		<circle cx=50 cy=47 r=11 :fill="flesh" />
-		<g class="eye" clip-path="url(#eye-lids)" :style="`transform: scale(${eyeSize});`" >
-			<circle cx=50 cy=47 r=12 class="eye-white" />
-			<g class="inner-eye">
-				<circle cx=50 cy=47 r=6 :fill="iris" />
-				<circle cx=50 cy=47 r=3 fill="black" class="pupil" />
+		<g class="eye" :style="`transform: scale(${eyeSize}); translate(${eyeSize} ${eyeSize})`">
+			<circle cx=50 cy=47 r=14 :fill="flesh"  />
+			<g clip-path="url(#eye-lids)" >
+				<circle cx=50 cy=47 r=12 class="eye-white" />
+				<g class="inner-eye">
+					<circle cx=50 cy=47 r=6 :fill="iris" />
+					<circle cx=50 cy=47 r=3 fill="black" class="pupil" />
+				</g>
 			</g>
 		</g>
 

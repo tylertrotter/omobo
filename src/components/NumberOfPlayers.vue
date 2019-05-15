@@ -1,6 +1,6 @@
 <template>
-	<main>
-		Number of players
+	<main class="wrapper">
+		<h1>Number of players</h1>
 		<ol>
 			<li v-for="i in 7" :key="i">
 				<button 
@@ -8,7 +8,7 @@
 					:class="{'active': numPlayers === i+1}">{{ i + 1 }}</button>
 			</li>
 		</ol>
-		<router-link @click.native="createPlayers()" to="/setup/1/customize">OK!</router-link>
+		<router-link @click.native="createPlayers()" to="/setup/1/customize" class="button">OK!</router-link>
 	</main>
 </template>
 
@@ -39,7 +39,7 @@
 	ol {
 		display: flex;
 		justify-content: space-between;
-		margin: 0;
+		margin: 0 0 2rem;
 		padding: 0;
 		list-style: none;
 	}
@@ -47,11 +47,18 @@
 	li {
 		display: inline-block;
 	}
+
 	button {
 		padding: 2vw 3.5vw;
 		font-size: 4vw;
 	}
+
+	@media (min-width: 900px) {
+		button {
+			padding: 20px 35px;
+		}
+	}
 	.active {
-		background: red;
+		background: var(--color-2);
 	}
 </style>

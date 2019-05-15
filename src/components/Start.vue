@@ -1,9 +1,8 @@
 <template>
-	<div>
+	<main class="wrapper">
 		<h1>OMOBO</h1>
-		<router-link to="/setup/players">Play</router-link>
-		<router-link to="/rules">Rules</router-link>
-	</div>
+		<router-link to="/setup/players" class="button">Play</router-link>
+	</main>
 </template>
 
 <script>
