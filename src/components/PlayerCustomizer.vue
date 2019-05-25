@@ -6,7 +6,7 @@
 			<form>
 				<div class="field">
 					<label for="color">Color</label>
-					<s-color-picker id="color" initial-color="#bada55" @color-change="updateFlesh" />
+					<s-color-picker id="color" initial-color="#ccc" @color-change="updateFlesh" />
 				</div>
 
 				<div class="field">
@@ -22,7 +22,7 @@
 
 				<div class="field">
 					<label for="eye-color">Eye Color</label>
-					<s-color-picker id="eye-color" initial-color="#bada55"  @color-change="updateIris"/>
+					<s-color-picker id="eye-color" initial-color="#ccc"  @color-change="updateIris"/>
 				</div>
 
 				<div class="field">
@@ -32,7 +32,7 @@
 
 				<div class="field">
 					<label>Name</label>
-					<div></div>
+					<s-mooko @change="updateName"/>
 				</div>
 			</form>
 
@@ -46,11 +46,6 @@
 			/>
 		</div>
 
-		<!-- 
-			
-			
-		 -->
-
 		<router-link v-if="morePlayers" :to="`/setup/${player + 1}/customize`">Customize player {{ player + 1 }}</router-link>
 		<router-link v-else to="/game">start the game</router-link>
 	</main>
@@ -61,13 +56,14 @@
 	import { mapState } from 'vuex'
 	import SColorPicker from "./ColorPicker.vue"
 	import SRange from "./Range.vue"
+	import SMooko from "./Mooko.vue"
 	import Avatar from "./Avatar.vue"
 	export default {
 		name: 's-player-customizer',
 		props: {
 			player: Number
 		},
-		components: { SColorPicker, SRange, Avatar },
+		components: { SColorPicker, SRange, Avatar, SMooko },
 		computed: {
 			...mapState(['players']),
 			morePlayers() {
@@ -90,6 +86,9 @@
 			},
 			updateEyeSize(eyeSize){
 				this.$store.commit("customizeEyeSize", {player: this.$props.player, eyeSize: eyeSize});
+			},
+			updateName(name){
+				this.$store.commit("customizeName", {player: this.$props.player, name: name});
 			}
 		},
 	}
@@ -101,7 +100,7 @@
 	}
 
 	form {
-		width: 20%;
+		width: 30%;
 		text-align: left;
 	}
 
@@ -110,7 +109,7 @@
 	}
 
 	.customizer-layout svg {
-		width: 80%;
+		width: 70%;
 		height: 80%;
 		margin-top: -7%;
 	}

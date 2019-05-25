@@ -1009,6 +1009,9 @@ export default new Vuex.Store({
 		},
 		customizeEyeSize(state, {player, eyeSize}) {
 			state.players[player - 1].avatar.eyeSize = eyeSize;
+		},
+		customizeName(state, {player, name}) {
+			state.players[player - 1].name = name;
 		}
 	},
 	actions: {

@@ -1,7 +1,9 @@
 <template>
 	<span class="color-picker">
 		<span class="swatch" @click="pickerShown = !pickerShown" :style="`background-color: ${color};`"></span>
-		<div v-show="pickerShown" class="iro-color-picker"></div>
+		<div v-show="pickerShown" class="iro-color-picker">
+			<button class="color-picker--close" type="button" @click="pickerShown = !pickerShown">&times;</button>
+		</div>
 	</span>
 </template>
 
@@ -35,8 +37,6 @@
 	.color-picker {
 		display: block;
 		position: relative;
-		/* padding: .5em; */
-		/* vertical-align: middle; */
 	}
 
 	.swatch {
@@ -49,10 +49,19 @@
 
 	.iro-color-picker {
 		position: absolute;
-		z-index: 1;
+		z-index: 3;
 		left: 0;
 		background: black;
 		border: 1px solid #333;
 		padding: 1rem;
+	}
+
+	.color-picker--close {
+		position: absolute;
+		top: .5rem;
+		right: .5rem;
+		border: 0;
+		font-size: 1.5em;
+		line-height: 1;
 	}
 </style>

@@ -19,7 +19,7 @@
 
 						</ul>
 						<img v-if="tool.name === 'Turbo Booster'" src="@/assets/svgs/turbo-booster.svg" />
-						<img v-else-if="tool.name === 'Freeze Bomb'" src="@/assets/svgs/freeze-bomb.svg" />
+						<img v-else-if="tool.name === 'Diamond Bit'" src="@/assets/svgs/drill-bit.svg" />
 						<img v-else-if="tool.name === 'Retrograde Bomb'" src="@/assets/svgs/retrograde-bomb.svg" />
 						<img v-else-if="tool.name === 'Super Booster'" src="@/assets/svgs/super-booster.svg" />
 						<img v-else-if="tool.name === 'Warp Speed Bomb'" src="@/assets/svgs/warp-speed-bomb.svg" />
