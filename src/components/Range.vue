@@ -1,5 +1,5 @@
 <template>
-	<input type="range" @change="updateValue">
+	<input type="range" @input="updateValue">
 </template>
 
 <script>

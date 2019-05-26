@@ -8,7 +8,7 @@
 					:class="{'active': numPlayers === i+1}">{{ i + 1 }}</button>
 			</li>
 		</ol>
-		<router-link @click.native="createPlayers()" to="/setup/1/customize" class="button">OK!</router-link>
+		<button @click="createPlayers()" class="button">OK!</button>
 	</main>
 </template>
 
@@ -30,6 +30,7 @@
 				for(let i = 0; i < this.numPlayers; i++){
 					this.$store.commit('createPlayer');
 				}
+				this.$router.push({path: "/setup/1/customize"});
 			}
 		}
 	}
@@ -48,13 +49,13 @@
 		display: inline-block;
 	}
 
-	button {
+	li button {
 		padding: 2vw 3.5vw;
 		font-size: 4vw;
 	}
 
 	@media (min-width: 900px) {
-		button {
+		li button {
 			padding: 20px 35px;
 		}
 	}

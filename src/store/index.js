@@ -839,7 +839,7 @@ export default new Vuex.Store({
   mutations: {
 		createPlayer(state) {
 			const emptyPlayerObj = {
-				name: null,
+				name: "",
 				color: "#ccc",
 				avatar: {
 					iris: "#ccc",

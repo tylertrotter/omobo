@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-		<router-view/>
+		<router-view :key="$route.fullPath"/>
 		<router-link to="/rules" class="rules-link">Rules</router-link>
   </div>
 </template>
