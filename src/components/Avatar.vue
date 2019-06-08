@@ -1,5 +1,5 @@
 <template>
-	<svg viewBox="0 0 100 100">
+	<svg class="avatar" viewBox="0 0 100 100">
 		<defs>
 			<clipPath id="eye-lids">
 				<rect x="30" y="35" width="35" height="24" class="eye-lid-mask" />

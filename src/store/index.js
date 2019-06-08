@@ -817,7 +817,7 @@ export default new Vuex.Store({
 	getters: {
 		turn: state => {
 			let turn = Math.ceil((state.step+1) / (state.ticksPerTurn)) % state.players.length;
-			turn = state.step === 0 ? 1 : turn === 0 ? 3 : turn;
+			turn = state.step === 0 ? 1 : turn === 0 ? state.players.length : turn;
       return turn;
 		},
 		turnTick: state => {

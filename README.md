@@ -1,4 +1,4 @@
-# Omobo
+# Ogopo
 
 ## Backstory
 Each player is a member of an alien race, the Mookogoo and a resident of Oogogoo, the ancestral planet of the Mookogoo. However, each player is a citizen of a different and rival state.

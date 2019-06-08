@@ -53,6 +53,9 @@
 				<button @click.stop="sit" :style="`border-color: ${$store.getters.currentPlayer.color};`">sit</button>
 				<button :disabled="$store.getters.currentPlayer.energy < 1" @click.stop="mine" :style="`border-color: ${$store.getters.currentPlayer.color};`">mine</button>
 				<button :disabled="$store.state.planetsInRange.length === 0 || $store.getters.currentPlayer.energy < 2" @click.stop="jump" :style="`border-color: ${$store.getters.currentPlayer.color};`">jump</button>
+				<ol class="ticks-left">
+					<li v-for="i in 6" :key="i" :class="{'tick-spent': $store.getters.turnTick >= i}"></li>
+				</ol>
 			</section>
 
 		</div>
@@ -279,30 +282,9 @@
 	.cp-buttons button {
 		display: block;
 		width: 100%;
-		margin: 2.5vh 0;
-		padding: 1.8vh 8px;
+		margin: 2.3vh 0;
+		padding: 1.3vh 8px;
 	}
-
-	/* .cp-materials--list .tungsten {
-		background: var(--tungsten);
-	}
-
-	.cp-materials--list .radium {
-		background: var(--radium);
-	}
-
-	.cp-materials--list .copper {
-		background: var(--copper);
-	}
-
-	.cp-materials--list .mercury {
-		background: var(--mercury);
-	}
-
-	.cp-materials--list .tin {
-		background: var(--tin);
-	} */
-
 
 	/* Tools */
 	.cp-tools {
@@ -379,5 +361,25 @@
 
 	.disable-interaction .interaction-disabler {
 		display: block;
+	}
+
+	.ticks-left {
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		margin-top: -1vh;
+		margin-bottom: 1vh;
+		padding: 0;
+		list-style: none;
+	}
+
+	.ticks-left li{
+		width: 10%;
+		height: 2px;
+		background: rgba(255,255,255,.2);
+	}
+
+	li.tick-spent {
+		background: white;
 	}
 </style>

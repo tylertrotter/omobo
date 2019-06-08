@@ -1,6 +1,6 @@
 <template>
 	<div :class="{'is-focus': focused}">
-		<div class="faux-input" @click="focused = true" :class="{'faux-input--full': word.length === 6}">{{word}}</div>
+		<div class="faux-input" @click="focus" :class="{'faux-input--full': word.length === 6}">{{word}}</div>
 		<div class="transliteration">{{ word }}</div>
 		<div class="mooko-keyboard">
 			<button type="button" class="backspace" @click="backspace()" :disabled="word.length === 0"></button>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers';
 	export default {
 		name: 's-mooko',
 		data(){
@@ -39,7 +40,12 @@
 				let lastLetter = this.word.substr(this.word.length-1, this.word.length);
 				this.lastLetterIsVowel = lastLetter === 'u' || lastLetter === 'o';
 				this.$emit("change", this.word);
-
+			},
+			focus(){
+				this.focused = true;
+				setTimeout(() => {
+					window.scrollTo(0,document.body.scrollHeight);
+				}, 500);
 			}
 		}
 	}
@@ -57,20 +63,21 @@
 		position: relative;
 		z-index: 2;
 		width: 100%;
-		min-height: 1.3em;
-		border: 0;
-		border-bottom: 2px solid #666;
+		line-height: 1.5em;
+		min-height: 1.6em;
+		border: 2px solid #666;
 		padding: 0 10px;
     transform: scaleX(-1);
 		background: transparent;
 		color: white;
 		font-family: mooko;
-		font-size: 40px;
+		font-size: 4.3vw;
 		cursor: text;
 	}
 
 	.faux-input:not(.faux-input--full):after {
 		display: none;
+		margin-top: -.15em;
 		content: "\2588";
 		font-size: .8em;
 		vertical-align: top;
@@ -129,11 +136,16 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
+		z-index: 1;
 		background: rgba(0,0,0,.5);
 	}
 
 	.backspace:before {
 		content: '\2326';
 		font-size: .9em;
+	}
+
+	.is-focus {
+		margin-bottom: 100px;
 	}
 </style>

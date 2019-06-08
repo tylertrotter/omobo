@@ -1,7 +1,14 @@
 # Other Information
 
+- kopugo
+- mopuko
+- oguko
+- okupo
+- ogomo
+- ogubu
+
 ## On the Name
-Omobo means clockwork in the Mookogoo language. It literally translates to "toilet plumbing" but since Earth toilets work so differently, clockwork is a much better translation.
+Ogopo means clockwork in the Mookogoo language. It literally translates to "toilet plumbing" but since Earth toilets work so differently, clockwork is a much better translation.
 
 ## Mooko Grammar
 - The only sounds the Mooko language are the ones roughly corresponding to K, G, P, B, M, O as in no, and OO as in zoo.
@@ -57,7 +64,7 @@ Oogobobo - Semi-mythical planet which is composed almost entirely of tin.
 
 Oogogoo - The home planet of the Mookogoo.
 
-Omobo - Clockwork
+Ogopo - Clockwork
 
 Oopo - An alliance of Mookogoos that is in opposition to the Boogokoo
 

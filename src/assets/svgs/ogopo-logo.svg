@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456 147">
+	<defs>
+		<style>
+			.stroke {
+				stroke: white;
+				stroke-width: 15;
+				stroke-linecap:round;
+				fill: none;
+			}
+			.fill {
+				fill: white;
+			}
+		</style>
+	</defs>
+	<g id="o">
+		<circle cx="43" cy="49" r="30" class="stroke" />
+		<circle cx="43" cy="49" r="8.14" class="fill" />
+	</g>
+
+	<use href="#o" x="90" />
+	<circle cx="170" cy="10" r="8.14" class="fill" />
+	<circle cx="133" cy="116" r="15" class="stroke" />
+
+	<use href="#o" x="180" />
+
+	<use href="#o" x="270" />
+	<line x1="283" y1="50" x2="283" y2="123" class="stroke" />
+
+	<use href="#o" x="360" />
+</svg>

@@ -4,11 +4,17 @@
 
 		<div class="customizer-layout">
 			<form>
-				<div class="field">
-					<label for="color">Color</label>
-					<s-color-picker id="color" initial-color="#ccc" @color-change="updateFlesh" />
+				<div style="display: flex;">
+					<div class="field">
+						<label for="color">Body Color</label>
+						<s-color-picker id="color" initial-color="#ccc" @color-change="updateFlesh" />
+					</div>
+				
+					<div class="field">
+						<label for="eye-color">Eye Color</label>
+						<s-color-picker id="eye-color" initial-color="#ccc"  @color-change="updateIris"/>
+					</div>
 				</div>
-
 				<div class="field">
 					<!-- http://danielstern.ca/range.css -->
 					<label for="width">Width</label>
@@ -20,10 +26,7 @@
 					<s-range type="range" id="height" step=".01" min=".8" max="1.15" :value=".975" @update-value="updateHeight" />
 				</div>
 
-				<div class="field">
-					<label for="eye-color">Eye Color</label>
-					<s-color-picker id="eye-color" initial-color="#ccc"  @color-change="updateIris"/>
-				</div>
+
 
 				<div class="field">
 					<label for="eye-size">Eye Size</label>
@@ -45,11 +48,11 @@
 				class="emotion--null"
 			/>
 		</div>
+		<button v-if="morePlayers" @click="goToNext">next</button>
+		<button v-else @click="goToNext">start game</button>
 		<div>
 			<div class="error-message" :class="{'error-message--hide': !showErrorMessage}">{{validate.message}}</div>
 		</div>
-		<button v-if="morePlayers" @click="goToNext">Customize player {{ player + 1 }}</button>
-		<button v-else @click="goToNext">start the game</button>
 	</main>
 </template>
 
@@ -136,33 +139,61 @@
 		display: flex;
 	}
 
-	form {
-		width: 30%;
+	.wrapper {
 		text-align: left;
 	}
 
-	.field + .field {
-		margin-top: 3vh;
+	form {
+		width: 38%;
+		text-align: left;
 	}
 
-	.customizer-layout svg {
-		width: 70%;
-		height: 80%;
-		margin-top: -7%;
+	form > * + * {
+		margin-top: 4.5vh;
+	}
+
+	.field {
+		margin-right: 2rem;
+	}
+
+	.avatar {
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 0;
+		width: 68%;
+		max-height: 100%;
 	}
 
 	.error-message {
 		display: inline-block;
 		min-height: 2em;
 		background: var(--color-2);
-		margin-bottom: 1rem;
+		margin-top: 1rem;
 		padding: .8rem 1rem;
 		transition: .2s;
+		position: fixed;
+		top: 0;
+		right: 0;
 
 	}
 
 	.error-message--hide {
 		opacity: 0;
+	}
+
+	button {
+		margin-top: 1em;
+		font-size: 1.5em;
+	}
+
+	@media (max-height: 530px){
+		button{
+			position: fixed;
+			right: 1rem;
+			bottom: 1rem;
+			font-size: 1.3em;
+		}
 	}
 
 </style>

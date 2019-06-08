@@ -26,6 +26,10 @@
 		methods: {
 			...mapMutations(["randomizeBoard"]),
 		},
+		created(){
+			if(this.$store.state.players.length < 2)
+				this.$router.push({path: '/'})
+		},
 		beforeCreate() {
 				// this.$store.commit('randomizeBoard');
 		}
