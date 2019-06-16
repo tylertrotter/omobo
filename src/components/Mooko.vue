@@ -71,8 +71,14 @@ import { setTimeout } from 'timers';
 		background: transparent;
 		color: white;
 		font-family: mooko;
-		font-size: 4.3vw;
+		font-size: 42px;
 		cursor: text;
+	}
+
+	@media (max-width: 870px) {
+		.faux-input {
+			font-size: 4.2vw;
+		}
 	}
 
 	.faux-input:not(.faux-input--full):after {
@@ -145,7 +151,9 @@ import { setTimeout } from 'timers';
 		font-size: .9em;
 	}
 
-	.is-focus {
-		margin-bottom: 100px;
+	@media (max-height: 530px) {
+		.is-focus {
+			margin-bottom: 100px;
+		}
 	}
 </style>

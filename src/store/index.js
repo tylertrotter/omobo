@@ -9,7 +9,7 @@ export default new Vuex.Store({
 			toolsExpanded: false,
 			controlsExpanded: false,
 			controlsDisabled: false,
-			aspectRatio: {x: 3, y:2}
+			aspectRatio: {x: 3, y:2, name: "3:2"}
 		},
 		tick: 0,
 		step: 0,
@@ -95,724 +95,2087 @@ export default new Vuex.Store({
 		planets: [],
 		planetsInRange: [],
 		players: [],
-		systems: [
-			{
-				width: 40,
-				x: -9,
-				y: -13,
-				sunSize: 3,
-				clockwise: false,
-				planets: [
-					{
-						radius: 1.5,
-						ring: 1,
-						speed: 20,
-						mineral: 0
-					},
-					{
-						radius: .8,
-						ring: 1,
-						speed: 20,
-						mineral: 2,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 2,
-						speed: 22,
-						mineral: 0,
-						spot: 10,
-						retrograde: true
-					},
-					{
-						radius: .75,
-						ring: 2,
-						speed: 22,
-						mineral: 0,
-						spot: 20,
-						retrograde: true
-					},
-					{
-						radius: 2.25,
-						ring: 3,
-						speed: 18,
-						mineral: 1,
-						spot: 5
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 18,
-						mineral: 1,
-						spot: 12
-					},
-					{
-						radius: .75,
-						ring: 3,
-						speed: 18,
-						mineral: 2,
-						spot: 17
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 40,
-						mineral: 0,
-						spot: 2,
-						retrograde: true
-					},
-					{
-						radius: 2,
-						ring: 4,
-						speed: 40,
-						mineral: 0,
-						spot: 2,
-						retrograde: true
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 40,
-						mineral: 0,
-						spot: 2,
-						retrograde: true
-					},
-					{
-						radius: 2,
-						ring: 4,
-						speed: 40,
-						mineral: 0,
-						spot: 10,
-						retrograde: true
-					}
-				]
-			},
-			{
-				width: 40,
-				x: 8.6,
-				y: -18,
-				sunSize: 2,
-				clockwise: false,
-				planets: [
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 0
-					},
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 0,
-						spot: 18
-					},
-					{
-						radius: .8,
-						ring: 2,
-						speed: 13,
-						mineral: 0,
-						spot: 6
-					},
-					{
-						radius: 1.2,
-						ring: 2,
-						speed: 13,
-						mineral: 0,
-						spot: 10
-					}
-				]
-			},
-			{
-				width: 40,
-				x: -10,
-				y: 16.5,
-				sunSize: .8,
-				clockwise: false,
-				planets: [
-					{
-						radius: 1,
-						ring: 1,
-						speed: 30,
-						mineral: 1
-					},
-					{
-						radius: 1.7,
-						ring: 1,
-						speed: 30,
-						mineral: 3,
-						spot: 5
-					},
-					{
-						radius: 2,
-						ring: 2,
-						speed: 10,
-						mineral: 0,
-						spot: 3,
-						retrograde: true
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 30,
-						mineral: 0
-					},
-					{
-						radius: 1.5,
-						ring: 3,
-						speed: 30,
-						mineral: 2,
-						spot: 7
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 30,
-						mineral: 1,
-						spot: 14
-					},
-					{
-						radius: .7,
-						ring: 3,
-						speed: 30,
-						mineral: 0,
-						spot: 18
-					}
-				]
-			},
-			{
-				width: 32,
-				x: 16,
-				y: 27.5,
-				sunSize: 3.5,
-				clockwise: true,
-				planets: [
-					{
-						radius: 2.5,
-						ring: 1,
-						speed: 30,
-						mineral: 1,
-						spot: 4
-					},
-					{
-						radius: 1,
-						ring: 2,
-						speed: 10,
-						mineral: 1
-					},
-					{
-						radius: .8,
-						ring: 3,
-						speed: 25,
-						mineral: 0,
-						retrograde: true,
-						spot: 2
-					},
-					{
-						radius: 1.2,
-						ring: 3,
-						speed: 25,
-						mineral: 2,
-						retrograde: true,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 8,
-						mineral: 1,
-					},
-					{
-						radius: .75,
-						ring: 5,
-						speed: 30,
-						mineral: 0,
-						spot: 7
-					},
-					{
-						radius: 1.75,
-						ring: 5,
-						speed: 30,
-						mineral: 0,
-						spot: 22
-					},
-					{
-						radius: .5,
-						ring: 6,
-						speed: 100,
-						mineral: 2,
-						spot: 11
-					},
-					{
-						radius: .5,
-						ring: 6,
-						speed: 100,
-						mineral: 2,
-						spot: 36
-					},
-					{
-						radius: 2,
-						ring: 7,
-						speed: 70,
-						mineral: 3
-					},
-					{
-						radius: 1.2,
-						ring: 7,
-						speed: 70,
-						mineral: 1,
-						spot: 56
-					}
-				]
-			},
-			{
-				width: 40,
-				x: -2.5,
-				y: 50,
-				sunSize: 1.5,
-				clockwise: true,
-				planets: [
-					{
-						radius: 2.5,
-						ring: 1,
-						speed: 30,
-						mineral: 3,
-						spot: 4
-					},
-					{
-						radius: 1,
-						ring: 2,
-						speed: 10,
-						mineral: 2,
-						spot: 8
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 80,
-						mineral: 2,
-						retrograde: true
-					},
-					{
-						radius: 1.4,
-						ring: 3,
-						speed: 80,
-						mineral: 3,
-						retrograde: true,
-						spot: 22
-					},
-					{
-						radius: 1.6,
-						ring: 3,
-						speed: 80,
-						mineral: 2,
-						retrograde: true,
-						spot: 47
-					},
-					{
-						radius: 2,
-						ring: 3,
-						speed: 80,
-						mineral: 3,
-						retrograde: true,
-						spot: 60
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 13,
-						mineral: 3,
-						spot: 5
-					}
-				]
-			},
-			{
-				width: 50,
-				x: 42,
-				y: 21,
-				sunSize: 5.5,
-				clockwise: true,
-				planets: [
-					{
-						radius: 2.5,
-						ring: 1,
-						speed: 30,
-						mineral: 3,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 2,
-						speed: 10,
-						mineral: 1,
-						spot: 8
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 150,
-						mineral: 2
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 150,
-						mineral: 0,
-						spot: 75
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 24,
-						mineral: 0
-					},
-					{
-						radius: 3,
-						ring: 4,
-						speed: 24,
-						mineral: 0,
-						spot: 18
-					},
-					{
-						radius: 1,
-						ring: 5,
-						speed: 30,
-						mineral: 1,
-						spot: 18
-					},
-					{
-						radius: .8,
-						ring: 5,
-						speed: 30,
-						mineral: 1,
-						spot: 12
-					},
-					{
-						radius: 1,
+		systems: {
+			"4:3	": [
+				{
+					width: 40,
+					x: -9,
+					y: -13,
+					sunSize: 3,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.5,
+							ring: 1,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: .8,
+							ring: 1,
+							speed: 20,
+							mineral: 2,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						},
+						{
+							radius: .75,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 20,
+							retrograde: true
+						},
+						{
+							radius: 2.25,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: .75,
+							ring: 3,
+							speed: 18,
+							mineral: 2,
+							spot: 17
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 2,
+							retrograde: true
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 8.6,
+					y: -18,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -10,
+					y: 16.5,
+					sunSize: .8,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.7,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 5
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 10,
+							mineral: 0,
+							spot: 3,
+							retrograde: true
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.5,
+							ring: 3,
+							speed: 30,
+							mineral: 2,
+							spot: 7
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 30,
+							mineral: 1,
+							spot: 14
+						},
+						{
+							radius: .7,
+							ring: 3,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						}
+					]
+				},
+				{
+					width: 32,
+					x: 16,
+					y: 27.5,
+					sunSize: 3.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 25,
+							mineral: 0,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1.2,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 8,
+							mineral: 1,
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 7
+						},
+						{
+							radius: 1.75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 22
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 11
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 36
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 70,
+							mineral: 3
+						},
+						{
+							radius: 1.2,
+							ring: 7,
+							speed: 70,
+							mineral: 1,
+							spot: 56
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -2.5,
+					y: 50,
+					sunSize: 1.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 2,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true
+						},
+						{
+							radius: 1.4,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 22
+						},
+						{
+							radius: 1.6,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true,
+							spot: 47
+						},
+						{
+							radius: 2,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 60
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 13,
+							mineral: 3,
+							spot: 5
+						}
+					]
+				},
+				{
+					width: 50,
+					x: 42,
+					y: 21,
+					sunSize: 5.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 2
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 0,
+							spot: 75
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 24,
+							mineral: 0
+						},
+						{
+							radius: 3,
+							ring: 4,
+							speed: 24,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 6,
+							speed: 100,
+							mineral: 0,
+							spot: 33
+						},
+						{
+						radius: 1.9,
 						ring: 6,
 						speed: 100,
 						mineral: 0,
-						spot: 33
-					},
-					{
-					radius: 1.9,
-					ring: 6,
-					speed: 100,
-					mineral: 0,
-					spot: 78
-					},
-					{
-						radius: 1.6,
-						ring: 7,
-						speed: 22,
-						mineral: 2
-					},
-					{
-						radius: .7,
-						ring: 7,
-						speed: 22,
-						mineral: 3,
-						spot: 12
-					}
-				]
-			},
-			{
-				width: 25,
-				x: 34,
-				y: 1,
-				sunSize: 5,
-				clockwise: false,
-				planets: [
-					{
-						radius: 2.5,
-						ring: 1,
-						speed: 30,
-						mineral: 1,
-						spot: 5
-					},
-					{
-						radius: 1,
-						ring: 2,
-						speed: 10,
-						mineral: 3
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 25,
-						mineral: 2,
-						retrograde: true,
-						spot: 2
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 60,
-						mineral: 0,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 60,
-						mineral: 1,
-						spot: 25
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 60,
-						mineral: 0,
-						spot: 50
-					},
-					{
-						radius: .75,
-						ring: 5,
-						speed: 30,
-						mineral: 0
-					},
-					{
-						radius: 1,
-						ring: 7,
-						speed: 80,
-						mineral: 2,
-						spot: 20
-					},
-					{
-						radius: 2,
-						ring: 7,
-						speed: 80,
-						mineral: 0,
-						spot: 43
-					},
-					{
-						radius: 1,
-						ring: 7,
-						speed: 80,
-						mineral: 0,
-						spot: 70
-					},
-					{
-						radius: 2.6,
-						ring: 8,
-						speed: 160,
-						mineral: 2
-					},
-					{
-						radius: 2,
-						ring: 8,
-						speed: 160,
-						mineral: 0,
-						spot: 33
-					},
-					{
-						radius: 1.5,
-						ring: 8,
-						speed: 160,
-						mineral: 1,
-						spot: 66
-					},
-					{
-						radius: 1,
-						ring: 8,
-						speed: 160,
-						mineral: 0,
-						spot: 90
-					},
-					{
-						radius: 1.7,
-						ring: 8,
-						speed: 160,
-						mineral: 0,
-						spot: 143
-					}
-				]
-			},
-			{
-				width: 39,
-				x: 46.3,
-				y: -18.5,
-				sunSize: 2,
-				clockwise: false,
-				planets: [
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 0
-					},
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 0,
-						spot: 18
-					},
-					{
-						radius: .8,
-						ring: 2,
-						speed: 13,
-						mineral: 0,
-						spot: 6
-					},
-					{
-						radius: 1.2,
-						ring: 2,
-						speed: 13,
-						mineral: 0,
-						spot: 10
-					},
-					{
-						radius: .8,
-						ring: 3,
+						spot: 78
+						},
+						{
+							radius: 1.6,
+							ring: 7,
+							speed: 22,
+							mineral: 2
+						},
+						{
+							radius: .7,
+							ring: 7,
+							speed: 22,
+							mineral: 3,
+							spot: 12
+						}
+					]
+				},
+				{
+					width: 25,
+					x: 34,
+					y: 1,
+					sunSize: 5,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 3
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 1,
+							spot: 25
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 50
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 2,
+							spot: 20
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 43
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 70
+						},
+						{
+							radius: 2.6,
+							ring: 8,
+							speed: 160,
+							mineral: 2
+						},
+						{
+							radius: 2,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 33
+						},
+						{
+							radius: 1.5,
+							ring: 8,
+							speed: 160,
+							mineral: 1,
+							spot: 66
+						},
+						{
+							radius: 1,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 90
+						},
+						{
+							radius: 1.7,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 143
+						}
+					]
+				},
+				{
+					width: 39,
+					x: 46.3,
+					y: -18.5,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 100,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 38,
+					x: 21,
+					y: 61,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: .6,
+							ring: 1,
+							speed: 33,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 26
+						},
+						{
+							radius: 1.5,
+							ring: 3,
+							speed: 26,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: .7,
+							ring: 5,
+							speed: 20,
+							mineral: 0,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 20,
+							mineral: 3,
+							spot: 15
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 67,
+					y: 58,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 64,
+					y: -12,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2,
+							ring: 1,
+							speed: 10,
+							mineral: 4,
+							spot: 1
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 70,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 8
+						}
+					]
+				},
+			],
+			"3:2": [
+				{
+					width: 40,
+					x: -9,
+					y: -13,
+					sunSize: 3,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.5,
+							ring: 1,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: .8,
+							ring: 1,
+							speed: 20,
+							mineral: 2,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						},
+						{
+							radius: .75,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 20,
+							retrograde: true
+						},
+						{
+							radius: 2.25,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: .75,
+							ring: 3,
+							speed: 18,
+							mineral: 2,
+							spot: 17
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 2,
+							retrograde: true
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 8.6,
+					y: -18,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -10,
+					y: 16.5,
+					sunSize: .8,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.7,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 5
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 10,
+							mineral: 0,
+							spot: 3,
+							retrograde: true
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.5,
+							ring: 3,
+							speed: 30,
+							mineral: 2,
+							spot: 7
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 30,
+							mineral: 1,
+							spot: 14
+						},
+						{
+							radius: .7,
+							ring: 3,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						}
+					]
+				},
+				{
+					width: 32,
+					x: 16,
+					y: 27.5,
+					sunSize: 3.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 25,
+							mineral: 0,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1.2,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 8,
+							mineral: 1,
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 7
+						},
+						{
+							radius: 1.75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 22
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 11
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 36
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 70,
+							mineral: 3
+						},
+						{
+							radius: 1.2,
+							ring: 7,
+							speed: 70,
+							mineral: 1,
+							spot: 56
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -2.5,
+					y: 50,
+					sunSize: 1.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 2,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true
+						},
+						{
+							radius: 1.4,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 22
+						},
+						{
+							radius: 1.6,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true,
+							spot: 47
+						},
+						{
+							radius: 2,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 60
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 13,
+							mineral: 3,
+							spot: 5
+						}
+					]
+				},
+				{
+					width: 50,
+					x: 42,
+					y: 21,
+					sunSize: 5.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 2
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 0,
+							spot: 75
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 24,
+							mineral: 0
+						},
+						{
+							radius: 3,
+							ring: 4,
+							speed: 24,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 6,
+							speed: 100,
+							mineral: 0,
+							spot: 33
+						},
+						{
+						radius: 1.9,
+						ring: 6,
 						speed: 100,
 						mineral: 0,
-						spot: 10
-					}
-				]
-			},
-			{
-				width: 38,
-				x: 21,
-				y: 61,
-				sunSize: 2,
-				clockwise: false,
-				planets: [
-					{
-						radius: .6,
-						ring: 1,
-						speed: 33,
-						mineral: 1,
-						spot: 3
-					},
-					{
-						radius: 2,
-						ring: 2,
-						speed: 30,
+						spot: 78
+						},
+						{
+							radius: 1.6,
+							ring: 7,
+							speed: 22,
+							mineral: 2
+						},
+						{
+							radius: .7,
+							ring: 7,
+							speed: 22,
+							mineral: 3,
+							spot: 12
+						}
+					]
+				},
+				{
+					width: 25,
+					x: 34,
+					y: 1,
+					sunSize: 5,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 3
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 1,
+							spot: 25
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 50
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 2,
+							spot: 20
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 43
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 70
+						},
+						{
+							radius: 2.6,
+							ring: 8,
+							speed: 160,
+							mineral: 2
+						},
+						{
+							radius: 2,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 33
+						},
+						{
+							radius: 1.5,
+							ring: 8,
+							speed: 160,
+							mineral: 1,
+							spot: 66
+						},
+						{
+							radius: 1,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 90
+						},
+						{
+							radius: 1.7,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 143
+						}
+					]
+				},
+				{
+					width: 39,
+					x: 46.3,
+					y: -18.5,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 100,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 38,
+					x: 21,
+					y: 61,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: .6,
+							ring: 1,
+							speed: 33,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 26
+						},
+						{
+							radius: 1.5,
+							ring: 3,
+							speed: 26,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: .7,
+							ring: 5,
+							speed: 20,
+							mineral: 0,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 20,
+							mineral: 3,
+							spot: 15
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 67,
+					y: 58,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 64,
+					y: -12,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2,
+							ring: 1,
+							speed: 10,
+							mineral: 4,
+							spot: 1
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 70,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 8
+						}
+					]
+				},
+			],
+			"16:9": [
+				{
+					width: 40,
+					x: -9,
+					y: -14.5,
+					sunSize: 3,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.5,
+							ring: 1,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: .8,
+							ring: 1,
+							speed: 20,
+							mineral: 2,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						},
+						{
+							radius: .75,
+							ring: 2,
+							speed: 22,
+							mineral: 0,
+							spot: 20,
+							retrograde: true
+						},
+						{
+							radius: 2.25,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 18,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: .75,
+							ring: 3,
+							speed: 18,
+							mineral: 2,
+							spot: 17
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 2,
+							retrograde: true
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 40,
+							mineral: 0,
+							spot: 10,
+							retrograde: true
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 8.6,
+					y: -18,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -11.5,
+					y: 17.5,
+					sunSize: .8,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.7,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 5
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 10,
+							mineral: 0,
+							spot: 3,
+							retrograde: true
+						}
+					]
+				},
+				{
+					width: 32,
+					x: 12.75,
+					y: 27.5,
+					sunSize: 3.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 25,
+							mineral: 0,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1.2,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 8,
+							mineral: 1,
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 7
+						},
+						{
+							radius: 1.75,
+							ring: 5,
+							speed: 30,
+							mineral: 0,
+							spot: 22
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 11
+						},
+						{
+							radius: .5,
+							ring: 6,
+							speed: 100,
+							mineral: 2,
+							spot: 36
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 70,
+							mineral: 3
+						},
+						{
+							radius: 1.2,
+							ring: 7,
+							speed: 70,
+							mineral: 1,
+							spot: 56
+						}
+					]
+				},
+				{
+					width: 40,
+					x: -9,
+					y: 50,
+					sunSize: 1.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 4
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 2,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true
+						},
+						{
+							radius: 1.4,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 22
+						},
+						{
+							radius: 1.6,
+							ring: 3,
+							speed: 80,
+							mineral: 2,
+							retrograde: true,
+							spot: 47
+						},
+						{
+							radius: 2,
+							ring: 3,
+							speed: 80,
+							mineral: 3,
+							retrograde: true,
+							spot: 60
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 13,
+							mineral: 3,
+							spot: 5
+						}
+					]
+				},
+				{
+					width: 45,
+					x: 44,
+					y: 25,
+					sunSize: 5.5,
+					clockwise: true,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 3,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 1,
+							spot: 8
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 2
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 150,
+							mineral: 0,
+							spot: 75
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 24,
+							mineral: 0
+						},
+						{
+							radius: 3,
+							ring: 4,
+							speed: 24,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 5,
+							speed: 30,
+							mineral: 1,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 6,
+							speed: 100,
+							mineral: 0,
+							spot: 33
+						},
+						{
+						radius: 1.9,
+						ring: 6,
+						speed: 100,
 						mineral: 0,
-						spot: 26
-					},
-					{
-						radius: 1.5,
-						ring: 3,
-						speed: 26,
-						mineral: 0
-					},
-					{
-						radius: 1.2,
-						ring: 4,
-						speed: 22,
-						mineral: 1
-					},
-					{
-						radius: 2,
-						ring: 4,
-						speed: 22,
-						mineral: 1
-					},
-					{
-						radius: .7,
-						ring: 5,
-						speed: 20,
-						mineral: 0,
-						spot: 2
-					},
-					{
-						radius: 1,
-						ring: 5,
-						speed: 20,
-						mineral: 3,
-						spot: 15
-					}
-				]
-			},
-			{
-				width: 40,
-				x: 67,
-				y: 58,
-				sunSize: 2,
-				clockwise: false,
-				planets: [
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 1
-					},
-					{
-						radius: 1.2,
-						ring: 1,
-						speed: 30,
-						mineral: 1,
-						spot: 18
-					},
-					{
-						radius: .8,
-						ring: 2,
-						speed: 13,
-						mineral: 1,
-						spot: 6
-					},
-					{
-						radius: 1.2,
-						ring: 2,
-						speed: 13,
-						mineral: 1,
-						spot: 10
-					}
-				]
-			},
-			{
-				width: 40,
-				x: 64,
-				y: -12,
-				sunSize: 2,
-				clockwise: false,
-				planets: [
-					{
-						radius: 2,
-						ring: 1,
-						speed: 10,
-						mineral: 4,
-						spot: 1
-					},
-					{
-						radius: .8,
-						ring: 2,
-						speed: 30,
-						mineral: 0,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 3,
-						speed: 70,
-						mineral: 1,
-						spot: 3
-					},
-					{
-						radius: 1.2,
-						ring: 4,
-						speed: 20,
-						mineral: 0
-					},
-					{
-						radius: 1.2,
-						ring: 4,
-						speed: 20,
-						mineral: 0,
-						spot: 12
-					},
-					{
-						radius: 1,
-						ring: 4,
-						speed: 20,
-						mineral: 0,
-						spot: 8
-					}
-				]
-			},
-		],
+						spot: 78
+						},
+						{
+							radius: 1.6,
+							ring: 7,
+							speed: 22,
+							mineral: 2
+						},
+						{
+							radius: .7,
+							ring: 7,
+							speed: 22,
+							mineral: 3,
+							spot: 12
+						}
+					]
+				},
+				{
+					width: 25,
+					x: 34,
+					y: 1,
+					sunSize: 5,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2.5,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 5
+						},
+						{
+							radius: 1,
+							ring: 2,
+							speed: 10,
+							mineral: 3
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 25,
+							mineral: 2,
+							retrograde: true,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 1,
+							spot: 25
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 60,
+							mineral: 0,
+							spot: 50
+						},
+						{
+							radius: .75,
+							ring: 5,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 2,
+							spot: 20
+						},
+						{
+							radius: 2,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 43
+						},
+						{
+							radius: 1,
+							ring: 7,
+							speed: 80,
+							mineral: 0,
+							spot: 70
+						},
+						{
+							radius: 2.6,
+							ring: 8,
+							speed: 160,
+							mineral: 2
+						},
+						{
+							radius: 2,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 33
+						},
+						{
+							radius: 1.5,
+							ring: 8,
+							speed: 160,
+							mineral: 1,
+							spot: 66
+						},
+						{
+							radius: 1,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 90
+						},
+						{
+							radius: 1.7,
+							ring: 8,
+							speed: 160,
+							mineral: 0,
+							spot: 143
+						}
+					]
+				},
+				{
+					width: 39,
+					x: 46.5,
+					y: -21,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 0,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 0,
+							spot: 10
+						},
+						{
+							radius: .8,
+							ring: 3,
+							speed: 100,
+							mineral: 0,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 38,
+					x: 22,
+					y: 61.5,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: .6,
+							ring: 1,
+							speed: 33,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 2,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 26
+						},
+						{
+							radius: 1.5,
+							ring: 3,
+							speed: 26,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: 2,
+							ring: 4,
+							speed: 22,
+							mineral: 1
+						},
+						{
+							radius: .7,
+							ring: 5,
+							speed: 20,
+							mineral: 0,
+							spot: 2
+						},
+						{
+							radius: 1,
+							ring: 5,
+							speed: 20,
+							mineral: 3,
+							spot: 15
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 67,
+					y: 58,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1
+						},
+						{
+							radius: 1.2,
+							ring: 1,
+							speed: 30,
+							mineral: 1,
+							spot: 18
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 6
+						},
+						{
+							radius: 1.2,
+							ring: 2,
+							speed: 13,
+							mineral: 1,
+							spot: 10
+						}
+					]
+				},
+				{
+					width: 40,
+					x: 64,
+					y: -12,
+					sunSize: 2,
+					clockwise: false,
+					planets: [
+						{
+							radius: 2,
+							ring: 1,
+							speed: 10,
+							mineral: 4,
+							spot: 1
+						},
+						{
+							radius: .8,
+							ring: 2,
+							speed: 30,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 3,
+							speed: 70,
+							mineral: 1,
+							spot: 3
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0
+						},
+						{
+							radius: 1.2,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 12
+						},
+						{
+							radius: 1,
+							ring: 4,
+							speed: 20,
+							mineral: 0,
+							spot: 8
+						}
+					]
+				},
+			],
+		}
 	},
 	getters: {
 		turn: state => {
@@ -994,6 +2357,29 @@ export default new Vuex.Store({
 			function randomNumber(min, max){
 				return Math.floor(Math.random() * (max - min + 1) + min);
 			}
+		},
+		setAspectRatio(state){
+			// 3 aspect ratios are supported: 4:3, 3:2, and 16:9. Find the most appropriate aspect ratio for the user's device.
+			// 1.33
+			// --- 1.415
+			// 1.5
+			// --- 1.635
+			// 1.77
+			var aspectRatio = window.screen.width / window.screen.height;
+			var aspectRatioNumbers = [];
+
+			if(aspectRatio < 1.415)
+				aspectRatioNumbers = [4, 3];
+			else if(aspectRatio < 1.635)
+				aspectRatioNumbers = [3, 2];
+			else
+				aspectRatioNumbers = [16, 9];
+
+			// aspectRatioNumbers = [4, 3];
+
+			state.ui.aspectRatio.x = aspectRatioNumbers[0];
+			state.ui.aspectRatio.y = aspectRatioNumbers[1];
+			state.ui.aspectRatio.name = `${aspectRatioNumbers[0]}:${aspectRatioNumbers[1]}`;
 		},
 		customizeFlesh(state, {player, color}) {
 			state.players[player - 1].color = color;

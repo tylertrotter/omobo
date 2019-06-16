@@ -1,5 +1,6 @@
 <template>
 	<main class="wrapper">
+		<img src="@/assets/svgs/ogopo-logo.svg" class="logo" alt="Ogopo" />
 		<h1>Number of players</h1>
 		<ol>
 			<li v-for="i in 7" :key="i">
@@ -18,7 +19,7 @@
 		name: "s-number-of-players",
 		data() {
 			return {
-				numPlayers: 2
+				numPlayers: null
 			}
 		},
 		methods: {
@@ -61,5 +62,11 @@
 	}
 	.active {
 		background: var(--color-2);
+	}
+
+	.logo {
+		max-width: 30vw;
+		margin-top: 5vh;
+		margin-bottom: 5vh;
 	}
 </style>

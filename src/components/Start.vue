@@ -6,8 +6,15 @@
 </template>
 
 <script>
+	import { mapMutations } from "vuex";
 	export default {
-		name: "s-start"
+		name: "s-start",
+		methods: {
+			...mapMutations(["setAspectRatio"])
+		},
+		created(){
+			this.$store.commit('setAspectRatio');
+		}
 	}
 </script>
 

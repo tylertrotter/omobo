@@ -24,9 +24,11 @@
 			SPlayerTransition
 		},
 		methods: {
-			...mapMutations(["randomizeBoard"]),
+			...mapMutations(["setAspectRatio"]),
 		},
 		created(){
+				// this.$store.commit('setAspectRatio');
+
 			if(this.$store.state.players.length < 2)
 				this.$router.push({path: '/'})
 		},
@@ -38,7 +40,11 @@
 
 <style scoped>
 	.board {
+		display: flex;
 		position: relative;
+    flex-direction: column;
+    justify-content: center;
+		background: #333;
 		overflow: hidden;
 		height: 100vh;
 	}

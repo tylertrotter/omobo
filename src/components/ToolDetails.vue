@@ -146,6 +146,30 @@
 		width: 15%;
 	}
 
+	.td-buttons button + button {
+		margin-left: .75em;
+	}
+
+	@media (max-width: 1000px) {
+		.td-details {
+			flex-wrap: wrap;
+		}
+
+		.td-materials-icon {
+			width: 20%
+		}
+
+		.td-description {
+			width: 80%;
+		}
+
+		.td-buttons {
+			width: 100%;
+			margin-top: 1em;
+		}
+
+	}
+
 	.td-materials-required {
 		display: flex;
 		align-content: center;

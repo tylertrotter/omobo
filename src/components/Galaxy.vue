@@ -1,6 +1,6 @@
 <template>
-	<svg id="galaxy" class="galaxy" :width="3" :height="2">
-		<s-solar-system v-for="(system, i) in $store.state.systems" :key="i"
+	<svg id="galaxy" class="galaxy" :width="$store.state.ui.aspectRatio.x" :height="$store.state.ui.aspectRatio.y">
+		<s-solar-system v-for="(system, i) in $store.state.systems[$store.state.ui.aspectRatio.name]" :key="i"
 			:width="system.width"
 			:x="system.x+'%'"
 			:y="system.y+'%'"
@@ -45,7 +45,8 @@
 <style scoped>
 	.galaxy {
 		width: 100%;
-		height: 100%;
+		height: auto;
+		background: var(--void);
 		transition: all 2s;
 	}
 </style>

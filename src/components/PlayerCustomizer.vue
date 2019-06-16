@@ -125,10 +125,10 @@
 					this.showErrorMessage = true;
 				else if(this.morePlayers)
 					this.$router.push({path: `/setup/${this.$props.player + 1}/customize`});
-				else
+				else{
+					document.body.requestFullscreen();
 					this.$router.push({path: `/game`});
-
-
+				}
 			}
 		},
 	}
@@ -144,7 +144,7 @@
 	}
 
 	form {
-		width: 38%;
+		width: 40%;
 		text-align: left;
 	}
 

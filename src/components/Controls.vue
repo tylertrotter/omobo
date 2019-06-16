@@ -37,7 +37,7 @@
 					<li v-for="i in 4" :key="i"
 						:class="$store.getters.currentPlayer.tools.length > i-1 ? $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name : 'no-tool'">
 						<img v-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Turbo Booster'" src="@/assets/svgs/turbo-booster.svg" />
-						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Freeze Bomb'" src="@/assets/svgs/freeze-bomb.svg" />
+						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Diamond Bit'" src="@/assets/svgs/drill-bit.svg" />
 						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Retrograde Bomb'" src="@/assets/svgs/retrograde-bomb.svg" />
 						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Super Booster'" src="@/assets/svgs/super-booster.svg" />
 						<img v-else-if="$store.getters.currentPlayer.tools.length > i-1 && $store.state.tools[$store.getters.currentPlayer.tools[i-1]].name === 'Warp Speed Bomb'" src="@/assets/svgs/warp-speed-bomb.svg" />
@@ -45,7 +45,7 @@
 					</li>
 				</ul>
 				<div class="tool-buttons">
-					<button @click.stop="$store.commit('expandTools', !$store.state.ui.toolsExpanded)">build or use</button>
+					<button @click.stop="$store.commit('expandTools', !$store.state.ui.toolsExpanded)">build / use</button>
 				</div>
 			</section>
 
@@ -196,7 +196,7 @@
 	.cp-name .english {
 		position: absolute;
 		right: 10px;
-		margin-top: .5em;
+		/* margin-top: .5em; */
 		opacity: 0;
 		font-size: 11px;
 		color: #888;
@@ -211,8 +211,8 @@
 	}
 
 	.expanded .cp-name {
-		font-size: 20px;
-		padding-top: 27px;
+		font-size: 25px;
+		/* padding-top: 27px; */
 		background-color: transparent !important;
 		border-top: 5px solid;
 	}
@@ -228,8 +228,16 @@
 		margin-bottom: 0;
 	}
 
+	@media (max-height: 500px) {
+		.expanded .cp-avatar {
+		  height: 11vh;
+			margin-top: -0.2em;
+			margin-bottom: -0.2em;
+		}
+	}
+
 	.cp-section {
-		height: 20vh;
+		height: 21.5vh;
 		background: var(--gray);
 		padding: 8px;
 	}
@@ -244,8 +252,8 @@
 	}
 
 	.cp-tools--list img {
-		width: 16px;
-		height: 16px;
+		width: 1em;
+		height: 1em;
 	}
 
 	.cp-materials--list {
@@ -283,16 +291,18 @@
 		display: block;
 		width: 100%;
 		margin: 2.3vh 0;
-		padding: 1.3vh 8px;
+		padding: 1.1vh 8px;
 	}
 
 	/* Tools */
 	.cp-tools {
 		position: relative;
+		min-height: 86px;
+		overflow: hidden;
 	}
 
 	.cp-tools--list {
-		overflow: hidden;
+		overflow: hidden;	
 	}
 
 	.cp-tools--list li {
@@ -328,23 +338,47 @@
 		opacity: 1;
 	}
 
-	.expanded .cp-tools--list li {
-		height: 20%;
+	@media (max-height: 500px) {
+		.cp-tools--list {
+			font-size: 11px;
+		}
+
+		.tool-buttons {
+			top: 5px;
+			right: 30px !important;
+			transform: rotate(-90deg);
+			transform-origin: 100% 0%;
+		}
+
+		.tool-buttons button {
+			font-size: 11px;
+		}
+	}
+
+	@media (min-height: 501px) {
+		.expanded .cp-tools--list li {
+			height: 20%;
+		}
 	}
 
 	.tool-buttons {
 		position: absolute;
 		bottom: 0;
-		right: 0;
+		left: -999999px;
 		opacity: 0;
 		transition: opacity .2s;
 	}
 
 	.tool-buttons button {
 		margin: 1vh;
+		padding-top: .5vh;
+		padding-bottom: .5vh;
+
 	}
 
 	.expanded .tool-buttons {
+		left: initial;
+		right: 0;
 		opacity: 1;
 		transition: opacity .6s .6s;
 	}
